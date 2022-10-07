@@ -1,0 +1,41 @@
+.wrapper::-webkit-scrollbar {
+  display: none;
+}
+.line {
+  max-width: 60px;
+  transform: rotate(-15deg);
+  position: relative;
+  top: 5%;
+  left: -22%;
+  margin-right: 15px;
+}
+.zigZag {
+  max-width: 60px;
+  position: relative;
+  top: 17%;
+  left: -20%;
+}
+.cursor {
+  max-width: 30px;
+  position: relative;
+  top: 10%;
+  left: 18%;
+  margin-left: 15px;
+}
+
+.reactizm {
+  width: 70%;
+  min-width: 10rem;
+  max-width: 260px;
+  user-select: none;
+  h4 {
+    width: 100%;
+    position: relative;
+    text-align: center;
+    font-size: x-large;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    z-index: 10;
+  }
+}

@@ -1,0 +1,35 @@
+.AppBar {
+  .loginBtn {
+    border-radius: 20px;
+    color: #fff;
+    font-weight: bolder;
+    box-shadow: none;
+  }
+  .link {
+    font-weight: 700;
+    font-size: large;
+    margin: auto 1rem;
+    position: relative;
+    overflow: hidden;
+    div {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      height: 2px;
+      width: 0;
+      border-radius: 2px;
+      transition: 0.2s all ease;
+    }
+    &:hover {
+      div {
+        width: 100%;
+      }
+    }
+  }
+}
+.logo {
+  width: "40px";
+  height: "40px";
+}
