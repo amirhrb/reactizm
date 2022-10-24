@@ -2,16 +2,7 @@ import Link from "next/link";
 // import { useRouter } from "next/router";
 
 import HomeIcon from "@mui/icons-material/Home";
-import {
-  Breadcrumbs,
-  Button,
-  // createTheme,
-  // CssBaseline,
-  styled,
-  // ThemeProvider,
-  // Typography,
-  // useMediaQuery,
-} from "@mui/material";
+import { Breadcrumbs, Button, styled } from "@mui/material";
 
 import styles from "./styles/Breadcrumbs.module.scss";
 // import { useMemo } from "react";
@@ -53,7 +44,7 @@ function BreadComponent({ pathParts }) {
             return (
               <Link href={fullPath ? fullPath : "/"} key={part}>
                 <GreyButton variant="text" disableRipple>
-                  {part}
+                  {part.split("-").join(" ")}
                 </GreyButton>
               </Link>
             );

@@ -5,6 +5,7 @@ import Header from "./Header";
 import { Container } from "@mui/material";
 
 export default function Layout({ children }) {
+  console.log(children.type.name);
   return children.type.name === "Home" || "NotFound" ? (
     <>
       <Header />

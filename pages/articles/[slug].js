@@ -7,8 +7,6 @@ import { useRouter } from "next/router";
 import Image from "next/image";
 import { Avatar, Box, Container, Grid } from "@mui/material";
 
-//paths
-
 //client
 import client from "../../graphql/apollo-client";
 
@@ -28,15 +26,11 @@ export default function Post({ posts }) {
   const pathParts = useMemo(() => {
     return router.asPath.split("?")[0].split("/").slice(1);
   }, [router.asPath]);
-  // console.log(pathParts);
   return posts.length ? (
     <>
       <Head>
         <title>
-          {author.name.length >= 9
-            ? `${author.name.slice(0, 9)}...`
-            : author.name}
-          |{title}
+          {author.name}|{title}
         </title>
         <link rel="shortcut icon" href={author.avatar.url} />
       </Head>

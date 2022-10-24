@@ -39,6 +39,10 @@ function MyApp({ Component, pageProps }) {
           warning: {
             main: "#2196f3",
           },
+          neutral: {
+            main: "#64748B",
+            contrastText: "#fff",
+          },
         },
         typography: {
           fontFamily: [
