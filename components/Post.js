@@ -1,5 +1,6 @@
 import Link from "next/link";
-import React from "react";
+import React, { useEffect } from "react";
+import { RWebShare } from "react-web-share";
 import {
   Button,
   Card,
@@ -13,10 +14,12 @@ import {
 import ShareIcon from "@mui/icons-material/Share";
 
 function Post({ post }) {
-  // console.log(post);
+  let locationUrl;
+  useEffect(() => {
+    locationUrl = location.href;
+  }, []);
   return (
     <>
-      {/* <Link href={`/articles/${post.slug}`} key={post.slug}></Link> */}
       <Card
         sx={{
           m: 1,
@@ -33,7 +36,7 @@ function Post({ post }) {
             component="img"
             image={post.ogImage.url}
             alt={post.ogImage.fileName}
-            sx={{ m: 0, width: 151, objectFit: "cover", borderRadius: "5px" }}
+            sx={{ m: 0.5, width: 151, objectFit: "cover", borderRadius: "5px" }}
           />
         </Link>
         <Box
@@ -46,19 +49,35 @@ function Post({ post }) {
             justifyContent: "space-between",
           }}
         >
-          <CardContent>
-            <Typography gutterBottom variant="h6" component="div">
-              {post.title}
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-              نویسنده: {post.author.name}
-            </Typography>
-          </CardContent>
+          {/* <CardContent> */}
+          <Typography variant="h6" component="div" sx={{ m: 1 }}>
+            {post.title}
+          </Typography>
+          <Typography variant="body2" color="text.secondary">
+            نویسنده: {post.author.name}
+          </Typography>
+          {/* </CardContent> */}
           <CardActions sx={{ alignSelf: "end", mt: -1 }}>
-            <Button size="large">مطالعه</Button>
-            <IconButton color="neutral" size="small">
-              <ShareIcon />
-            </IconButton>
+            <Link href={`/articles/${post.slug}`} key={post.slug}>
+              <Button
+                size="medium"
+                sx={{ display: "flex", alignItems: "center" }}
+              >
+                مطالعه
+              </Button>
+            </Link>
+            <RWebShare
+              data={{
+                text: post.title,
+                url: locationUrl,
+                title: post.author.name,
+              }}
+              onClick={() => console.log("shared successfully!")}
+            >
+              <IconButton color="neutral" size="medium">
+                <ShareIcon />
+              </IconButton>
+            </RWebShare>
           </CardActions>
         </Box>
       </Card>

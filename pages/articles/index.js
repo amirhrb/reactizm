@@ -42,16 +42,6 @@ function Posts({ posts }) {
               <Post post={post} />
             </Grid>
           ))}
-          {posts.map((post) => (
-            <Grid>
-              <Post post={post} />
-            </Grid>
-          ))}
-          {posts.map((post) => (
-            <Grid>
-              <Post post={post} />
-            </Grid>
-          ))}
         </Grid>
       </Container>
     </>
