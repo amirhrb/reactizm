@@ -34,7 +34,7 @@ export default function Post({ posts }) {
         </title>
         <link rel="shortcut icon" href={author.avatar.url} />
       </Head>
-      <Container maxWidth="lg">
+      <Container maxWidth="md">
         <BreadComponent pathParts={pathParts} />
         <h1>{title}</h1>
         <Grid container sx={{ alignItems: "center", marginY: 4 }}>

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { RWebShare } from "react-web-share";
 import {
   Button,
@@ -14,10 +14,10 @@ import {
 import ShareIcon from "@mui/icons-material/Share";
 
 function Post({ post }) {
-  let locationUrl;
+  const [locationUrl, setLocationUrl] = useState(location.href);
   useEffect(() => {
-    locationUrl = location.href;
-  }, []);
+    setLocationUrl(location.href);
+  }, [location.href]);
   return (
     <>
       <Card
@@ -69,7 +69,7 @@ function Post({ post }) {
             <RWebShare
               data={{
                 text: post.title,
-                url: locationUrl,
+                url: `${locationUrl}/${post.slug}`,
                 title: post.author.name,
               }}
               onClick={() => console.log("shared successfully!")}

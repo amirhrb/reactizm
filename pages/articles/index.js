@@ -38,7 +38,7 @@ function Posts({ posts }) {
           sx={{ mt: 5, display: "flex", justifyContent: "center" }}
         >
           {posts.map((post) => (
-            <Grid>
+            <Grid key={post.id}>
               <Post post={post} />
             </Grid>
           ))}

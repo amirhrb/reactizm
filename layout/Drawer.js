@@ -21,8 +21,8 @@ function DrawerComponent() {
     <Drawer anchor="bottom" open={isOpen} onClose={() => setOpen(!isOpen)}>
       <List>
         {[
-          { text: "محصول", href: "/product" },
-          { text: "سرویس", href: "/service" },
+          { text: "محصول", href: "/products" },
+          { text: "سرویس", href: "/services" },
           { text: "مقالات", href: "/articles" },
           { text: "درباره", href: "/about" },
         ].map((item) => (

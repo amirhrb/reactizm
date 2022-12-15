@@ -1,5 +1,5 @@
 # Install dependencies : `yarn install`
 
-# Run app: `yarn server`
+# Run app: `yarn dev`
 
 # Export: `yarn export`
