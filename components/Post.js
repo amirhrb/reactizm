@@ -1,5 +1,6 @@
-import Link from "next/link";
 import React, { useEffect, useState } from "react";
+import Link from "next/link";
+import { useRouter } from "next/router";
 import { RWebShare } from "react-web-share";
 import {
   Button,
@@ -12,18 +13,19 @@ import {
   Box,
 } from "@mui/material";
 import ShareIcon from "@mui/icons-material/Share";
-import { useRouter } from "next/router";
 
 function Post({ post }) {
   // const [locationUrl, setLocationUrl] = useState(location.href);
   const router = useRouter();
+  const [ogUrl, setOgUrl] = useState("");
+
   useEffect(() => {
-    // const origin =
-    //   typeof window !== "undefined" && window.location.origin
-    //     ? window.location.origin
-    //     : "";
-    console.log(router.domainLocales);
-  }, []);
+    const host = window.location.host;
+    const baseUrl = `https://${host}`;
+
+    setOgUrl(`${baseUrl}${router.pathname}`);
+    console.log(ogUrl);
+  }, [router.pathname]);
   return (
     <>
       <Card
@@ -75,8 +77,7 @@ function Post({ post }) {
             <RWebShare
               data={{
                 text: post.title,
-                // url: `${origin}${asPath}/${post.slug}`,
-                url: `${post.slug}`,
+                url: `${ogUrl}/${post.slug}`,
                 title: post.author.name,
               }}
               onClick={() => console.log("shared successfully!")}
