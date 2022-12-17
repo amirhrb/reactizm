@@ -12,12 +12,17 @@ import {
   Box,
 } from "@mui/material";
 import ShareIcon from "@mui/icons-material/Share";
+import { useRouter } from "next/router";
 
 function Post({ post }) {
-  const [locationUrl, setLocationUrl] = useState(location.href);
+  // const [locationUrl, setLocationUrl] = useState(location.href);
+  const { asPath } = useRouter();
   useEffect(() => {
-    setLocationUrl(location.href);
-  }, [location.href]);
+    const origin =
+      typeof window !== "undefined" && window.location.origin
+        ? window.location.origin
+        : "";
+  }, []);
   return (
     <>
       <Card
@@ -69,7 +74,7 @@ function Post({ post }) {
             <RWebShare
               data={{
                 text: post.title,
-                url: `${locationUrl}/${post.slug}`,
+                url: `${origin}${asPath}/${post.slug}`,
                 title: post.author.name,
               }}
               onClick={() => console.log("shared successfully!")}
