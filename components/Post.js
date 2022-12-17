@@ -16,12 +16,13 @@ import { useRouter } from "next/router";
 
 function Post({ post }) {
   // const [locationUrl, setLocationUrl] = useState(location.href);
-  const { asPath } = useRouter();
+  const router = useRouter();
   useEffect(() => {
-    const origin =
-      typeof window !== "undefined" && window.location.origin
-        ? window.location.origin
-        : "";
+    // const origin =
+    //   typeof window !== "undefined" && window.location.origin
+    //     ? window.location.origin
+    //     : "";
+    console.log(router.domainLocales);
   }, []);
   return (
     <>
@@ -74,7 +75,8 @@ function Post({ post }) {
             <RWebShare
               data={{
                 text: post.title,
-                url: `${origin}${asPath}/${post.slug}`,
+                // url: `${origin}${asPath}/${post.slug}`,
+                url: `${post.slug}`,
                 title: post.author.name,
               }}
               onClick={() => console.log("shared successfully!")}

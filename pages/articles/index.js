@@ -53,6 +53,11 @@ export const getStaticProps = async () => {
   const {
     data: { posts },
   } = await client.query({ query: POST_QUERY });
+  if (!posts.length) {
+    return {
+      notFound: true,
+    };
+  }
   return {
     props: { posts },
   };
