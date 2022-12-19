@@ -1,21 +1,22 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { useRouter } from "next/router";
 import { RWebShare } from "react-web-share";
 import {
   Button,
   Card,
   CardActions,
-  CardContent,
-  CardMedia,
   IconButton,
   Typography,
   Box,
 } from "@mui/material";
 import ShareIcon from "@mui/icons-material/Share";
 
+//css
+import styles from "./styles/Post.module.scss";
+
 function Post({ post }) {
-  // const [locationUrl, setLocationUrl] = useState(location.href);
   const router = useRouter();
   const [ogUrl, setOgUrl] = useState("");
 
@@ -24,33 +25,35 @@ function Post({ post }) {
     const baseUrl = `https://${host}`;
 
     setOgUrl(`${baseUrl}${router.pathname}`);
-    console.log(ogUrl);
   }, [router.pathname]);
   return (
     <>
       <Card
         sx={{
           m: 1,
-          width: 360,
-          minHeight: 160,
-          maxHeight: 180,
+          paddingX: 0.5,
+          maxWidth: 300,
+          minWidth: 270,
+          minHeight: 140,
+          maxHeight: 160,
           display: "flex",
           alignItems: "center",
           boxShadow: "2px 2px 8px #cecece",
         }}
       >
-        <Link href={`/articles/${post.slug}`} key={post.slug}>
-          <CardMedia
-            component="img"
-            image={post.ogImage.url}
+        <Link href={`/articles/${post.slug}`} className={styles.bannerCont}>
+          <Image
+            src={post.ogImage.url}
             alt={post.ogImage.fileName}
-            sx={{ m: 0.5, width: 151, objectFit: "cover", borderRadius: "5px" }}
+            width={150}
+            height={150}
+            className={styles.banner}
           />
         </Link>
         <Box
           sx={{
-            height: "160px",
-            width: "200px",
+            height: "150px",
+            width: "170px",
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
@@ -58,10 +61,19 @@ function Post({ post }) {
           }}
         >
           {/* <CardContent> */}
-          <Typography variant="h6" component="div" sx={{ m: 1 }}>
+          <Typography
+            variant="h6"
+            sx={{
+              height: "60px",
+              mt: 1,
+              px: 1,
+              fontSize: "large",
+              overflow: "clip",
+            }}
+          >
             {post.title}
           </Typography>
-          <Typography variant="body2" color="text.secondary">
+          <Typography variant="body2" color="text.secondary" px={1}>
             نویسنده: {post.author.name}
           </Typography>
           {/* </CardContent> */}

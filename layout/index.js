@@ -5,19 +5,17 @@ import Header from "./Header";
 import { Container } from "@mui/material";
 
 export default function Layout({ children }) {
-  console.log(children.type.name);
-  return children.type.name === "Home" || "NotFound" ? (
-    <>
-      <Header />
-      {children}
-    </>
-  ) : (
-    <>
-      <Header />
-      <Container maxWidth="md" sx={{ minHeight: "85vh", marginTop: 8 }}>
-        {children}
-      </Container>
-      <Footer />
-    </>
-  );
+  const {
+    type: { name },
+  } = children;
+  if (name !== "NotFound" || "Home") {
+    return (
+      <>
+        <Header />
+        <Container maxWidth="lg" sx={{ minHeight: "85vh", marginTop: 8, p: 0 }}>
+          {children}
+        </Container>
+      </>
+    );
+  }
 }

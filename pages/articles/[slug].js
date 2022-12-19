@@ -21,7 +21,7 @@ export default function Post({ posts }) {
     author,
     ogImage,
     content: { html },
-  } = posts.find((post) => post.slug === slug);
+  } = posts?.find((post) => post.slug === slug);
   const router = useRouter();
   const pathParts = useMemo(() => {
     return router.asPath.split("?")[0].split("/").slice(1);
@@ -40,10 +40,13 @@ export default function Post({ posts }) {
         <Grid container sx={{ alignItems: "center", marginY: 4 }}>
           <Grid item>
             {/* <Link href={`/${author.slug}`}> */}
-            <Avatar
+
+            <Image
               src={author.avatar.url}
               alt={author.avatar.filename}
-              sx={{ width: 56, height: 56 }}
+              width={56}
+              height={56}
+              style={{ borderRadius: "50%" }}
             />
             {/* </Link> */}
           </Grid>
@@ -89,6 +92,7 @@ export default function Post({ posts }) {
 }
 export const getStaticProps = async () => {
   const { data: posts } = await client.query({ query: POST_QUERY });
+  console.log(posts);
   return {
     props: { ...posts },
   };
