@@ -61,6 +61,7 @@ export default function Navbar() {
                 color: theme.palette.secondary.light,
                 display: { sm: "none", xs: "flex" },
               })}
+              aria-label="more options"
             >
               <ShapeLineIcon />
             </IconButton>
@@ -108,7 +109,7 @@ export default function Navbar() {
                 ></div>
               </span>
             </Box>
-            <IconButton>
+            <IconButton aria-label="home page">
               <Box
                 width={40}
                 height={40}

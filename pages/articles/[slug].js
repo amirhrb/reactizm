@@ -58,7 +58,7 @@ export default function Post({ posts }) {
 
             <Image
               src={author.avatar.url}
-              alt={author.avatar.filename}
+              alt={`تصویر ${author.name}`}
               width={56}
               height={56}
               style={{ borderRadius: "50%" }}
