@@ -33,6 +33,7 @@ export const POST_QUERY = gql`
       title
       content {
         html
+        text
       }
       author {
         name

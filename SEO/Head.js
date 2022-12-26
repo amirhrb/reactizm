@@ -2,7 +2,6 @@ import Head from "next/head";
 import React from "react";
 
 function HeadTag({ children, socials: { ogTitle, ogType, ogUrl, ogImage } }) {
-  console.log({ ogImage, ogTitle, ogType, ogUrl });
   return (
     <Head>
       <meta name="theme-color" content="#ffb300" />

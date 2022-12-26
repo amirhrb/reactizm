@@ -21,7 +21,7 @@ export default function Post({ posts }) {
     title,
     author,
     ogImage,
-    content: { html },
+    content: { html, text },
   } = posts?.find((post) => post.slug === router.query.slug);
   const pathParts = useMemo(() => {
     return router.asPath.split("?")[0].split("/").slice(1);
@@ -33,7 +33,6 @@ export default function Post({ posts }) {
     const baseUrl = `https://${host}`;
     setOgUrl(`${baseUrl}${router.asPath}`);
   }, [router.pathname]);
-  console.log(ogUrl);
   return posts.length ? (
     <>
       <Head
@@ -47,6 +46,7 @@ export default function Post({ posts }) {
         <title>
           {author.name}|{title}
         </title>
+        <meta name="description" content={text.toString().split("\n")[0]} />
         <link rel="shortcut icon" href={author.avatar.url} />
       </Head>
       <Container maxWidth="md">
