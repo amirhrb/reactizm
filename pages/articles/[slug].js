@@ -12,23 +12,38 @@ import client from "../../graphql/apollo-client";
 
 //gql
 import { POST_QUERY } from "../../graphql/queries";
-import { useMemo } from "react";
+import { useMemo, useState, useEffect } from "react";
 
 export default function Post({ posts }) {
-  const { slug } = useRouter().query;
+  const router = useRouter();
+
   const {
     title,
     author,
     ogImage,
     content: { html },
-  } = posts?.find((post) => post.slug === slug);
-  const router = useRouter();
+  } = posts?.find((post) => post.slug === router.query.slug);
   const pathParts = useMemo(() => {
     return router.asPath.split("?")[0].split("/").slice(1);
   }, [router.asPath]);
+
+  const [ogUrl, setOgUrl] = useState("");
+  useEffect(() => {
+    const host = window.location.host;
+    const baseUrl = `https://${host}`;
+    setOgUrl(`${baseUrl}${router.asPath}`);
+  }, [router.pathname]);
+  console.log(ogUrl);
   return posts.length ? (
     <>
-      <Head>
+      <Head
+        socials={{
+          ogTitle: title,
+          ogType: "article",
+          ogUrl: ogUrl,
+          ogImage: ogImage.url,
+        }}
+      >
         <title>
           {author.name}|{title}
         </title>
