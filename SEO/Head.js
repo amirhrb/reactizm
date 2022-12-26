@@ -1,7 +1,14 @@
 import Head from "next/head";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
-function HeadTag({ children, socials: { ogTitle, ogType, ogUrl, ogImage } }) {
+function HeadTag(props) {
+  const [socials, setSocials] = useState({});
+  useEffect(() => {
+    if (props.socials) {
+      setSocials(props.socials);
+    }
+  }, []);
+
   return (
     <Head>
       <meta name="theme-color" content="#ffb300" />
@@ -11,11 +18,17 @@ function HeadTag({ children, socials: { ogTitle, ogType, ogUrl, ogImage } }) {
       <meta name="apple-mobile-web-app-status-bar" content="#ffb300" />
       <link rel="manifest" href="/manifest.json" />
       <link rel="icon" href="/favicon.ico" />
-      {ogTitle ? <meta property="og:title" content={ogTitle} /> : ""}
-      {ogType ? <meta property="og:type" content={ogType} /> : ""}
-      {ogUrl ? <meta property="og:url" content={ogUrl} /> : ""}
-      {ogImage ? <meta property="og:image" content={ogImage} /> : ""}
-      {children}
+      {socials.length ? (
+        <>
+          <meta property="og:title" content={ogTitle} />
+          <meta property="og:type" content={ogType} />
+          <meta property="og:url" content={ogUrl} />
+          <meta property="og:image" content={ogImage} />
+        </>
+      ) : (
+        ""
+      )}
+      {props.children}
     </Head>
   );
 }
