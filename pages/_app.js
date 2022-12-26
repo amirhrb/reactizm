@@ -1,22 +1,26 @@
 import { useEffect, useMemo } from "react";
-import { ApolloProvider } from "@apollo/client";
 
+//css
 import "../styles/globals.css";
 import "../styles/fonts.css";
 
-//
+//layout
 import Layout from "../layout";
 
 //apollo client
+import { ApolloProvider } from "@apollo/client";
 import client from "../graphql/apollo-client";
+
+//mui
 import {
   createTheme,
   CssBaseline,
   ThemeProvider,
   useMediaQuery,
 } from "@mui/material";
+
+//context
 import DrawerContextProvider from "../contexts/DrawerContextProvider";
-import Head from "next/head";
 
 function MyApp({ Component, pageProps }) {
   useEffect(() => {

@@ -1,8 +1,13 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+//next stuff
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/router";
+
+//sharer part
 import { RWebShare } from "react-web-share";
+
+//mui
 import {
   Button,
   Card,
@@ -10,6 +15,7 @@ import {
   IconButton,
   Typography,
   Box,
+  useTheme,
 } from "@mui/material";
 import ShareIcon from "@mui/icons-material/Share";
 
@@ -18,6 +24,7 @@ import styles from "./styles/Post.module.scss";
 
 function Post({ post }) {
   const router = useRouter();
+  const theme = useTheme();
   const [ogUrl, setOgUrl] = useState("");
 
   useEffect(() => {
@@ -32,13 +39,17 @@ function Post({ post }) {
         sx={{
           m: 1,
           paddingX: 0.5,
-          maxWidth: 300,
+          maxWidth: 280,
           minWidth: 270,
           minHeight: 140,
           maxHeight: 160,
           display: "flex",
           alignItems: "center",
-          boxShadow: "2px 2px 8px #cecece",
+          // boxShadow: "2px 2px 8px ",
+          boxShadow:
+            theme.palette.mode === "dark"
+              ? "2px 2px 8px #000"
+              : "2px 2px 8px #cecece",
         }}
       >
         <Link href={`/articles/${post.slug}`} className={styles.bannerCont}>

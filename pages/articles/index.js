@@ -41,7 +41,7 @@ function Posts({ posts, authors }) {
         <Grid
           container
           direction="row"
-          justifyContent="space-evenly"
+          justifyContent="space-between"
           alignItems="flex-start"
           // columnSpacing={1}
           sx={{
@@ -67,7 +67,11 @@ function Posts({ posts, authors }) {
             <AuthorSide authors={authors} />
           </Grid>
           <Grid item sm={8} md={9} sx={{ p: 0 }}>
-            <Grid container justifyContent="center" direction="row">
+            <Grid
+              container
+              direction="row"
+              sx={{ justifyContent: { xs: "center", md: "space-between" } }}
+            >
               {posts.map((post) => (
                 <Grid key={post.id}>
                   <Post post={post} />
