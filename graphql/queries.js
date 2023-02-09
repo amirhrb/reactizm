@@ -22,6 +22,7 @@ export const AUTHOR_QUERY = gql`
           fileName
           url
         }
+        publishDate
       }
     }
   }

@@ -1,9 +1,6 @@
-import { useRouter } from "next/router";
-import { useMemo } from "react";
-
 import Head from "../../SEO/Head";
 
-import { Container, Grid } from "@mui/material";
+import { Grid } from "@mui/material";
 
 import client from "../../graphql/apollo-client";
 import { AUTHOR_QUERY, POST_QUERY } from "../../graphql/queries";
@@ -15,10 +12,7 @@ import AuthorSide from "../../components/AuthorSide";
 
 function Posts({ posts, authors }) {
   // console.log(authors, posts);
-  const router = useRouter();
-  const pathParts = useMemo(() => {
-    return router.asPath.split("?")[0].split("/").slice(1);
-  }, [router.asPath]);
+
   return posts.length ? (
     <>
       <Head>
@@ -28,59 +22,52 @@ function Posts({ posts, authors }) {
           content="مقالات سایت برنامه نویسی ریکتیزم reactizm"
         />
       </Head>
-      <Container
-        maxWidth="md"
+
+      <BreadComponent />
+      <Grid
+        container
+        direction="row"
+        justifyContent="space-between"
+        alignItems="flex-start"
+        // columnSpacing={1}
         sx={{
           marginTop: {
-            xs: 2,
-            sm: 4,
+            xs: 1,
+            sm: 2,
           },
         }}
+        width="100%"
       >
-        <BreadComponent pathParts={pathParts} />
         <Grid
-          container
-          direction="row"
-          justifyContent="space-between"
+          item
           alignItems="flex-start"
-          // columnSpacing={1}
+          direction="column"
+          sm={4}
+          md={3}
           sx={{
-            marginTop: {
-              xs: 1,
-              sm: 2,
+            display: {
+              xs: "none",
+              sm: "flex",
             },
+            mt: 2,
           }}
-          width="100%"
         >
+          <AuthorSide authors={authors} />
+        </Grid>
+        <Grid item sm={8} md={9} sx={{ p: 0 }}>
           <Grid
-            item
-            sm={4}
-            md={3}
-            sx={{
-              display: {
-                xs: "none",
-                sm: "flex",
-              },
-              mt: 2,
-            }}
+            container
+            direction="row"
+            sx={{ justifyContent: { xs: "center", md: "space-between" } }}
           >
-            <AuthorSide authors={authors} />
-          </Grid>
-          <Grid item sm={8} md={9} sx={{ p: 0 }}>
-            <Grid
-              container
-              direction="row"
-              sx={{ justifyContent: { xs: "center", md: "space-between" } }}
-            >
-              {posts.map((post) => (
-                <Grid key={post.id}>
-                  <Post post={post} />
-                </Grid>
-              ))}
-            </Grid>
+            {posts.map((post) => (
+              <Grid key={post.id}>
+                <Post post={post} />
+              </Grid>
+            ))}
           </Grid>
         </Grid>
-      </Container>
+      </Grid>
     </>
   ) : (
     ""

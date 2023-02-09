@@ -47,6 +47,9 @@ function MyApp({ Component, pageProps }) {
             main: "#64748B",
             contrastText: "#fff",
           },
+          profile: {
+            main: "rgba(178, 125, 0, 0.11)",
+          },
         },
         typography: {
           fontFamily: [

@@ -1,11 +1,11 @@
+import { useMemo } from "react";
 import Link from "next/link";
-// import { useRouter } from "next/router";
+import { useRouter } from "next/router";
 
 import HomeIcon from "@mui/icons-material/Home";
 import { Breadcrumbs, Button, styled } from "@mui/material";
 
 import styles from "./styles/Breadcrumbs.module.scss";
-// import { useMemo } from "react";
 
 const ColorButton = styled(Button)(({ theme }) => ({
   color: theme.palette.secondary.light,
@@ -16,7 +16,12 @@ const GreyButton = styled(Button)(({ theme }) => ({
   fontFamily: "Segoe UI",
 }));
 
-function BreadComponent({ pathParts }) {
+function BreadComponent() {
+  const router = useRouter();
+
+  const pathParts = useMemo(() => {
+    return router.asPath.split("?")[0].split("/").slice(1);
+  }, [router.asPath]);
   let fullPath = "";
   return (
     <Breadcrumbs
@@ -24,7 +29,12 @@ function BreadComponent({ pathParts }) {
       separator="/"
       aria-label="breadcrumb"
       className={styles.crumbs}
-      sx={{ marginTop: 8 }}
+      sx={{
+        marginTop: {
+          xs: 1,
+          sm: 3,
+        },
+      }}
     >
       {pathParts.length ? (
         <Link href="/">

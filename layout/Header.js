@@ -77,7 +77,7 @@ export default function Navbar() {
               }}
             >
               <span className={styles.link}>
-                <Link href="/">محصول</Link>
+                <Link href="/authors">نویسندگان</Link>
                 <div
                   style={{
                     backgroundColor: mode === "dark" ? "#fff" : "#000",

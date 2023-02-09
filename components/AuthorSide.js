@@ -1,71 +1,94 @@
-import { Divider, Grid, Typography } from "@mui/material";
+import { Divider, Grid, Tooltip, Typography } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+// import { ScrollbarY } from "styled-scrollbar";
+import ScrollbarY from "./ScrollbarY";
 
 function AuthorSide({ authors }) {
+  // console.log()
   return (
-    <Grid container alignItems="flex-start" direction="column" rowSpacing={1}>
-      {authors.map((author, index) => (
-        <Grid item key={author.id}>
+    <>
+      <Grid>
+        <Link href="authors">
+          <Typography variant="h6" sx={{ cursor: "pointer" }}>
+            نویسندگان:
+          </Typography>
+        </Link>
+      </Grid>
+      <Grid display="flex" flexDirection="column" alignItems="flex-start">
+        <ScrollbarY r={3}>
           <Grid
             container
-            sx={{
-              marginBottom: 1,
-              display: "flex",
-              flexDirection: "row",
-              alignItems: "center",
-            }}
+            maxHeight={300}
+            overflow="scroll"
+            alignItems="flex-start"
+            direction="column"
+            flexWrap="nowrap"
+            rowGap={1}
           >
-            <Grid item sx={{ display: "flex", alignItems: "center" }}>
-              <Link href={`authors/${author.slug}`}>
-                <Image
-                  src={author.avatar.url}
-                  alt={author.avatar.filename}
-                  width={45}
-                  height={45}
-                  style={{ borderRadius: "50%", cursor: "pointer" }}
-                />
-              </Link>
-            </Grid>
-            <Grid
-              item
-              sx={{
-                display: "flex",
-                flexDirection: "column",
-                maxWidth: "100px",
-                marginRight: 1,
-              }}
-            >
-              <Link href={`authors/${author.slug}`}>
-                <Typography
-                  variant="h4"
+            {authors.map((author, index) => (
+              <Grid item key={author.id}>
+                <Grid
+                  container
                   sx={{
-                    fontSize: "16px",
-                    fontWeight: "bold",
-                    marginY: 0,
-                    padding: 0,
-                    width: "100px",
-                    overflow: "hidden",
-                    textOverflow: "ellipsis",
-                    display: "inline-block",
-                    whiteSpace: "nowrap",
-                    "&:hover": {
-                      overflow: "visible",
-                    },
-                    cursor: "pointer",
+                    marginBottom: 1,
+                    display: "flex",
+                    flexDirection: "row",
+                    alignItems: "center",
                   }}
                 >
-                  {author.name}
-                </Typography>
-              </Link>
-              <span>{author.field}</span>
-            </Grid>
+                  <Grid item sx={{ display: "flex", alignItems: "center" }}>
+                    <Link href={`authors/${author.slug}`}>
+                      <Image
+                        src={author.avatar.url}
+                        alt={author.avatar.filename}
+                        width={45}
+                        height={45}
+                        style={{ borderRadius: "50%", cursor: "pointer" }}
+                      />
+                    </Link>
+                  </Grid>
+                  <Grid
+                    item
+                    sx={{
+                      display: "flex",
+                      flexDirection: "column",
+                      maxWidth: "100px",
+                      marginRight: 1,
+                    }}
+                  >
+                    <Link href={`authors/${author.slug}`}>
+                      <Tooltip title={author.name} placement="bottom-end">
+                        <Typography
+                          variant="h4"
+                          sx={{
+                            fontSize: "16px",
+                            fontWeight: "bold",
+                            marginY: 0,
+                            padding: 0,
+                            width: "100px",
+                            overflow: "hidden",
+                            textOverflow: "ellipsis",
+                            display: "inline-block",
+                            whiteSpace: "nowrap",
+                            cursor: "pointer",
+                          }}
+                        >
+                          {author.name}
+                        </Typography>
+                      </Tooltip>
+                    </Link>
+                    <span>{author.field}</span>
+                  </Grid>
+                </Grid>
+                {index < authors.length - 1 ? <Divider /> : ""}
+              </Grid>
+            ))}
           </Grid>
-          {index < authors.length - 1 ? <Divider /> : ""}
-        </Grid>
-      ))}
-    </Grid>
+        </ScrollbarY>
+      </Grid>
+    </>
   );
 }
 

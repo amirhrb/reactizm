@@ -25,25 +25,6 @@ function Hero() {
         className={styles.wrapper}
       >
         <ParallaxLayer
-          offset={0.2}
-          speed={0.9}
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "flex-start",
-          }}
-        >
-          <Box className={styles.cursor}>
-            <Image src={Cursor} alt="cursor pointer" width={35} height={35} />
-          </Box>
-          <Box className={styles.zigZag}>
-            <Image src={ZigZag} alt="ZigZag" width={60} height={60} />
-          </Box>
-          <Box className={styles.line}>
-            <Image src={Line} alt="arch" width={60} height={60} />
-          </Box>
-        </ParallaxLayer>
-        <ParallaxLayer
           offset={0.25}
           speed={0.6}
           style={{
@@ -68,12 +49,31 @@ function Hero() {
                 userSelect: "none",
               }}
             >
-              یادگیری برنامه نویسی!
+              یادگیری نکات برنامه نویسی!
             </Typography>
           </Box>
         </ParallaxLayer>
         <ParallaxLayer
-          offset={1.85}
+          offset={0.2}
+          speed={0.9}
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "flex-start",
+          }}
+        >
+          <Box className={styles.cursor}>
+            <Image src={Cursor} alt="cursor pointer" width={35} height={35} />
+          </Box>
+          <Box className={styles.zigZag}>
+            <Image src={ZigZag} alt="ZigZag" width={60} height={60} />
+          </Box>
+          <Box className={styles.line}>
+            <Image src={Line} alt="arch" width={60} height={60} />
+          </Box>
+        </ParallaxLayer>
+        <ParallaxLayer
+          offset={1.8}
           style={{
             display: "flex",
             justifyContent: "center",
