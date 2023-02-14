@@ -7,7 +7,7 @@ import Head from "../../SEO/Head";
 import { Box, Container, Grid } from "@mui/material";
 
 //components
-import BreadComponent from "../../components/BreadComponent";
+import BreadComponent from "../../components/modules/BreadComponent";
 
 //client
 import client from "../../graphql/apollo-client";
