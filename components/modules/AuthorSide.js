@@ -2,8 +2,8 @@ import { Divider, Grid, Tooltip, Typography } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-// import { ScrollbarY } from "styled-scrollbar";
-import ScrollbarY from "./ScrollbarY";
+
+import ScrollbarY from "../elements/ScrollbarY";
 
 function AuthorSide({ authors }) {
   // console.log()
@@ -16,8 +16,8 @@ function AuthorSide({ authors }) {
           </Typography>
         </Link>
       </Grid>
-      <Grid display="flex" flexDirection="column" alignItems="flex-start">
-        <ScrollbarY r={3}>
+      <ScrollbarY r={3}>
+        <Grid display="flex" flexDirection="column" alignItems="flex-start">
           <Grid
             container
             maxHeight={300}
@@ -86,8 +86,8 @@ function AuthorSide({ authors }) {
               </Grid>
             ))}
           </Grid>
-        </ScrollbarY>
-      </Grid>
+        </Grid>
+      </ScrollbarY>
     </>
   );
 }

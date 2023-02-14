@@ -1,17 +1,17 @@
+import { Box, Grid } from "@mui/material";
 //MUI
-import { Container, Grid } from "@mui/material";
 
 //Apollo
 import client from "../../graphql/apollo-client";
 import { AUTHOR_QUERY } from "../../graphql/queries";
 
 //components
-import Author from "../../components/Author";
-import BreadComponent from "../../components/BreadComponent";
+import Author from "../../components/modules/Author";
+import BreadComponent from "../../components/modules/BreadComponent";
 
 function Authors({ authors }) {
   return (
-    <>
+    <Box sx={{ minHeight: "85vh" }}>
       <BreadComponent />
       {/*  */}
       {/* <Grid
@@ -60,7 +60,7 @@ function Authors({ authors }) {
       {/* </Grid> */}
       {/* </Grid> */}
       {/*  */}
-    </>
+    </Box>
   );
 }
 export const getStaticProps = async () => {

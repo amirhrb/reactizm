@@ -1,6 +1,8 @@
+import { useContext } from "react";
+import { useRouter } from "next/router";
 import Link from "next/link";
 
-import DrawerComponent from "./Drawer";
+import { drawerContext } from "../../contexts/DrawerContextProvider";
 
 import {
   AppBar,
@@ -13,13 +15,12 @@ import {
   IconButton,
 } from "@mui/material";
 
+import DrawerComponent from "./Drawer";
+
 import styles from "./styles/Header.module.scss";
 
-import Logo from "../resources/Logo.svg";
-import { useRouter } from "next/router";
+import Logo from "../../resources/Logo.svg";
 import ShapeLineIcon from "@mui/icons-material/ShapeLine";
-import { useContext } from "react";
-import { drawerContext } from "../contexts/DrawerContextProvider";
 
 export default function Navbar() {
   const {

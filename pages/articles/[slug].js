@@ -1,18 +1,19 @@
+import { useMemo, useState, useEffect } from "react";
+import Image from "next/image";
+import { useRouter } from "next/router";
 import Head from "../../SEO/Head";
+
+//mui
+import { Box, Container, Grid } from "@mui/material";
 
 //components
 import BreadComponent from "../../components/BreadComponent";
-
-import { useRouter } from "next/router";
-import Image from "next/image";
-import { Avatar, Box, Container, Grid } from "@mui/material";
 
 //client
 import client from "../../graphql/apollo-client";
 
 //gql
 import { POST_QUERY } from "../../graphql/queries";
-import { useMemo, useState, useEffect } from "react";
 
 export default function Post({ posts }) {
   const router = useRouter();
@@ -107,7 +108,6 @@ export default function Post({ posts }) {
 }
 export const getStaticProps = async () => {
   const { data: posts } = await client.query({ query: POST_QUERY });
-  console.log(posts);
   return {
     props: { ...posts },
   };

@@ -5,7 +5,7 @@ import "../styles/globals.css";
 import "../styles/fonts.css";
 
 //layout
-import Layout from "../layout";
+import Layout from "../components/layouts";
 
 //apollo client
 import { ApolloProvider } from "@apollo/client";
@@ -36,6 +36,7 @@ function MyApp({ Component, pageProps }) {
           mode: prefersDarkMode ? "dark" : "light",
           primary: {
             main: "#ffb300",
+            light: "#ffffa8",
           },
           secondary: {
             main: "#1a0090",

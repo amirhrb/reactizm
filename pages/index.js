@@ -1,5 +1,5 @@
-import Hero from "../components/Hero";
 import Head from "../SEO/Head";
+import Hero from "../components/templates/Hero";
 // import Link from "next/link";
 
 //client

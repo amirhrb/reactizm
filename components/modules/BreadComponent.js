@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 import HomeIcon from "@mui/icons-material/Home";
 import { Breadcrumbs, Button, styled } from "@mui/material";
 
-import styles from "./styles/Breadcrumbs.module.scss";
+import styles from "../styles/Breadcrumbs.module.scss";
 
 const ColorButton = styled(Button)(({ theme }) => ({
   color: theme.palette.secondary.light,

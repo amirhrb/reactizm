@@ -3,13 +3,14 @@ import { Box, Grid, Typography, useTheme } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
 
-import ScrollbarX from "./ScrollbarX";
+//elements
+import ScrollbarX from "../elements/ScrollbarX";
 
 //styles
-import styles from "./styles/Author.module.scss";
+import styles from "../styles/Author.module.scss";
 
 //func
-import { timeFunc } from "../helper/functions";
+import { timeFunc } from "../../helper/functions";
 
 function Author({ author }) {
   const theme = useTheme();
@@ -112,7 +113,7 @@ function Author({ author }) {
             sx={{
               display: "flex",
               flexDirection: "column",
-              maxWidth: "100px",
+              maxWidth: "110px",
               marginRight: 0.1,
               overflow: "hidden",
             }}
@@ -142,7 +143,7 @@ function Author({ author }) {
             container
             width={260}
             direction="row"
-            justifyContent={author.posts.length > 3 ? "flex-start" : "center"}
+            justifyContent="flex-start"
             alignItems="center"
             wrap="nowrap"
             columnSpacing={1}
@@ -191,7 +192,6 @@ function Author({ author }) {
               </Grid>
             ))}
           </Grid>
-          {/* <ScrollbarX w={170} h={4} r={3} /> */}
         </ScrollbarX>
         {/* posts part */}
       </Grid>

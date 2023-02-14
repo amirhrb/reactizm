@@ -20,7 +20,7 @@ import {
 import ShareIcon from "@mui/icons-material/Share";
 
 //css
-import styles from "./styles/Post.module.scss";
+import styles from "../styles/Post.module.scss";
 
 function Post({ post }) {
   const router = useRouter();
@@ -39,9 +39,9 @@ function Post({ post }) {
         sx={{
           m: 1,
           paddingX: 0.5,
-          maxWidth: 280,
           minWidth: 270,
-          minHeight: 140,
+          maxWidth: 280,
+          minHeight: 150,
           maxHeight: 160,
           display: "flex",
           alignItems: "center",

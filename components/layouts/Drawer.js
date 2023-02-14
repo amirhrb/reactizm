@@ -8,7 +8,7 @@ import {
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useContext, useEffect } from "react";
-import { drawerContext } from "../contexts/DrawerContextProvider";
+import { drawerContext } from "../../contexts/DrawerContextProvider";
 
 function DrawerComponent() {
   const { isOpen, setOpen } = useContext(drawerContext);

@@ -3,17 +3,17 @@ import { Box, Typography, useTheme } from "@mui/material";
 import { Parallax, ParallaxLayer } from "@react-spring/parallax";
 
 //components
-import Footer from "../layout/Footer";
+import Footer from "../layouts/Footer";
 
 //resources
-import Reactizm from "../resources/reactizm.png";
-import ReactizmDark from "../resources/reactizm-dark.PNG";
-import ZigZag from "../resources/thick zigzag line.png";
-import Line from "../resources/thick line.png";
-import Cursor from "../resources/cursor.png";
+import Reactizm from "../../resources/reactizm.png";
+import ReactizmDark from "../../resources/reactizm-dark.PNG";
+import ZigZag from "../../resources/thick zigzag line.png";
+import Line from "../../resources/thick line.png";
+import Cursor from "../../resources/cursor.png";
 
 //styles
-import styles from "./styles/Hero.module.scss";
+import styles from "../styles/Hero.module.scss";
 
 function Hero() {
   const theme = useTheme();
