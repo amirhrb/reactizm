@@ -1,5 +1,9 @@
 import Image from "next/image";
+
+//mui
 import { Box, Typography, useTheme } from "@mui/material";
+
+//parallax library
 import { Parallax, ParallaxLayer } from "@react-spring/parallax";
 
 //components

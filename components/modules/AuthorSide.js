@@ -1,17 +1,26 @@
-import { Divider, Grid, Tooltip, Typography } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
 
-import ScrollbarY from "../elements/ScrollbarY";
+import { ScrollbarY } from "styled-scrollbar";
+
+//MUI
+import { Divider, Grid, Tooltip, Typography } from "@mui/material";
 
 function AuthorSide({ authors }) {
   // console.log()
   return (
-    <>
-      <Grid>
+    <div
+      style={{
+        position: "fixed",
+        maxHeight: "calc(100vh - 180px)",
+      }}
+    >
+      <Grid item>
         <Link href="authors">
-          <Typography variant="h6" sx={{ cursor: "pointer" }}>
+          <Typography
+            variant="h6"
+            sx={{ cursor: "pointer", marginRight: 2, marginY: 1, padding: 0 }}
+          >
             نویسندگان:
           </Typography>
         </Link>
@@ -88,7 +97,7 @@ function AuthorSide({ authors }) {
           </Grid>
         </Grid>
       </ScrollbarY>
-    </>
+    </div>
   );
 }
 

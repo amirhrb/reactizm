@@ -1,19 +1,25 @@
-import client from "../../graphql/apollo-client";
-import { AUTHOR_QUERY } from "../../graphql/queries";
+import Author from "../../components/modules/Author";
 
-function Author() {
-  return <div>Author</div>;
+//gql
+import Head from "next/head";
+import client from "../../graphql/apollo-client";
+import { AUTHORS_QUERY, AUTHOR_QUERY } from "../../graphql/queries";
+
+function Index({ author }) {
+  return (
+    <div>
+      <Head>
+        <title>{author.name}</title>{" "}
+      </Head>
+      <h1>{author.name}</h1>
+      <Author author={author} />
+    </div>
+  );
 }
-export const getStaticProps = async () => {
-  const { data: authors } = await client.query({ query: AUTHOR_QUERY });
-  return {
-    props: { authors },
-  };
-};
 export const getStaticPaths = async () => {
   const {
     data: { authors },
-  } = await client.query({ query: AUTHOR_QUERY });
+  } = await client.query({ query: AUTHORS_QUERY });
   const getAllPaths = async (authors) => {
     const slugs = await authors.map((author) => author.slug);
     return slugs.map((slug) => ({ params: { slug: slug } }));
@@ -25,4 +31,26 @@ export const getStaticPaths = async () => {
   };
 };
 
-export default Author;
+export const getStaticProps = async (ctx) => {
+  try {
+    const {
+      data: { author },
+    } = await client.query({
+      query: AUTHOR_QUERY,
+      variables: {
+        Slug: ctx.params.slug,
+      },
+    });
+    return {
+      props: { author },
+      // revalidate: 60 * 60 * 24,
+    };
+  } catch (error) {
+    console.log(error);
+    return {
+      props: {},
+      // revalidate: 60 * 60 * 24,
+    };
+  }
+};
+export default Index;

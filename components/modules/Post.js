@@ -38,13 +38,15 @@ function Post({ post }) {
       <Card
         sx={{
           m: 1,
-          paddingX: 0.5,
-          minWidth: 270,
+          paddingY: 0.8,
+          minWidth: 160,
           maxWidth: 280,
           minHeight: 150,
-          maxHeight: 160,
+          maxHeight: 320,
           display: "flex",
+          flexDirection: "column",
           alignItems: "center",
+          justifyContent: "space-evenly",
           // boxShadow: "2px 2px 8px ",
           boxShadow:
             theme.palette.mode === "dark"
@@ -52,7 +54,7 @@ function Post({ post }) {
               : "2px 2px 8px #cecece",
         }}
       >
-        <Link href={`/articles/${post.slug}`} className={styles.bannerCont}>
+        <Link href={`/articles/${post.slug}`}>
           <Image
             src={post.ogImage.url}
             alt={post.ogImage.fileName}
@@ -63,7 +65,7 @@ function Post({ post }) {
         </Link>
         <Box
           sx={{
-            height: "150px",
+            height: "140px",
             width: "170px",
             display: "flex",
             flexDirection: "column",
@@ -88,7 +90,7 @@ function Post({ post }) {
             نویسنده: {post.author.name}
           </Typography>
           {/* </CardContent> */}
-          <CardActions sx={{ alignSelf: "end", mt: -1 }}>
+          <CardActions sx={{ alignSelf: "auto", mt: -1, p: 0 }}>
             <Link href={`/articles/${post.slug}`} key={post.slug}>
               <Button
                 size="medium"

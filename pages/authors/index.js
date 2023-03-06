@@ -1,9 +1,9 @@
-import { Box, Grid } from "@mui/material";
 //MUI
+import { Box, Grid } from "@mui/material";
 
 //Apollo
 import client from "../../graphql/apollo-client";
-import { AUTHOR_QUERY } from "../../graphql/queries";
+import { AUTHORS_QUERY } from "../../graphql/queries";
 
 //components
 import Author from "../../components/modules/Author";
@@ -13,38 +13,6 @@ function Authors({ authors }) {
   return (
     <Box sx={{ minHeight: "85vh" }}>
       <BreadComponent />
-      {/*  */}
-      {/* <Grid
-        container
-        direction="row"
-        justifyContent="space-between"
-        alignItems="flex-start"
-        // columnSpacing={1}
-        sx={{
-          marginTop: {
-            xs: 1,
-            sm: 2,
-          },
-        }}
-        width="100%"
-      > */}
-      {/* <Grid
-          item
-          sm={4}
-          md={3}
-          sx={{
-            display: {
-              xs: "none",
-              sm: "flex",
-            },
-            mt: 2,
-          }}
-        >
-           <AuthorSide authors={authors} /> 
-        </Grid> */}
-      {/* <Grid item 
-      sm={8} md={9} 
-      sx={{ p: 0 }}> */}
       <Grid
         container
         direction="column"
@@ -57,18 +25,16 @@ function Authors({ authors }) {
           </Grid>
         ))}
       </Grid>
-      {/* </Grid> */}
-      {/* </Grid> */}
-      {/*  */}
     </Box>
   );
 }
 export const getStaticProps = async () => {
   const {
     data: { authors },
-  } = await client.query({ query: AUTHOR_QUERY });
+  } = await client.query({ query: AUTHORS_QUERY });
   return {
     props: { authors },
+    // revalidate: 60 * 60 * 24,
   };
 };
 export default Authors;

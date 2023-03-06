@@ -2,9 +2,11 @@ import { useMemo } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
+//mui
 import HomeIcon from "@mui/icons-material/Home";
 import { Breadcrumbs, Button, styled } from "@mui/material";
 
+//styles
 import styles from "../styles/Breadcrumbs.module.scss";
 
 const ColorButton = styled(Button)(({ theme }) => ({

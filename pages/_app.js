@@ -1,4 +1,4 @@
-import { useEffect, useMemo } from "react";
+import { useEffect } from "react";
 
 //css
 import "../styles/globals.css";
@@ -11,76 +11,21 @@ import Layout from "../components/layouts";
 import { ApolloProvider } from "@apollo/client";
 import client from "../graphql/apollo-client";
 
-//mui
-import {
-  createTheme,
-  CssBaseline,
-  ThemeProvider,
-  useMediaQuery,
-} from "@mui/material";
+import Theme from "../MUI/Theme";
 
 //context
 import DrawerContextProvider from "../contexts/DrawerContextProvider";
 
 function MyApp({ Component, pageProps }) {
-  useEffect(() => {
-    document.documentElement.dir = "rtl";
-    document.documentElement.lang = "fa";
-  }, []);
-
-  const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
-  const theme = useMemo(
-    () =>
-      createTheme({
-        palette: {
-          mode: prefersDarkMode ? "dark" : "light",
-          primary: {
-            main: "#ffb300",
-            light: "#ffffa8",
-          },
-          secondary: {
-            main: "#1a0090",
-          },
-          warning: {
-            main: "#2196f3",
-          },
-          neutral: {
-            main: "#64748B",
-            contrastText: "#fff",
-          },
-          profile: {
-            main: "rgba(178, 125, 0, 0.11)",
-          },
-        },
-        typography: {
-          fontFamily: [
-            "YekanBakh",
-            "-apple-system",
-            "BlinkMacSystemFont",
-            '"Segoe UI"',
-            "Roboto",
-            '"Helvetica Neue"',
-            "Arial",
-            "sans-serif",
-            '"Apple Color Emoji"',
-            '"Segoe UI Emoji"',
-            '"Segoe UI Symbol"',
-          ].join(","),
-        },
-      }),
-    [prefersDarkMode]
-  );
-
   return (
     <ApolloProvider client={client}>
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
+      <Theme>
         <DrawerContextProvider>
           <Layout>
             <Component {...pageProps} />
           </Layout>
         </DrawerContextProvider>
-      </ThemeProvider>
+      </Theme>
     </ApolloProvider>
   );
 }

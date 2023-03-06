@@ -1,7 +1,9 @@
 import { useContext } from "react";
-import { useRouter } from "next/router";
+import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
+//contexts
 import { drawerContext } from "../../contexts/DrawerContextProvider";
 
 import {
@@ -15,11 +17,14 @@ import {
   IconButton,
 } from "@mui/material";
 
-import DrawerComponent from "./Drawer";
-
+//sstyles
 import styles from "./styles/Header.module.scss";
 
-import Logo from "../../resources/Logo.svg";
+//components
+import DrawerComponent from "./Drawer";
+
+//shapes
+import Logo from "../../resources/Logo.png";
 import ShapeLineIcon from "@mui/icons-material/ShapeLine";
 
 export default function Navbar() {
@@ -121,8 +126,11 @@ export default function Navbar() {
                   cursor: "pointer",
                 }}
               >
-                <Logo
+                <Image
                   className={styles.logo}
+                  src={Logo}
+                  width={120}
+                  height={120}
                   onClick={() => router.push("/")}
                 />
               </Box>

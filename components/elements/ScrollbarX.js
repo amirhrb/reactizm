@@ -79,7 +79,7 @@ const Scrollbar = React.forwardRef((props, ref) => {
           position: "relative",
           right: w
             ? Number(w * (1 - thumbOnTrack) * scrolledRatio)
-            : ref.current && thumbOnTrack
+            : ref.current
             ? Number(
                 ref.current.previousSibling.clientWidth *
                   (1 - thumbOnTrack) *

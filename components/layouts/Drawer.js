@@ -1,3 +1,8 @@
+import { useContext, useEffect } from "react";
+import Link from "next/link";
+import { useRouter } from "next/router";
+
+//mui
 import {
   Drawer,
   List,
@@ -5,14 +10,12 @@ import {
   ListItemButton,
   ListItemText,
 } from "@mui/material";
-import Link from "next/link";
-import { useRouter } from "next/router";
-import { useContext, useEffect } from "react";
+//context
 import { drawerContext } from "../../contexts/DrawerContextProvider";
 
 function DrawerComponent() {
   const { isOpen, setOpen } = useContext(drawerContext);
-  const route = useRouter().route;
+  const { route } = useRouter();
   useEffect(() => {
     setOpen(false);
   }, [route]);

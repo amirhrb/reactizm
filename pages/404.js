@@ -1,17 +1,20 @@
 import Image from "next/image";
-import { Parallax, ParallaxLayer } from "@react-spring/parallax";
+
+//mui
 import { Box, Typography, useTheme } from "@mui/material";
 
+//parallax lib
+import { Parallax, ParallaxLayer } from "@react-spring/parallax";
+
+//custom head
 import Head from "../SEO/Head";
 
 //images
 import error from "../resources/404.png";
 import errorDark from "../resources/404-dark.png";
-
-//svgs
-import Satellite from "../resources/satellite.svg";
-import Cloud from "../resources/cloud.svg";
-import Earth from "../resources/earth.svg";
+import satellite from "../resources/satellite.png";
+import cloud from "../resources/cloud.png";
+import earth from "../resources/earth.png";
 
 //styles
 import styles from "../styles/404.module.scss";
@@ -98,15 +101,16 @@ function NotFound() {
             alignItems: "center",
           }}
         >
-          <Cloud
+          <Box
             style={{
-              fill: "#cecece",
-              width: "60px",
+              width: 60,
               position: "relative",
               top: "-5%",
               left: "15%",
             }}
-          />
+          >
+            <Image src={cloud} width={100} height={70} />
+          </Box>
         </ParallaxLayer>
         <ParallaxLayer
           offset={1.6}
@@ -117,16 +121,18 @@ function NotFound() {
             alignItems: "center",
           }}
         >
-          <Satellite
+          <Box
             style={{
               width: "60px",
               position: "relative",
               left: "-15%",
             }}
-          />
+          >
+            <Image src={satellite} width={100} height={100} />
+          </Box>
         </ParallaxLayer>
         <ParallaxLayer
-          offset={2.6}
+          offset={2.55}
           speed={-0.2}
           style={{
             display: "flex",
@@ -134,11 +140,18 @@ function NotFound() {
             alignItems: "center",
           }}
         >
-          <Earth
+          <Box
             style={{
-              maxWidth: "480px",
+              maxWidth: "550px",
             }}
-          />
+          >
+            <Image
+              className={styles.earth}
+              src={earth}
+              width={700}
+              height={700}
+            />
+          </Box>
         </ParallaxLayer>
         <ParallaxLayer
           offset={0}

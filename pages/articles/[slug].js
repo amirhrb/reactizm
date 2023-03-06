@@ -1,7 +1,7 @@
 import { useMemo, useState, useEffect } from "react";
 import Image from "next/image";
-import { useRouter } from "next/router";
 import Head from "../../SEO/Head";
+import { useRouter } from "next/router";
 
 //mui
 import { Box, Container, Grid } from "@mui/material";
@@ -13,9 +13,9 @@ import BreadComponent from "../../components/modules/BreadComponent";
 import client from "../../graphql/apollo-client";
 
 //gql
-import { POST_QUERY } from "../../graphql/queries";
+import { POSTS_QUERY, POST_QUERY } from "../../graphql/queries";
 
-export default function Post({ posts }) {
+export default function Post({ post }) {
   const router = useRouter();
 
   const {
@@ -23,7 +23,7 @@ export default function Post({ posts }) {
     author,
     ogImage,
     content: { html, text },
-  } = posts?.find((post) => post.slug === router.query.slug);
+  } = post;
   const pathParts = useMemo(() => {
     return router.asPath.split("?")[0].split("/").slice(1);
   }, [router.asPath]);
@@ -34,7 +34,7 @@ export default function Post({ posts }) {
     const baseUrl = `https://${host}`;
     setOgUrl(`${baseUrl}${router.asPath}`);
   }, [router.pathname]);
-  return posts.length ? (
+  return post.title ? (
     <>
       <Head
         socials={{
@@ -106,16 +106,10 @@ export default function Post({ posts }) {
     ""
   );
 }
-export const getStaticProps = async () => {
-  const { data: posts } = await client.query({ query: POST_QUERY });
-  return {
-    props: { ...posts },
-  };
-};
 export const getStaticPaths = async () => {
   const {
     data: { posts },
-  } = await client.query({ query: POST_QUERY });
+  } = await client.query({ query: POSTS_QUERY });
   const getAllPaths = async (posts) => {
     const slugs = await posts.map((post) => post.slug);
     return slugs.map((slug) => ({ params: { slug: slug } }));
@@ -124,5 +118,16 @@ export const getStaticPaths = async () => {
   return {
     paths: paths,
     fallback: false,
+  };
+};
+export const getStaticProps = async (ctx) => {
+  const { data: post } = await client.query({
+    query: POST_QUERY,
+    variables: {
+      Slug: ctx.params.slug,
+    },
+  });
+  return {
+    props: { ...post },
   };
 };

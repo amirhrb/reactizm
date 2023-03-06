@@ -1,19 +1,22 @@
-import React from "react";
-import { Box, Grid, Typography, useTheme } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
 
+//mui
+import { Box, Grid, Tooltip, Typography, useTheme } from "@mui/material";
+
 //elements
-import ScrollbarX from "../elements/ScrollbarX";
+import { ScrollbarX } from "styled-scrollbar";
 
 //styles
 import styles from "../styles/Author.module.scss";
 
 //func
 import { timeFunc } from "../../helper/functions";
+import { useRouter } from "next/router";
 
 function Author({ author }) {
   const theme = useTheme();
+  const router = useRouter();
   return (
     <Box
       sx={{
@@ -56,15 +59,14 @@ function Author({ author }) {
             sx={{ display: "flex", flexDirection: "row", alignItems: "center" }}
           >
             <Grid item sx={{ display: "flex", alignItems: "center" }}>
-              <Link href={`authors/${author.slug}`}>
-                <Image
-                  src={author.avatar.url}
-                  alt={author.avatar.filename}
-                  width={45}
-                  height={45}
-                  style={{ borderRadius: "50%", cursor: "pointer" }}
-                />
-              </Link>
+              <Image
+                src={author.avatar.url}
+                alt={author.avatar.filename}
+                width={45}
+                height={45}
+                style={{ borderRadius: "50%", cursor: "pointer" }}
+                onClick={() => router.push(`authors/${author.slug}`)}
+              />
             </Grid>
             <Grid
               item
@@ -76,26 +78,25 @@ function Author({ author }) {
               }}
             >
               <Link href={`authors/${author.slug}`}>
-                <Typography
-                  variant="h4"
-                  sx={{
-                    fontSize: "15px",
-                    fontWeight: "bold",
-                    marginY: 0,
-                    padding: 0,
-                    width: "95px",
-                    overflow: "hidden",
-                    textOverflow: "ellipsis",
-                    display: "inline-block",
-                    whiteSpace: "nowrap",
-                    "&:hover": {
-                      overflow: "visible",
-                    },
-                    cursor: "pointer",
-                  }}
-                >
-                  {author.name}
-                </Typography>
+                <Tooltip title={author.name} placement="top-end">
+                  <Typography
+                    variant="h4"
+                    sx={{
+                      fontSize: "15px",
+                      fontWeight: "bold",
+                      marginY: 0,
+                      padding: 0,
+                      width: "95px",
+                      overflow: "hidden",
+                      textOverflow: "ellipsis",
+                      display: "inline-block",
+                      whiteSpace: "nowrap",
+                      cursor: "pointer",
+                    }}
+                  >
+                    {author.name}
+                  </Typography>
+                </Tooltip>
               </Link>
               <Typography
                 variant="caption"
@@ -167,6 +168,7 @@ function Author({ author }) {
                   src={post.ogImage.url}
                   width={80}
                   height={80}
+                  alt="post image"
                   style={{ borderRadius: "10px" }}
                 />
               </Grid>
@@ -174,7 +176,7 @@ function Author({ author }) {
             {author.posts.map((post) => (
               <Grid
                 item
-                key={post.id}
+                key={post.ogImage.url}
                 sx={{
                   minWidth: 80,
                   height: 80,
@@ -187,6 +189,49 @@ function Author({ author }) {
                   src={post.ogImage.url}
                   width={80}
                   height={80}
+                  alt="post image"
+                  style={{ borderRadius: "10px" }}
+                />
+              </Grid>
+            ))}
+            {author.posts.map((post) => (
+              <Grid
+                item
+                key={post.ogImage.url}
+                sx={{
+                  minWidth: 80,
+                  height: 80,
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
+                <Image
+                  src={post.ogImage.url}
+                  width={80}
+                  height={80}
+                  alt="post image"
+                  style={{ borderRadius: "10px" }}
+                />
+              </Grid>
+            ))}
+            {author.posts.map((post) => (
+              <Grid
+                item
+                key={post.ogImage.url}
+                sx={{
+                  minWidth: 80,
+                  height: 80,
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
+                <Image
+                  src={post.ogImage.url}
+                  width={80}
+                  height={80}
+                  alt="post image"
                   style={{ borderRadius: "10px" }}
                 />
               </Grid>
