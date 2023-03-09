@@ -5,7 +5,7 @@ import Link from "next/link";
 import { Box, Grid, Tooltip, Typography, useTheme } from "@mui/material";
 
 //elements
-import { ScrollbarX } from "styled-scrollbar";
+import ScrollbarX from "../elements/ScrollbarX";
 
 //styles
 import styles from "../styles/Author.module.scss";

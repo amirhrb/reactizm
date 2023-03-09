@@ -29,6 +29,8 @@ yarn-error.log*
 .env.test.local
 .env.production.local
 
+next-env.d.ts
+
 # Auto Generated PWA files
 /public/sw.js
 /public/workbox-*.js

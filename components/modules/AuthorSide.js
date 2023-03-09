@@ -1,7 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import { ScrollbarY } from "styled-scrollbar";
+//ele,ents
+import ScrollbarY from "../elements/ScrollbarY";
 
 //MUI
 import { Divider, Grid, Tooltip, Typography } from "@mui/material";

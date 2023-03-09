@@ -3,6 +3,6 @@ import { faIR } from "date-fns/locale";
 
 export const timeFunc = (posts) => {
   const dates = posts.map((post) => post.publishDate);
-  const lastDate = new Date(dates.sort((a, b) => a < b)[0]);
+  const lastDate = new Date(dates.sort((a, b) => new Date(b) - new Date(a))[0]);
   return formatDistanceToNow(lastDate, { locale: faIR });
 };
