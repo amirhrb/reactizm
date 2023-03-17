@@ -14,12 +14,12 @@ function HeadTag(props) {
       <meta name="apple-mobile-web-app-status-bar" content="#ffb300" />
       <link rel="manifest" href="/manifest.json" />
       <link rel="icon" href="/favicon.ico" />
-      {socials.length ? (
+      {props.ogImage ? (
         <>
-          <meta property="og:title" content={props?.ogTitle} />
-          <meta property="og:type" content={props?.ogType} />
-          <meta property="og:url" content={props?.ogUrl} />
-          <meta property="og:image" content={props?.ogImage} />
+          <meta property="og:title" content={props.ogTitle} />
+          <meta property="og:type" content={props.ogType} />
+          <meta property="og:url" content={props.ogUrl} />
+          <meta property="og:image" content={props.ogImage} />
         </>
       ) : (
         ""

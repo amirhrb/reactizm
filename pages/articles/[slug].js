@@ -37,12 +37,10 @@ export default function Post({ post }) {
   return post.title ? (
     <>
       <Head
-        socials={{
-          ogTitle: title,
-          ogType: "article",
-          ogUrl: ogUrl,
-          ogImage: ogImage.url,
-        }}
+        ogTitle={title}
+        ogType="article"
+        ogUrl={ogUrl}
+        ogImage={ogImage.url}
       >
         <title>
           {author.name}|{title}
