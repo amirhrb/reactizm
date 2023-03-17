@@ -1,5 +1,3 @@
-import { useEffect } from "react";
-
 //css
 import "../styles/globals.css";
 import "../styles/fonts.css";
@@ -11,6 +9,7 @@ import Layout from "../components/layouts";
 import { ApolloProvider } from "@apollo/client";
 import client from "../graphql/apollo-client";
 
+//mui theme
 import Theme from "../MUI/Theme";
 
 //context

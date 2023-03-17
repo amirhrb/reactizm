@@ -129,8 +129,8 @@ export default function Navbar() {
                 <Image
                   className={styles.logo}
                   src={Logo}
-                  width={120}
-                  height={120}
+                  width={45}
+                  height={45}
                   onClick={() => router.push("/")}
                 />
               </Box>

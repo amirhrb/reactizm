@@ -1,14 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
 
-//ele,ents
-import ScrollbarY from "../elements/ScrollbarY";
+//elements
+import { ScrollbarY } from "styled-scrollbar";
 
 //MUI
 import { Divider, Grid, Tooltip, Typography } from "@mui/material";
 
 function AuthorSide({ authors }) {
-  // console.log()
   return (
     <div
       style={{

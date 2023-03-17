@@ -1,18 +1,18 @@
 import Image from "next/image";
 import Link from "next/link";
 
+//custom library
+import { ScrollbarX } from "styled-scrollbar";
+
 //mui
 import { Box, Grid, Tooltip, Typography, useTheme } from "@mui/material";
-
-//elements
-import ScrollbarX from "../elements/ScrollbarX";
-
-//styles
-import styles from "../styles/Author.module.scss";
 
 //func
 import { timeFunc } from "../../helper/functions";
 import { useRouter } from "next/router";
+
+//styles
+import styles from "../styles/Author.module.scss";
 
 function Author({ author }) {
   const theme = useTheme();
@@ -144,8 +144,8 @@ function Author({ author }) {
             container
             width={260}
             direction="row"
-            justifyContent="flex-start"
             alignItems="center"
+            justifyContent={author.posts.length > 3 ? "flex-start" : "center"}
             wrap="nowrap"
             columnSpacing={1}
             mt={1}
@@ -156,69 +156,6 @@ function Author({ author }) {
               <Grid
                 item
                 key={post.id}
-                sx={{
-                  minWidth: 80,
-                  height: 80,
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                }}
-              >
-                <Image
-                  src={post.ogImage.url}
-                  width={80}
-                  height={80}
-                  alt="post image"
-                  style={{ borderRadius: "10px" }}
-                />
-              </Grid>
-            ))}
-            {author.posts.map((post) => (
-              <Grid
-                item
-                key={post.ogImage.url}
-                sx={{
-                  minWidth: 80,
-                  height: 80,
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                }}
-              >
-                <Image
-                  src={post.ogImage.url}
-                  width={80}
-                  height={80}
-                  alt="post image"
-                  style={{ borderRadius: "10px" }}
-                />
-              </Grid>
-            ))}
-            {author.posts.map((post) => (
-              <Grid
-                item
-                key={post.ogImage.url}
-                sx={{
-                  minWidth: 80,
-                  height: 80,
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                }}
-              >
-                <Image
-                  src={post.ogImage.url}
-                  width={80}
-                  height={80}
-                  alt="post image"
-                  style={{ borderRadius: "10px" }}
-                />
-              </Grid>
-            ))}
-            {author.posts.map((post) => (
-              <Grid
-                item
-                key={post.ogImage.url}
                 sx={{
                   minWidth: 80,
                   height: 80,

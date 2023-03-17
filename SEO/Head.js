@@ -1,18 +1,14 @@
 import Head from "next/head";
-import React, { useEffect, useState } from "react";
 
 function HeadTag(props) {
-  const [socials, setSocials] = useState({});
-  useEffect(() => {
-    if (props.socials) {
-      setSocials(props.socials);
-    }
-  }, []);
-
   return (
     <Head>
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+      />
       <meta name="theme-color" content="#ffb300" />
-      {/* this sets logo in Apple smatphones.*/}
+      {/* this sets logo in Apple smartphones.*/}
       <link rel="apple-touch-icon" href="/logo-192x192.png" />
       {/* <!-- this sets the color of url bar in Apple smatphones --> */}
       <meta name="apple-mobile-web-app-status-bar" content="#ffb300" />
@@ -20,10 +16,10 @@ function HeadTag(props) {
       <link rel="icon" href="/favicon.ico" />
       {socials.length ? (
         <>
-          <meta property="og:title" content={ogTitle} />
-          <meta property="og:type" content={ogType} />
-          <meta property="og:url" content={ogUrl} />
-          <meta property="og:image" content={ogImage} />
+          <meta property="og:title" content={props?.ogTitle} />
+          <meta property="og:type" content={props?.ogType} />
+          <meta property="og:url" content={props?.ogUrl} />
+          <meta property="og:image" content={props?.ogImage} />
         </>
       ) : (
         ""
