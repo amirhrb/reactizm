@@ -19,19 +19,60 @@ const Register = () => {
   //     console.error(error);
   //   }
   return (
-    <Box>
-      <h2>Register</h2>
-      <form>
-        <label htmlFor="emailInput">ایمیل</label>
-        <input
-          type="text"
-          id="emailInput"
-          placeholder="ایمیل خود را اینجا بنویسید"
+    <Box
+      sx={{
+        width: 260,
+        backgroundColor: "background.paper",
+        display: "flex",
+        flexDirection: "column",
+        borderRadius: 5,
+      }}
+      dir="rtl"
+    >
+      <h2 style={{ padding: "0 16px" }}>ثبت نام</h2>
+      <Box
+        component="form"
+        noValidate
+        autoComplete="off"
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          borderRadius: 5,
+        }}
+      >
+        <TextField
+          type="email"
+          id="standard-basic"
+          label="ایمیل"
+          sx={{
+            my: 1,
+            mx: 2,
+            borderRadius: 5,
+          }}
         />
-        <label htmlFor="passwordInput">رمز عبور</label>
-        <input type="password" id="passwordInput" placeholder="یک رمز بنویس" />
-        <input type="submit" onClick={(e) => e.preventDefault()} />
-      </form>
+        <TextField
+          id="standard-password-input"
+          label="رمز عبور"
+          type="password"
+          sx={{
+            my: 1,
+            mx: 2,
+            borderRadius: 5,
+          }}
+          autoComplete="current-password"
+        />
+        <Button
+          variant="contained"
+          type="submit"
+          onClick={(e) => e.preventDefault()}
+          sx={{
+            m: 2,
+            borderRadius: 5,
+          }}
+        >
+          ثبت نام
+        </Button>
+      </Box>
     </Box>
   );
 };

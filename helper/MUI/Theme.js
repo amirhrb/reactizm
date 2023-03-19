@@ -5,12 +5,14 @@ import {
   useMediaQuery,
 } from "@mui/material";
 import { useMemo } from "react";
+import RTL from "./RTL";
 
 const Theme = ({ children }) => {
   const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
   const theme = useMemo(
     () =>
       createTheme({
+        direction: "rtl",
         palette: {
           mode: prefersDarkMode ? "dark" : "light",
           primary: {
@@ -19,6 +21,10 @@ const Theme = ({ children }) => {
           },
           secondary: {
             main: "#1a0090",
+          },
+          background: {
+            paper: prefersDarkMode ? "#181818" : "#F5F5F5",
+            default: prefersDarkMode ? "#000" : "#fff",
           },
           warning: {
             main: "#2196f3",
@@ -50,10 +56,12 @@ const Theme = ({ children }) => {
     [prefersDarkMode]
   );
   return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      {children}
-    </ThemeProvider>
+    <RTL>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        {children}
+      </ThemeProvider>
+    </RTL>
   );
 };
 

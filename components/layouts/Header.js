@@ -13,7 +13,6 @@ import {
   Container,
   Toolbar,
   useTheme,
-  // useMediaQuery,
   IconButton,
 } from "@mui/material";
 

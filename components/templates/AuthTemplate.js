@@ -5,47 +5,61 @@ import { useState } from "react";
 import Login from "../../components/modules/Login";
 import Register from "../../components/modules/Register";
 
-import styles from "../styles/AuthTemplate.module.scss";
-
 const AuthTemplate = () => {
   const [value, setValue] = useState("register");
   const handleChange = (event, newValue) => {
-    setValue(newValue);
+    if (newValue !== null) setValue(newValue);
   };
   return (
     <Box
       sx={{
+        minHeight: 400,
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        justifyContent: "center",
+        justifyContent: "space-evenly",
+        backgroundColor: "Background.default",
       }}
     >
-      <ToggleButtonGroup
-        value={value}
-        exclusive
-        onChange={handleChange}
-        dir="ltr"
-      >
-        <ToggleButton value="login" aria-label="login" sx={{ px: "13px" }}>
-          ورود
-        </ToggleButton>
-        <ToggleButton value="register" aria-label="module" sx={{ px: 1 }}>
+      <ToggleButtonGroup value={value} exclusive onChange={handleChange}>
+        <ToggleButton
+          value="register"
+          aria-label="module"
+          disableRipple
+          sx={{ px: 1 }}
+        >
           ثبت نام
         </ToggleButton>
+        <ToggleButton
+          value="login"
+          aria-label="login"
+          disableRipple
+          sx={{ px: "13px" }}
+        >
+          ورود
+        </ToggleButton>
       </ToggleButtonGroup>
-      <div className={styles.wraper}>
-        <Register
-          className={
-            value === "register" ? styles.activeReg : styles.disableReg
-          }
-        />
-        <Login
-          className={
-            value === "login" ? styles.activeLogin : styles.disableLogin
-          }
-        />
-      </div>
+      <Box
+        sx={{
+          width: "260px",
+          position: "relative",
+          overflowX: "hidden",
+        }}
+      >
+        <Box
+          sx={{
+            width: "560px",
+            display: "flex",
+            justifyContent: "space-between",
+            transition: "all 0.5s ease-out",
+            transform:
+              value === "login" ? "translateX(-300px)" : "translateX(0)",
+          }}
+        >
+          <Register />
+          <Login />
+        </Box>
+      </Box>
     </Box>
   );
 };

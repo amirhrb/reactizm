@@ -1,25 +1,53 @@
-import { Box, TextField } from "@mui/material";
+import { Box, Button, TextField } from "@mui/material";
 
 const Login = () => {
   return (
-    <Box>
-      <h2>login</h2>
-      <Box component="form" noValidate autoComplete="off">
-        <label htmlFor="emailInput">ایمیل</label>
-        <input
-          type="text"
-          id="emailInput"
-          placeholder="ایمیل خود را اینجا بنویسید"
-        />
-        {/* <label htmlFor="passwordInput">رمز عبور</label>
-        <input type="password" id="passwordInput" placeholder="یک رمز بنویس" /> */}
+    <Box
+      sx={{
+        width: 260,
+        backgroundColor: "background.paper",
+        display: "flex",
+        flexDirection: "column",
+        borderRadius: 5,
+      }}
+    >
+      <h2 style={{ padding: "0 16px" }}>ورود</h2>
+      <Box
+        component="form"
+        noValidate
+        autoComplete="off"
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "space-evenly",
+          // alignItems: "center",
+          // p: 2,
+        }}
+      >
         <TextField
-          id="outlined-password-input"
+          type="email"
+          id="standard-basic"
+          label="ایمیل"
+          sx={{ my: 1, mx: 2, borderRadius: 5 }}
+        />
+        <TextField
+          id="standard-password-input"
           label="رمز عبور"
           type="password"
+          sx={{ my: 1, mx: 2, borderRadius: 5 }}
           autoComplete="current-password"
         />
-        <input type="submit" onClick={(e) => e.preventDefault()} />
+        <Button
+          variant="contained"
+          type="submit"
+          onClick={(e) => e.preventDefault()}
+          sx={{
+            m: 2,
+            borderRadius: 5,
+          }}
+        >
+          ورود
+        </Button>
       </Box>
     </Box>
   );
