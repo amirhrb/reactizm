@@ -13,7 +13,7 @@ export default function Layout({ children }) {
   return (
     <Box sx={{ minHeight: "calc(100vh - 60px)", overflow: "hidden" }}>
       <Header />
-      <Container maxWidth="md" sx={{ minHeight: "70vh", marginTop: 8, p: 0 }}>
+      <Container maxWidth="md" sx={{ py: 8 }}>
         {children}
       </Container>
       {route === "/404" ? "" : route === "/" ? "" : <Footer />}

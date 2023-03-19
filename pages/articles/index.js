@@ -1,9 +1,9 @@
 //costum head
-import Head from "../../SEO/Head";
+import Head from "../../helper/SEO/Head";
 
 //gql
-import client from "../../graphql/apollo-client";
-import { AUTHORS_QUERY, POSTS_QUERY } from "../../graphql/queries";
+import client from "../../helper/graphql/apollo-client";
+import { AUTHORS_QUERY, POSTS_QUERY } from "../../helper/graphql/queries";
 
 //mui
 import { Box } from "@mui/material";

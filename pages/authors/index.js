@@ -2,8 +2,8 @@
 import { Box, Grid } from "@mui/material";
 
 //Apollo
-import client from "../../graphql/apollo-client";
-import { AUTHORS_QUERY } from "../../graphql/queries";
+import client from "../../helper/graphql/apollo-client";
+import { AUTHORS_QUERY } from "../../helper/graphql/queries";
 
 //components
 import Author from "../../components/modules/Author";

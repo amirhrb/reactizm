@@ -5,7 +5,7 @@ export default function Footer() {
     <Box
       sx={(theme) => ({
         width: "100%",
-        marginTop: "2rem",
+        // marginTop: "2rem",
         marginBottom: 0,
         backgroundColor:
           theme.palette.mode === "dark" ? "primary.main" : "primary.light",

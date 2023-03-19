@@ -11,9 +11,9 @@ import {
   ListItemText,
 } from "@mui/material";
 //context
-import { drawerContext } from "../../contexts/DrawerContextProvider";
+import { drawerContext } from "../../helper/contexts/DrawerContextProvider";
 
-function DrawerComponent() {
+function DrawerComponent({ linksList }) {
   const { isOpen, setOpen } = useContext(drawerContext);
   const { route } = useRouter();
   useEffect(() => {
@@ -23,13 +23,18 @@ function DrawerComponent() {
   return (
     <Drawer anchor="bottom" open={isOpen} onClose={() => setOpen(!isOpen)}>
       <List>
-        {[
-          { text: "نویسندگان", href: "/authors" },
-          { text: "سرویس", href: "/services" },
-          { text: "مقالات", href: "/articles" },
-          { text: "درباره", href: "/about" },
-        ].map((item) => (
-          <ListItem key={item.text} disablePadding>
+        <ListItem disablePadding>
+          <Link href="/auth">
+            <ListItemButton>
+              <ListItemText
+                primary="ثبت نام/ ورود"
+                sx={{ display: "flex", justifyContent: "center" }}
+              />
+            </ListItemButton>
+          </Link>
+        </ListItem>
+        {linksList.map((item) => (
+          <ListItem key={item.href} disablePadding>
             <Link href={item.href}>
               <ListItemButton>
                 <ListItemText

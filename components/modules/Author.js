@@ -8,7 +8,7 @@ import { ScrollbarX } from "styled-scrollbar";
 import { Box, Grid, Tooltip, Typography, useTheme } from "@mui/material";
 
 //func
-import { timeFunc } from "../../helper/functions";
+import { timeFunc } from "../../helper/utils/functions";
 import { useRouter } from "next/router";
 
 //styles

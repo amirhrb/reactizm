@@ -1,6 +1,5 @@
 import { useMemo, useState, useEffect } from "react";
 import Image from "next/image";
-import Head from "../../SEO/Head";
 import { useRouter } from "next/router";
 
 //mui
@@ -8,12 +7,13 @@ import { Box, Container, Grid } from "@mui/material";
 
 //components
 import BreadComponent from "../../components/modules/BreadComponent";
+import Head from "../../helper/SEO/Head";
 
 //client
-import client from "../../graphql/apollo-client";
+import client from "../../helper/graphql/apollo-client";
 
 //gql
-import { POSTS_QUERY, POST_QUERY } from "../../graphql/queries";
+import { POSTS_QUERY, POST_QUERY } from "../../helper/graphql/queries";
 
 export default function Post({ post }) {
   const router = useRouter();

@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 
 //contexts
-import { drawerContext } from "../../contexts/DrawerContextProvider";
+import { drawerContext } from "../../helper/contexts/DrawerContextProvider";
 
 import {
   AppBar,
@@ -27,6 +27,13 @@ import DrawerComponent from "./Drawer";
 import Logo from "../../resources/Logo.png";
 import ShapeLineIcon from "@mui/icons-material/ShapeLine";
 
+const linksList = [
+  { text: "نویسندگان", href: "/authors" },
+  { text: "سرویس", href: "/services" },
+  { text: "مقالات", href: "/articles" },
+  { text: "درباره", href: "/about" },
+];
+
 export default function Navbar() {
   const {
     palette: { mode },
@@ -34,6 +41,7 @@ export default function Navbar() {
   const theme = useTheme();
   const router = useRouter();
   const { setOpen } = useContext(drawerContext);
+
   return (
     <>
       <AppBar
@@ -71,10 +79,17 @@ export default function Navbar() {
             >
               <ShapeLineIcon />
             </IconButton>
-            <Box sx={{ display: { xs: "none", sm: "block" } }}>
-              <Button variant="contained" className={styles.loginBtn}>
-                <span>ورود</span>
-              </Button>
+            <Box
+              sx={{
+                display: { xs: "none", sm: "block" },
+                color: "#fff",
+              }}
+            >
+              <Link href="auth">
+                <Button variant="outlined" className={styles.loginBtn}>
+                  <span>ثبت نام/ورود</span>
+                </Button>
+              </Link>
             </Box>
             <Box
               sx={{
@@ -82,38 +97,16 @@ export default function Navbar() {
                 display: { xs: "none", sm: "block" },
               }}
             >
-              <span className={styles.link}>
-                <Link href="/authors">نویسندگان</Link>
-                <div
-                  style={{
-                    backgroundColor: mode === "dark" ? "#fff" : "#000",
-                  }}
-                ></div>
-              </span>
-              <span className={styles.link}>
-                <Link href="/">سرویس</Link>
-                <div
-                  style={{
-                    backgroundColor: mode === "dark" ? "#fff" : "#000",
-                  }}
-                ></div>
-              </span>
-              <span className={styles.link}>
-                <Link href="/articles">مقالات</Link>
-                <div
-                  style={{
-                    backgroundColor: mode === "dark" ? "#fff" : "#000",
-                  }}
-                ></div>
-              </span>
-              <span className={styles.link}>
-                <Link href="/">درباره</Link>
-                <div
-                  style={{
-                    backgroundColor: mode === "dark" ? "#fff" : "#000",
-                  }}
-                ></div>
-              </span>
+              {linksList.map((link) => (
+                <span className={styles.link} key={link.href}>
+                  <Link href={link.href}>{link.text}</Link>
+                  <div
+                    style={{
+                      backgroundColor: mode === "dark" ? "#fff" : "#000",
+                    }}
+                  ></div>
+                </span>
+              ))}
             </Box>
             <IconButton aria-label="home page">
               <Box
@@ -138,7 +131,7 @@ export default function Navbar() {
           </Toolbar>
         </Container>
       </AppBar>
-      <DrawerComponent />
+      <DrawerComponent linksList={linksList} />
     </>
   );
 }

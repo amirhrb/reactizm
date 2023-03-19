@@ -1,9 +1,9 @@
 import Author from "../../components/modules/Author";
 
 //gql
-import Head from "next/head";
+import Head from "../../helper/SEO/Head";
 import client from "../../graphql/apollo-client";
-import { AUTHORS_QUERY, AUTHOR_QUERY } from "../../graphql/queries";
+import { AUTHORS_QUERY, AUTHOR_QUERY } from "../../helper/graphql/queries";
 
 function Index({ author }) {
   return (

@@ -7,7 +7,7 @@ import { Box, Typography, useTheme } from "@mui/material";
 import { Parallax, ParallaxLayer } from "@react-spring/parallax";
 
 //custom head
-import Head from "../SEO/Head";
+import Head from "../helper/SEO/Head";
 
 //images
 import error from "../resources/404.png";

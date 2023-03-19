@@ -27,6 +27,9 @@
   width: 70%;
   min-width: 10rem;
   max-width: 260px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   user-select: none;
   h4 {
     width: 100%;
