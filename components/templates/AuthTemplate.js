@@ -2,8 +2,8 @@ import { Box, ToggleButton, ToggleButtonGroup } from "@mui/material";
 import { useState } from "react";
 
 //components
-import Login from "../../components/modules/login";
-import Register from "../../components/modules/register";
+import Login from "../../components/modules/Login";
+import Register from "../../components/modules/Register";
 
 import styles from "../styles/AuthTemplate.module.scss";
 
