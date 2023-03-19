@@ -2,7 +2,7 @@ import Author from "../../components/modules/Author";
 
 //gql
 import Head from "../../helper/SEO/Head";
-import client from "../../graphql/apollo-client";
+import client from "../../helper/graphql/apollo-client";
 import { AUTHORS_QUERY, AUTHOR_QUERY } from "../../helper/graphql/queries";
 
 function Index({ author }) {
