@@ -20,7 +20,13 @@ const Register = () => {
   //   }
   return (
     <Box
-      sx={{ backgroundColor: "aqua", display: "flex", flexDirection: "column" }}
+      sx={{
+        width: 260,
+        backgroundColor: bgColor?.length ? bgColor : "background.paper",
+        display: "flex",
+        flexDirection: "column",
+        borderRadius: bRadius?.length ? bRadius : 5,
+      }}
       dir="rtl"
     >
       <h2 style={{ padding: "0 16px" }}>ثبت نام</h2>
@@ -28,25 +34,41 @@ const Register = () => {
         component="form"
         noValidate
         autoComplete="off"
-        sx={{ display: "flex", flexDirection: "column" }}
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          borderRadius: bRadius?.length ? bRadius : 5,
+        }}
       >
         <TextField
           type="email"
           id="standard-basic"
-          label="ایمیل خود را اینجا بنویسید"
-          sx={{ mx: 2, mb: 1 }}
+          label="ایمیل"
+          sx={{
+            my: 1,
+            mx: 2,
+            borderRadius: bRadius?.length ? bRadius : 5,
+          }}
         />
         <TextField
           id="standard-password-input"
           label="رمز عبور"
           type="password"
-          sx={{ mx: 2, mb: 1 }}
+          sx={{
+            my: 1,
+            mx: 2,
+            borderRadius: bRadius?.length ? bRadius : 5,
+          }}
           autoComplete="current-password"
         />
         <Button
           variant="contained"
           type="submit"
           onClick={(e) => e.preventDefault()}
+          sx={{
+            m: 2,
+            borderRadius: bRadius?.length ? bRadius : 5,
+          }}
         >
           ثبت نام
         </Button>
