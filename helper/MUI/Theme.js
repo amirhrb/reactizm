@@ -22,6 +22,10 @@ const Theme = ({ children }) => {
           secondary: {
             main: "#1a0090",
           },
+          background: {
+            paper: prefersDarkMode ? "#181818" : "#F5F5F5",
+            default: prefersDarkMode ? "#000" : "#fff",
+          },
           warning: {
             main: "#2196f3",
           },

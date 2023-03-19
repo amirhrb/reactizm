@@ -1,4 +1,4 @@
-import { Box } from "@mui/material";
+import { Box, Button, TextField } from "@mui/material";
 
 const Register = () => {
   // try {
@@ -19,19 +19,38 @@ const Register = () => {
   //     console.error(error);
   //   }
   return (
-    <Box>
-      <h2>Register</h2>
-      <form>
-        <label htmlFor="emailInput">ایمیل</label>
-        <input
-          type="text"
-          id="emailInput"
-          placeholder="ایمیل خود را اینجا بنویسید"
+    <Box
+      sx={{ backgroundColor: "aqua", display: "flex", flexDirection: "column" }}
+      dir="rtl"
+    >
+      <h2 style={{ padding: "0 16px" }}>ثبت نام</h2>
+      <Box
+        component="form"
+        noValidate
+        autoComplete="off"
+        sx={{ display: "flex", flexDirection: "column" }}
+      >
+        <TextField
+          type="email"
+          id="standard-basic"
+          label="ایمیل خود را اینجا بنویسید"
+          sx={{ mx: 2, mb: 1 }}
         />
-        <label htmlFor="passwordInput">رمز عبور</label>
-        <input type="password" id="passwordInput" placeholder="یک رمز بنویس" />
-        <input type="submit" onClick={(e) => e.preventDefault()} />
-      </form>
+        <TextField
+          id="standard-password-input"
+          label="رمز عبور"
+          type="password"
+          sx={{ mx: 2, mb: 1 }}
+          autoComplete="current-password"
+        />
+        <Button
+          variant="contained"
+          type="submit"
+          onClick={(e) => e.preventDefault()}
+        >
+          ثبت نام
+        </Button>
+      </Box>
     </Box>
   );
 };
