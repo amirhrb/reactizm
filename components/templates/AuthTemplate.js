@@ -20,17 +20,28 @@ const AuthTemplate = () => {
         alignItems: "center",
         justifyContent: "center",
       }}
+      dir="rtl"
     >
       <ToggleButtonGroup
         value={value}
         exclusive
         onChange={handleChange}
-        dir="ltr"
+        // dir="ltr"
       >
-        <ToggleButton value="login" aria-label="login" sx={{ px: "13px" }}>
+        <ToggleButton
+          dir="rtl"
+          value="login"
+          aria-label="login"
+          sx={{ px: "13px" }}
+        >
           ورود
         </ToggleButton>
-        <ToggleButton value="register" aria-label="module" sx={{ px: 1 }}>
+        <ToggleButton
+          dir="rtl"
+          value="register"
+          aria-label="module"
+          sx={{ px: 1 }}
+        >
           ثبت نام
         </ToggleButton>
       </ToggleButtonGroup>

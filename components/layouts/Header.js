@@ -13,12 +13,11 @@ import {
   Container,
   Toolbar,
   useTheme,
-  // useMediaQuery,
   IconButton,
 } from "@mui/material";
 
 //sstyles
-import styles from "./styles/Header.module.scss";
+import styles from "./styles/Header.module.css";
 
 //components
 import DrawerComponent from "./Drawer";

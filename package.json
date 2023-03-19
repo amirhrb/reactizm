@@ -7,8 +7,8 @@
     "build": "next build",
     "start": "next start",
     "export": "next build && next export",
-    "sb": "start-storybook -p 6006",
-    "build-sb": "build-storybook"
+    "sb": "start-storybook -p 6006 -s ./public",
+    "build-sb": "build-storybook -s ./public"
   },
   "dependencies": {
     "@apollo/client": "^3.6.9",
@@ -28,7 +28,9 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-web-share": "^2.0.2",
-    "styled-scrollbar": "^3.0.0"
+    "styled-scrollbar": "^3.0.0",
+    "stylis": "^4.1.3",
+    "stylis-plugin-rtl": "^2.1.1"
   },
   "devDependencies": {
     "@babel/core": "^7.21.3",

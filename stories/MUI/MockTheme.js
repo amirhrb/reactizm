@@ -5,7 +5,7 @@ import {
   useMediaQuery,
 } from "@mui/material";
 import { useMemo } from "react";
-import RTL from "./RTL";
+import MockRTL from "./MockRTL";
 
 const Theme = ({ children }) => {
   const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
@@ -17,11 +17,16 @@ const Theme = ({ children }) => {
           mode: prefersDarkMode ? "dark" : "light",
           primary: {
             main: "#ffb300",
-            light: "#ffffa8",
+            // light: "#ffffa8",
           },
           secondary: {
             main: "#1a0090",
           },
+          background: {
+            paper: prefersDarkMode ? "#181818" : "#F5F5F5",
+            default: prefersDarkMode ? "#000" : "#fff",
+          },
+
           warning: {
             main: "#2196f3",
           },
@@ -52,12 +57,12 @@ const Theme = ({ children }) => {
     [prefersDarkMode]
   );
   return (
-    <RTL>
+    <MockRTL>
       <ThemeProvider theme={theme}>
         <CssBaseline />
         {children}
       </ThemeProvider>
-    </RTL>
+    </MockRTL>
   );
 };
 
