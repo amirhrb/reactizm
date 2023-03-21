@@ -1,4 +1,4 @@
-import { Box, TextField } from "@mui/material";
+import {Box, Button, TextField} from "@mui/material";
 
 const Register = () => {
   // try {
@@ -27,7 +27,6 @@ const Register = () => {
         flexDirection: "column",
         borderRadius: 5,
       }}
-      dir="rtl"
     >
       <h2 style={{ padding: "0 16px" }}>ثبت نام</h2>
       <Box
