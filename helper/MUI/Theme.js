@@ -3,54 +3,57 @@ import {
   CssBaseline,
   ThemeProvider,
   useMediaQuery,
-} from "@mui/material";
-import { useMemo } from "react";
-import RTL from "./RTL";
+} from '@mui/material';
+import { useMemo } from 'react';
+import RTL from './RTL';
 
 const Theme = ({ children }) => {
-  const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
+  const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
   const theme = useMemo(
     () =>
       createTheme({
-        direction: "rtl",
+        direction: 'rtl',
         palette: {
-          mode: prefersDarkMode ? "dark" : "light",
+          mode: prefersDarkMode ? 'dark' : 'light',
           primary: {
-            main: "#ffb300",
-            light: "#ffffa8",
+            main: '#ffb300',
+            light: '#ffffa8',
           },
           secondary: {
-            main: "#1a0090",
+            main: '#1a0090',
           },
           background: {
-            paper: prefersDarkMode ? "#181818" : "#F5F5F5",
-            default: prefersDarkMode ? "#000" : "#fff",
+            paper: prefersDarkMode ? '#181818' : '#F5F5F5',
+            default: prefersDarkMode ? '#000' : '#fff',
           },
           warning: {
-            main: "#2196f3",
+            main: '#2196f3',
           },
           neutral: {
-            main: "#64748B",
-            contrastText: "#fff",
+            main: '#64748B',
+            contrastText: '#fff',
           },
           profile: {
-            main: "rgba(178, 125, 0, 0.11)",
+            main: 'rgba(178, 125, 0, 0.11)',
           },
+        },
+        breakpoints: {
+          sm: 600,
         },
         typography: {
           fontFamily: [
-            "YekanBakh",
-            "-apple-system",
-            "BlinkMacSystemFont",
+            'var(--yekan-font)',
+            '-apple-system',
+            'BlinkMacSystemFont',
             '"Segoe UI"',
-            "Roboto",
+            'Roboto',
             '"Helvetica Neue"',
-            "Arial",
-            "sans-serif",
+            'Arial',
+            'sans-serif',
             '"Apple Color Emoji"',
             '"Segoe UI Emoji"',
             '"Segoe UI Symbol"',
-          ].join(","),
+          ].join(','),
         },
       }),
     [prefersDarkMode]

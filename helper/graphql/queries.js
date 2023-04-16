@@ -1,4 +1,4 @@
-import { gql } from "@apollo/client";
+import { gql } from '@apollo/client';
 
 export const AUTHORS_QUERY = gql`
   query {
@@ -64,6 +64,7 @@ export const POSTS_QUERY = gql`
       content {
         html
         text
+        markdown
       }
       author {
         name
@@ -90,6 +91,7 @@ export const POST_QUERY = gql`
       content {
         html
         text
+        markdown
       }
       author {
         name

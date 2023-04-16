@@ -1,6 +1,6 @@
-import { genSalt, hash } from "bcryptjs";
-import { formatDistanceToNow } from "date-fns";
-import { faIR } from "date-fns/locale";
+import { genSalt, hash } from 'bcryptjs';
+import { formatDistanceToNow } from 'date-fns';
+import { faIR } from 'date-fns/locale';
 
 export const timeFunc = (posts) => {
   const dates = posts.map((post) => post.publishDate);
@@ -14,12 +14,12 @@ export const isUnvalidEmailPass = ({ email, password }) => {
   const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/;
 
   //check if there is email and pass
-  if (!email) return "missingEmail";
-  if (!password) return "missingPassword";
+  if (!email) return 'missingEmail';
+  if (!password) return 'missingPassword';
 
   //check the validity of email and pass
-  if (!emailRegex.test(email)) return "badEmail";
-  if (!passwordRegex.test(password)) return "badPassword";
+  if (!emailRegex.test(email)) return 'badEmail';
+  if (!passwordRegex.test(password)) return 'badPassword';
 
   //if there is no error gives false
   return false;

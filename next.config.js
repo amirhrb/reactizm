@@ -1,15 +1,11 @@
-// const withPWA = require("next-pwa")({
-//   dest: "public",
-//   swSrc: "service-worker.js",
-// });
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  swcMinify: true,
+  images: {
+    domains: ['media.graphassets.com'],
+  },
+  reactStrictMode: true,
+};
 
-module.exports =
-  // withPWA(
-  {
-    swcMinify: true,
-    images: {
-      domains: ["media.graphassets.com"],
-      // unoptimized: true,
-    },
-  };
-// );
+// Merge MDX config with Next.js config
+module.exports = nextConfig;

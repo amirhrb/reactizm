@@ -1,19 +1,21 @@
-import { useMemo, useState, useEffect } from "react";
-import Image from "next/image";
-import { useRouter } from "next/router";
+import { useMemo, useState, useEffect } from 'react';
+import Image from 'next/image';
+import Head from 'next/head';
+import { useRouter } from 'next/router';
 
 //mui
-import { Box, Container, Grid } from "@mui/material";
+import { Box, Container, Grid } from '@mui/material';
 
 //components
-import BreadComponent from "../../components/modules/BreadComponent";
-import Head from "../../helper/SEO/Head";
+import BreadComponent from '../../components/modules/BreadComponent';
 
 //client
-import client from "../../helper/graphql/apollo-client";
+import client from '../../helper/graphql/apollo-client';
 
 //gql
-import { POSTS_QUERY, POST_QUERY } from "../../helper/graphql/queries";
+import { POSTS_QUERY, POST_QUERY } from '../../helper/graphql/queries';
+import Link from 'next/link';
+import { ReactMarkdown } from 'react-markdown/lib/react-markdown';
 
 export default function Post({ post }) {
   const router = useRouter();
@@ -22,13 +24,13 @@ export default function Post({ post }) {
     title,
     author,
     ogImage,
-    content: { html, text },
+    content: { html, text, markdown },
   } = post;
   const pathParts = useMemo(() => {
-    return router.asPath.split("?")[0].split("/").slice(1);
+    return router.asPath.split('?')[0].split('/').slice(1);
   }, [router.asPath]);
 
-  const [ogUrl, setOgUrl] = useState("");
+  const [ogUrl, setOgUrl] = useState('');
   useEffect(() => {
     const host = window.location.host;
     const baseUrl = `https://${host}`;
@@ -36,72 +38,83 @@ export default function Post({ post }) {
   }, [router.pathname]);
   return post.title ? (
     <>
-      <Head
-        ogTitle={title}
-        ogType="article"
-        ogUrl={ogUrl}
-        ogImage={ogImage.url}
-      >
-        <title>
-          {author.name}|{title}
-        </title>
-        <meta name="description" content={text.toString().split("\n")[0]} />
+      <Head>
+        {/* <meta property="og:title" content={`${author.name}|${title}`} />
+        <meta property="og:type" content="article" />
+        <meta property="og:url" content={ogUrl} />
+        <meta property="og:image" content={ogImage.url} /> */}
+        <title>{`${author.name}|${title}`}</title>
+        <meta name="description" content={text.toString().split('\n')[0]} />
         <link rel="shortcut icon" href={author.avatar.url} />
       </Head>
       <Container maxWidth="md">
         <BreadComponent pathParts={pathParts} />
         <h1>{title}</h1>
-        <Grid container sx={{ alignItems: "center", marginY: 4 }}>
-          <Grid item>
-            {/* <Link href={`/${author.slug}`}> */}
-
-            <Image
-              src={author.avatar.url}
-              alt={`تصویر ${author.name}`}
-              width={56}
-              height={56}
-              style={{ borderRadius: "50%" }}
-            />
-            {/* </Link> */}
-          </Grid>
-          <Grid item sx={{ marginRight: 2 }}>
-            {/* <Link href={`/${author.slug}`}> */}
-            <h3 style={{ margin: "1px 0 0 0 " }}>{author.name}</h3>
-            {/* </Link> */}
-            <span>نویسنده مقاله</span>
-          </Grid>
-        </Grid>
         <Box
           sx={{
-            position: "relative",
-            width: "100%",
-            maxWidth: "500px",
-            marginBottom: 4,
-            aspectRatio: "10/9",
-            alignSelf: "center",
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
           }}
         >
-          <Image
-            src={ogImage.url}
-            alt={ogImage.fileName}
-            layout="fill"
-            objectFit="cover"
-            priority
-            style={{ borderRadius: 5 }}
-          />
+          <Grid container sx={{ alignItems: 'center', marginY: 4 }}>
+            <Link
+              href={`/authors/${author.slug}`}
+              style={{ display: 'flex', alignItems: 'center' }}
+            >
+              <Image
+                src={author.avatar.url}
+                alt={`تصویر ${author.name}`}
+                width={56}
+                height={56}
+                style={{ borderRadius: '50%' }}
+              />
+            </Link>
+            <Grid item sx={{ marginRight: 2 }}>
+              {/* <Link href={`/${author.slug}`}> */}
+              <h3 style={{ margin: '1px 0 0 0 ' }}>{author.name}</h3>
+              {/* </Link> */}
+              <span>نویسنده مقاله</span>
+            </Grid>
+          </Grid>
+          <Box
+            sx={{
+              position: 'relative',
+              width: '100%',
+              maxWidth: '500px',
+              marginBottom: 4,
+              alignSelf: 'center',
+            }}
+          >
+            <Image
+              src={ogImage.url}
+              alt={ogImage.fileName}
+              width={160}
+              height={160}
+              priority
+              style={{
+                borderRadius: 5,
+                objectFit: 'cover',
+                width: '100%',
+                height: '100%',
+              }}
+            />
+          </Box>
         </Box>
         <div
-          dangerouslySetInnerHTML={{ __html: html }}
+          // dangerouslySetInnerHTML={{ __html: html }}
           style={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "start",
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'start',
           }}
-        ></div>
+        >
+          <ReactMarkdown>{markdown}</ReactMarkdown>
+        </div>
       </Container>
     </>
   ) : (
-    ""
+    ''
   );
 }
 export const getStaticPaths = async () => {

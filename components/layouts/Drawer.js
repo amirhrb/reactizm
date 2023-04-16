@@ -1,6 +1,6 @@
-import { useContext, useEffect } from "react";
-import Link from "next/link";
-import { useRouter } from "next/router";
+import { useContext, useEffect } from 'react';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 //mui
 import {
@@ -9,9 +9,10 @@ import {
   ListItem,
   ListItemButton,
   ListItemText,
-} from "@mui/material";
+} from '@mui/material';
+
 //context
-import { drawerContext } from "../../helper/contexts/DrawerContextProvider";
+import { drawerContext } from '../../helper/contexts/DrawerContextProvider';
 
 function DrawerComponent({ linksList }) {
   const { isOpen, setOpen } = useContext(drawerContext);
@@ -23,24 +24,25 @@ function DrawerComponent({ linksList }) {
   return (
     <Drawer anchor="bottom" open={isOpen} onClose={() => setOpen(!isOpen)}>
       <List>
-        <ListItem disablePadding>
+        <ListItem
+          sx={{ display: 'flex', justifyContent: 'center' }}
+          disablePadding
+        >
           <Link href="/auth">
             <ListItemButton>
-              <ListItemText
-                primary="ثبت نام/ ورود"
-                sx={{ display: "flex", justifyContent: "center" }}
-              />
+              <ListItemText primary="ثبت نام/ ورود" />
             </ListItemButton>
           </Link>
         </ListItem>
         {linksList.map((item) => (
-          <ListItem key={item.href} disablePadding>
+          <ListItem
+            key={item.href}
+            sx={{ display: 'flex', justifyContent: 'center' }}
+            disablePadding
+          >
             <Link href={item.href}>
               <ListItemButton>
-                <ListItemText
-                  primary={item.text}
-                  sx={{ display: "flex", justifyContent: "center" }}
-                />
+                <ListItemText primary={item.text} />
               </ListItemButton>
             </Link>
           </ListItem>

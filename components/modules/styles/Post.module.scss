@@ -1,8 +1,7 @@
 .banner {
   cursor: pointer;
   border-radius: 8px;
+  width: -webkit-fill-available;
+  height: 100%;
   // transform: perspective(1000px) rotateX(0deg);
 }
-// .banner:hover {
-//   transform: scale(0.98) perspective(1000px) rotateX(-20deg);
-// }

@@ -1,10 +1,10 @@
-import { useContext } from "react";
-import Image from "next/image";
-import Link from "next/link";
-import { useRouter } from "next/router";
+import { useContext } from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 //contexts
-import { drawerContext } from "../../helper/contexts/DrawerContextProvider";
+import { drawerContext } from '../../helper/contexts/DrawerContextProvider';
 
 import {
   AppBar,
@@ -14,23 +14,23 @@ import {
   Toolbar,
   useTheme,
   IconButton,
-} from "@mui/material";
+} from '@mui/material';
 
 //sstyles
-import styles from "./styles/Header.module.scss";
+import styles from './styles/Header.module.scss';
 
 //components
-import DrawerComponent from "./Drawer";
+import DrawerComponent from './Drawer';
 
 //shapes
-import Logo from "../../resources/Logo.png";
-import ShapeLineIcon from "@mui/icons-material/ShapeLine";
+import Logo from '../../resources/Logo.png';
+import ShapeLineIcon from '@mui/icons-material/ShapeLine';
 
 const linksList = [
-  { text: "نویسندگان", href: "/authors" },
-  { text: "سرویس", href: "/services" },
-  { text: "مقالات", href: "/articles" },
-  { text: "درباره", href: "/about" },
+  { text: 'نویسندگان', href: '/authors' },
+  { text: 'سرویس', href: '/services' },
+  { text: 'مقالات', href: '/articles' },
+  { text: 'درباره', href: '/about' },
 ];
 
 export default function Navbar() {
@@ -50,19 +50,19 @@ export default function Navbar() {
         sx={{
           bgcolor: theme.palette.background.default,
           color: theme.palette.text.primary,
-          boxShadow: "none",
+          boxShadow: 'none',
         }}
       >
         <Container
           maxWidth="md"
-          sx={{ display: "flex", justifyContent: "center" }}
+          sx={{ display: 'flex', justifyContent: 'center' }}
         >
           <Toolbar
             sx={{
-              width: "100%",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "space-between",
+              width: '100%',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
             }}
             disableGutters
           >
@@ -72,7 +72,7 @@ export default function Navbar() {
               }}
               sx={(theme) => ({
                 color: theme.palette.secondary.light,
-                display: { sm: "none", xs: "flex" },
+                display: { sm: 'none', xs: 'flex' },
               })}
               aria-label="more options"
             >
@@ -80,20 +80,21 @@ export default function Navbar() {
             </IconButton>
             <Box
               sx={{
-                display: { xs: "none", sm: "block" },
-                color: "#fff",
+                display: { xs: 'none', sm: 'block' },
+                color: '#fff',
               }}
             >
               <Link href="auth">
                 <Button variant="outlined" className={styles.loginBtn}>
-                  <span>ثبت نام/ورود</span>
+                  ثبت نام/ورود
                 </Button>
               </Link>
             </Box>
             <Box
+              component="nav"
               sx={{
-                marginLeft: "38px",
-                display: { xs: "none", sm: "block" },
+                marginLeft: '38px',
+                display: { xs: 'none', sm: 'block' },
               }}
             >
               {linksList.map((link) => (
@@ -101,7 +102,7 @@ export default function Navbar() {
                   <Link href={link.href}>{link.text}</Link>
                   <div
                     style={{
-                      backgroundColor: mode === "dark" ? "#fff" : "#000",
+                      backgroundColor: mode === 'dark' ? '#fff' : '#000',
                     }}
                   ></div>
                 </span>
@@ -112,10 +113,10 @@ export default function Navbar() {
                 width={40}
                 height={40}
                 sx={{
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  cursor: "pointer",
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  cursor: 'pointer',
                 }}
               >
                 <Image
@@ -123,7 +124,8 @@ export default function Navbar() {
                   src={Logo}
                   width={45}
                   height={45}
-                  onClick={() => router.push("/")}
+                  alt="logo"
+                  onClick={() => router.push('/')}
                 />
               </Box>
             </IconButton>
