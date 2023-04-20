@@ -1,74 +1,81 @@
-import * as React from 'react'
-import { useRef, useEffect, useState } from 'react'
+import * as React from 'react';
+import { useRef, useEffect, useState } from 'react';
 
 interface Props {
-  children: React.ReactNode
-  w?: number
-  h?: number
-  r?: number
-  thumbColor?: string
-  trackColor?: string
+  children: React.ReactNode;
+  w?: number;
+  h?: number;
+  r?: number;
+  thumbColor?: string;
+  trackColor?: string;
+  wraperStyle?: object;
+  thumbStyle?: object;
+  trackStyle?: object;
 }
 interface States {
-  scrolledRatio: number
-  thumbOnTrack: number
-  childHeight: number
+  scrolledRatio: number;
+  thumbOnTrack: number;
+  childHeight: number;
 }
 const ScrollbarY: React.FC<Props> = ({ children, ...props }) => {
-  const containerRef = useRef<HTMLDivElement>(null)
+  const containerRef = useRef<HTMLDivElement>(null);
   const [{ scrolledRatio, thumbOnTrack, childHeight }, setScroll] =
     useState<States>({
       scrolledRatio: 0,
       thumbOnTrack: 0,
       childHeight: 0,
-    })
+    });
+  const handleScroll = (e: Event) => {
+    const target = e.target as HTMLElement;
+    setScroll({
+      childHeight: target.clientHeight,
+      thumbOnTrack: +(target.clientHeight / target.scrollHeight),
+      scrolledRatio: +(
+        target.scrollTop /
+        (target.scrollHeight - target.clientHeight)
+      ),
+    });
+  };
   useEffect(() => {
     if (containerRef.current) {
-      const firstChild = containerRef.current.firstChild
+      const firstChild = containerRef.current.firstChild;
       if (firstChild instanceof HTMLElement) {
-        setScroll({
-          thumbOnTrack: +(firstChild.clientHeight / firstChild.scrollHeight),
-          scrolledRatio: +(
-            firstChild.scrollTop /
-            (firstChild.scrollHeight - firstChild.clientHeight)
-          ),
-          childHeight: firstChild.clientHeight,
-        })
-        const handleScroll = (e: Event) => {
-          const target = e.target as HTMLElement
+        if (firstChild.scrollHeight > firstChild.clientHeight) {
           setScroll({
-            childHeight: target.clientHeight,
-            thumbOnTrack: +(target.clientHeight / target.scrollHeight),
+            thumbOnTrack: +(firstChild.clientHeight / firstChild.scrollHeight),
             scrolledRatio: +(
-              target.scrollTop /
-              (target.scrollHeight - target.clientHeight)
+              firstChild.scrollTop /
+              (firstChild.scrollHeight - firstChild.clientHeight)
             ),
-          })
+            childHeight: firstChild.clientHeight,
+          });
+          firstChild.addEventListener('scroll', handleScroll);
         }
-        firstChild.addEventListener('scroll', handleScroll)
-      } else {
-        console.log(firstChild)
       }
-    } else {
-      console.log(containerRef.current)
     }
-
+    return () => {
+      if (containerRef.current) {
+        const firstChild = containerRef.current.firstChild;
+        if (firstChild instanceof HTMLElement) {
+          if (firstChild.scrollHeight > firstChild.clientHeight) {
+            firstChild.removeEventListener('scroll', handleScroll);
+          }
+        }
+      }
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, []);
 
   return (
     <div
       ref={containerRef}
-      style={{
-        display: 'flex',
-        // flexDirection: "column",
-        // justifyContent: "space-evenly",
-        alignItems: 'center',
-      }}
+      // className="scrollbar-parent-to-avoid-default"
+      style={{ ...props.wraperStyle, display: 'flex', alignItems: 'center' }}
     >
       {children}
       <div
         style={{
+          ...props.trackStyle,
           display: thumbOnTrack <= 0.99 ? 'block' : 'none',
           height: props.h ? props.h : childHeight,
           width: props.w ? props.w : 4,
@@ -78,6 +85,7 @@ const ScrollbarY: React.FC<Props> = ({ children, ...props }) => {
       >
         <div
           style={{
+            ...props.thumbStyle,
             height: props.h
               ? props.h * thumbOnTrack
               : childHeight * thumbOnTrack,
@@ -95,6 +103,6 @@ const ScrollbarY: React.FC<Props> = ({ children, ...props }) => {
         ></div>
       </div>
     </div>
-  )
-}
-export default ScrollbarY
+  );
+};
+export default ScrollbarY;

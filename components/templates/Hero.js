@@ -1,57 +1,59 @@
-import Image from "next/image";
+import Image from 'next/image';
 
 //mui
-import { Box, Typography, useTheme } from "@mui/material";
+import { Box, Typography, useMediaQuery, useTheme } from '@mui/material';
 
 //parallax library
-import { Parallax, ParallaxLayer } from "@react-spring/parallax";
+import { Parallax, ParallaxLayer } from '@react-spring/parallax';
 
 //components
-import Footer from "../layouts/Footer";
+import Footer from '../layouts/Footer';
 
 //resources
-import Reactizm from "../../resources/reactizm.png";
-import ReactizmDark from "../../resources/reactizm-dark.PNG";
-import ZigZag from "../../resources/thick zigzag line.png";
-import Line from "../../resources/thick line.png";
-import Cursor from "../../resources/cursor.png";
+import Reactizm from '../../resources/reactizm.png';
+import ReactizmDark from '../../resources/reactizm-dark.png';
+import ZigZag from '../../resources/thick zigzag line.png';
+import Line from '../../resources/thick line.png';
+import Cursor from '../../resources/cursor.png';
 
 //styles
-import styles from "../styles/Hero.module.scss";
+import styles from './styles/Hero.module.scss';
 
 function Hero() {
   const theme = useTheme();
+  const isLandscape = useMediaQuery('(orientation: landscape)');
   return (
     <Parallax
       pages={2}
-      style={{ top: "0", left: "0" }}
+      style={{ top: '0', left: '0' }}
       className={styles.wrapper}
     >
       <ParallaxLayer
         offset={0.25}
         speed={0.6}
         style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "flex-start",
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'flex-start',
         }}
       >
         <Box className={styles.reactizm}>
           <Image
-            src={theme.palette.mode === "dark" ? ReactizmDark : Reactizm}
+            src={theme.palette.mode === 'dark' ? ReactizmDark : Reactizm}
             alt="reactizm"
             width={250}
             height={40}
+            priority
             onDragStart={(e) => e.preventDefault()}
           />
           <Typography
             variant="h4"
             sx={{
-              color: theme.palette.mode === "dark" ? "#777" : "#000",
-              textShadow: "0 5px #FFEB01",
+              color: theme.palette.mode === 'dark' ? '#777' : '#000',
+              textShadow: '0 5px #FFEB01',
               fontWeight: 900,
-              cursor: "default",
-              userSelect: "none",
+              cursor: 'default',
+              userSelect: 'none',
             }}
           >
             یادگیری نکات برنامه نویسی!
@@ -62,9 +64,9 @@ function Hero() {
         offset={0.2}
         speed={0.9}
         style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "flex-start",
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'flex-start',
         }}
       >
         <Box className={styles.cursor}>
@@ -78,13 +80,13 @@ function Hero() {
         </Box>
       </ParallaxLayer>
       <ParallaxLayer
-        offset={1.82}
+        offset={isLandscape ? 1.5 : 1.7}
         style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "flex-start",
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'flex-start',
           backgroundColor:
-            theme.palette.mode === "dark" ? "#ffb300" : "#ffffa8",
+            theme.palette.mode === 'dark' ? '#ffb300' : '#ffffa8',
         }}
       >
         <Footer />

@@ -1,15 +1,15 @@
-import Author from "../../components/modules/Author";
+import Head from 'next/head';
+import Author from '../../components/modules/Author';
 
 //gql
-import Head from "../../helper/SEO/Head";
-import client from "../../helper/graphql/apollo-client";
-import { AUTHORS_QUERY, AUTHOR_QUERY } from "../../helper/graphql/queries";
+import client from '../../helper/graphql/apollo-client';
+import { AUTHORS_QUERY, AUTHOR_QUERY } from '../../helper/graphql/queries';
 
 function Index({ author }) {
   return (
     <div>
       <Head>
-        <title>{author.name}</title>{" "}
+        <title>{author.name}</title>{' '}
       </Head>
       <h1>{author.name}</h1>
       <Author author={author} />

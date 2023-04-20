@@ -1,81 +1,89 @@
-import * as React from 'react'
-import { useRef, useEffect, useState } from 'react'
+import * as React from 'react';
+import { useRef, useEffect, useState } from 'react';
 
 interface Props {
-  children: React.ReactNode
-  w?: number
-  h?: number
-  r?: number
-  thumbColor?: string
-  trackColor?: string
+  children: React.ReactNode;
+  w?: number;
+  h?: number;
+  r?: number;
+  thumbColor?: string;
+  trackColor?: string;
+  wraperStyle?: object;
+  thumbStyle?: object;
+  trackStyle?: object;
 }
 interface States {
-  scrolledRatio: number
-  thumbOnTrack: number
-  childWidth: number
+  scrolledRatio: number;
+  thumbOnTrack: number;
+  childWidth: number;
+  hidden: boolean;
 }
 const ScrollbarX: React.FC<Props> = ({ children, ...props }) => {
-  const containerRef = useRef<HTMLDivElement>(null)
-  const [{ scrolledRatio, thumbOnTrack, childWidth }, setScroll] =
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [{ scrolledRatio, thumbOnTrack, childWidth, hidden }, setScroll] =
     useState<States>({
       scrolledRatio: 0,
       thumbOnTrack: 0,
       childWidth: 0,
-    })
-  //   const [rtl, setRtl] = useState(false);
+      hidden: true,
+    });
+  const handleScroll = (e: Event) => {
+    const target = e.target as HTMLElement;
+    setScroll({
+      childWidth: target.clientWidth,
+      thumbOnTrack: +(target.clientWidth / target.scrollWidth),
+      scrolledRatio: +(
+        target.scrollLeft /
+        (target.scrollWidth - target.clientWidth)
+      ),
+      hidden: false,
+    });
+  };
   useEffect(() => {
-    // if (document.documentElement.dir === "rtl") setRtl(true);
     if (containerRef.current) {
-      const firstChild = containerRef.current.firstChild
+      const firstChild = containerRef.current.firstChild;
       if (firstChild instanceof HTMLElement) {
-        setScroll({
-          thumbOnTrack: +(firstChild.clientWidth / firstChild.scrollWidth),
-          scrolledRatio: +(
-            firstChild.scrollTop /
-            (firstChild.scrollWidth - firstChild.clientWidth)
-          ),
-          childWidth: firstChild.clientWidth,
-        })
-        const handleScroll = (e: Event) => {
-          //   try {
-          const target = e.target as HTMLElement
+        if (firstChild.scrollWidth > firstChild.clientWidth) {
           setScroll({
-            childWidth: target.clientWidth,
-            thumbOnTrack: +(target.clientWidth / target.scrollWidth),
+            thumbOnTrack: +(firstChild.clientWidth / firstChild.scrollWidth),
             scrolledRatio: +(
-              target.scrollLeft /
-              (target.scrollWidth - target.clientWidth)
+              firstChild.scrollTop /
+              (firstChild.scrollWidth - firstChild.clientWidth)
             ),
-          })
-          //   } catch (err) {
-          // console.log(err);
-          //   }
+            childWidth: firstChild.clientWidth,
+            hidden: false,
+          });
         }
-        firstChild.addEventListener('scroll', handleScroll)
-      } else {
-        console.log(firstChild)
+        firstChild.addEventListener('scroll', handleScroll);
       }
-    } else {
-      console.log(containerRef.current)
     }
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
-
+    return () => {
+      if (containerRef.current) {
+        const firstChild = containerRef.current.firstChild;
+        if (firstChild instanceof HTMLElement) {
+          if (firstChild.scrollWidth > firstChild.clientWidth) {
+            firstChild.removeEventListener('scroll', handleScroll);
+          }
+        }
+      }
+    };
+  }, []);
   return (
     <div
       ref={containerRef}
+      // className="scrollbar-parent-to-avoid-default"
       style={{
+        ...props.wraperStyle,
         display: 'flex',
         flexDirection: 'column',
-        // justifyContent: "space-evenly",
         alignItems: 'center',
       }}
     >
       {children}
       <div
         style={{
-          display: thumbOnTrack <= 0.99 ? 'block' : 'none',
+          ...props.trackStyle,
+          display: hidden ? 'none' : 'block',
           width: props.w ? props.w : childWidth,
           height: props.h ? props.h : 4,
           borderRadius: props.r ? props.r : 2,
@@ -84,6 +92,7 @@ const ScrollbarX: React.FC<Props> = ({ children, ...props }) => {
       >
         <div
           style={{
+            ...props.thumbStyle,
             width: props.w ? props.w * thumbOnTrack : childWidth * thumbOnTrack,
             position: 'relative',
             left: props.w
@@ -98,6 +107,6 @@ const ScrollbarX: React.FC<Props> = ({ children, ...props }) => {
         ></div>
       </div>
     </div>
-  )
-}
-export default ScrollbarX
+  );
+};
+export default ScrollbarX;

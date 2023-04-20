@@ -1,16 +1,15 @@
-//costum head
-import Head from "../../helper/SEO/Head";
+import Head from 'next/head';
 
 //gql
-import client from "../../helper/graphql/apollo-client";
-import { AUTHORS_QUERY, POSTS_QUERY } from "../../helper/graphql/queries";
+import client from '../../helper/graphql/apollo-client';
+import { AUTHORS_QUERY, POSTS_QUERY } from '../../helper/graphql/queries';
 
 //mui
-import { Box } from "@mui/material";
+import { Box } from '@mui/material';
 
 //componnts
-import BreadComponent from "../../components/modules/BreadComponent";
-import ArticlesTemplate from "../../components/templates/ArticlesTemplate";
+import BreadComponent from '../../components/modules/BreadComponent';
+import ArticlesTemplate from '../../components/templates/ArticlesTemplate';
 
 function Posts({ posts, authors }) {
   return posts.length ? (
@@ -28,7 +27,7 @@ function Posts({ posts, authors }) {
       </Box>
     </>
   ) : (
-    ""
+    ''
   );
 }
 export const getStaticProps = async () => {
@@ -36,11 +35,12 @@ export const getStaticProps = async () => {
     const {
       data: { posts },
     } = await client.query({ query: POSTS_QUERY });
+    const sortedPosts = [...posts].reverse();
     const {
       data: { authors },
     } = await client.query({ query: AUTHORS_QUERY });
     return {
-      props: { posts, authors },
+      props: { posts: [...sortedPosts], authors },
     };
   } catch (error) {
     console.log(error);

@@ -30,8 +30,10 @@ yarn-error.log*
 .env.production.local
 
 .env
-
+apollo.config.js
 next-env.d.ts
+.vscode
+.idea
 
 # Auto Generated PWA files
 /public/sw.js
