@@ -56,15 +56,15 @@ function Post({ post }) {
       }}
     >
       <Box sx={{ width: '180px', height: '180px', aspectRatio: '1/1' }}>
-        {/* <Link href={/`/articles/${post.slug}`}> */}
-        <Image
-          src={post.ogImage.url}
-          alt={post.ogImage.fileName}
-          width={150}
-          height={150}
-          className={styles.banner}
-        />
-        {/* </Link> */}
+        <Link href={`/articles/${post.slug}`}>
+          <Image
+            src={post.ogImage.url}
+            alt={post.ogImage.fileName}
+            width={150}
+            height={150}
+            className={styles.banner}
+          />
+        </Link>
       </Box>
       <Box
         sx={{

@@ -1,7 +1,4 @@
-import Link from 'next/link';
-
 //elements
-import ScrollbarY from '../elements/ScrollbarY.tsx';
 import AuthorsInCol from '../elements/AuthorsInColSkeleton.js';
 
 //MUI

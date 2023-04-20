@@ -1,3 +1,4 @@
+import dynamic from 'next/dynamic';
 import { useMemo, useState, useEffect } from 'react';
 import Image from 'next/image';
 import Head from 'next/head';
@@ -6,8 +7,17 @@ import { useRouter } from 'next/router';
 //mui
 import { Box, Container, Grid } from '@mui/material';
 
+//skeleton loaders
+import BreadComponentSkeleton from '../../components/modules/BreadComponentSkeleton';
+
 //components
-import BreadComponent from '../../components/modules/BreadComponent';
+const BreadComponent = dynamic(
+  () => import('../../components/modules/BreadComponent'),
+  {
+    loading: () => <BreadComponentSkeleton />,
+    ssr: false,
+  }
+);
 
 //client
 import client from '../../helper/graphql/apollo-client';

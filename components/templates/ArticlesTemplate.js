@@ -4,12 +4,16 @@ import { Grid } from '@mui/material';
 
 //skeleton for loading
 import AuthorSideSkeleton from '../modules/AuthorSideSkeleton';
+import PostSkeleton from '../modules/PostSkeleton';
 
 const AuthorSide = dynamic(() => import('../modules/AuthorSide'), {
   loading: () => <AuthorSideSkeleton />,
   ssr: false,
 });
-import Post from '../modules/Post';
+const Post = dynamic(() => import('../modules/Post'), {
+  loading: () => <PostSkeleton />,
+  ssr: false,
+});
 
 function ArticlesTemplate({ posts, authors }) {
   return (
@@ -52,7 +56,7 @@ function ArticlesTemplate({ posts, authors }) {
           }}
         >
           {posts.map((post) => (
-            <Post post={post} key={post.id} />
+            <Post post={post} />
           ))}
         </Grid>
       </Grid>
