@@ -48,6 +48,7 @@ function NotFound() {
             }}
           >
             <Image
+              priority
               src={theme.palette.mode === 'dark' ? errorDark : error}
               alt="404 notfound"
               width={48}
@@ -72,6 +73,7 @@ function NotFound() {
             }}
           >
             <Image
+              priority
               src={theme.palette.mode === 'dark' ? errorDark : error}
               alt="404 notfound"
               width={96}
@@ -108,7 +110,13 @@ function NotFound() {
               left: '15%',
             }}
           >
-            <Image src={cloud} width={80} height={50} alt="cloud png" />
+            <Image
+              priority
+              src={cloud}
+              width={80}
+              height={50}
+              alt="cloud png"
+            />
           </Box>
         </ParallaxLayer>
         <ParallaxLayer
@@ -127,7 +135,13 @@ function NotFound() {
               left: '-15%',
             }}
           >
-            <Image src={satellite} width={80} height={80} alt="satellite" />
+            <Image
+              priority
+              src={satellite}
+              width={80}
+              height={80}
+              alt="satellite"
+            />
           </Box>
         </ParallaxLayer>
         <ParallaxLayer
@@ -145,6 +159,7 @@ function NotFound() {
             }}
           >
             <Image
+              priority
               className={styles.earth}
               src={earth}
               width={400}
@@ -163,6 +178,7 @@ function NotFound() {
           }}
         >
           <Image
+            priority
             src={theme.palette.mode === 'dark' ? errorDark : error}
             alt="404 notfound"
             width={240}
