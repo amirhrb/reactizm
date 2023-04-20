@@ -24,7 +24,7 @@ export default function Post({ post }) {
     title,
     author,
     ogImage,
-    content: { html, text, markdown },
+    content: { text, markdown },
   } = post;
   const pathParts = useMemo(() => {
     return router.asPath.split('?')[0].split('/').slice(1);
