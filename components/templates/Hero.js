@@ -1,7 +1,7 @@
 import Image from 'next/image';
 
 //mui
-import { Box, Typography, useTheme } from '@mui/material';
+import { Box, Typography, useMediaQuery, useTheme } from '@mui/material';
 
 //parallax library
 import { Parallax, ParallaxLayer } from '@react-spring/parallax';
@@ -21,6 +21,7 @@ import styles from './styles/Hero.module.scss';
 
 function Hero() {
   const theme = useTheme();
+  const isLandscape = useMediaQuery('(orientation: landscape)');
   return (
     <Parallax
       pages={2}
@@ -79,7 +80,7 @@ function Hero() {
         </Box>
       </ParallaxLayer>
       <ParallaxLayer
-        offset={1.82}
+        offset={isLandscape ? 1.5 : 1.7}
         style={{
           display: 'flex',
           justifyContent: 'center',

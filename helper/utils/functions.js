@@ -1,4 +1,4 @@
-import { genSalt, hash } from 'bcryptjs';
+import { compare, hash } from 'bcryptjs';
 import { formatDistanceToNow } from 'date-fns';
 import { faIR } from 'date-fns/locale';
 
@@ -9,9 +9,9 @@ export const timeFunc = (posts) => {
 };
 
 //return proper errors for email or password on login
-export const isUnvalidEmailPass = ({ email, password }) => {
+export const validateEmailPass = (email, password) => {
   const emailRegex = /^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/;
-  const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/;
+  const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
 
   //check if there is email and pass
   if (!email) return 'missingEmail';
@@ -21,14 +21,18 @@ export const isUnvalidEmailPass = ({ email, password }) => {
   if (!emailRegex.test(email)) return 'badEmail';
   if (!passwordRegex.test(password)) return 'badPassword';
 
-  //if there is no error gives false
-  return false;
+  //if there is no error gives valid
+  return 'valid';
 };
 
 //make hash
 export const hashPassword = async (pass) => {
   //make a salt by 10 complexity
-  const salt = await genSalt(10);
-  const hashedPassword = await hash(pass, salt);
+  const hashedPassword = await hash(pass, 10);
   return hashedPassword;
+};
+
+export const verifyPassword = async (pass, hashedPass) => {
+  const isOk = await compare(pass, hashedPass);
+  return isOk;
 };

@@ -60,9 +60,9 @@ export const POSTS_QUERY = gql`
   query {
     posts {
       id
+      updatedAt
       title
       content {
-        html
         text
         markdown
       }

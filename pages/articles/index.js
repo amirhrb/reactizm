@@ -35,11 +35,12 @@ export const getStaticProps = async () => {
     const {
       data: { posts },
     } = await client.query({ query: POSTS_QUERY });
+    const sortedPosts = [...posts].reverse();
     const {
       data: { authors },
     } = await client.query({ query: AUTHORS_QUERY });
     return {
-      props: { posts, authors },
+      props: { posts: [...sortedPosts], authors },
     };
   } catch (error) {
     console.log(error);

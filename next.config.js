@@ -2,7 +2,7 @@
 const nextConfig = {
   swcMinify: true,
   images: {
-    domains: ['media.graphassets.com'],
+    domains: ['media.graphassets.com', 'avatars.githubusercontent.com'],
   },
   reactStrictMode: true,
 };

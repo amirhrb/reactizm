@@ -23,7 +23,7 @@ const Theme = ({ children }) => {
             main: '#1a0090',
           },
           background: {
-            paper: prefersDarkMode ? '#181818' : '#F5F5F5',
+            paper: prefersDarkMode ? '#202020' : '#e6e6e6',
             default: prefersDarkMode ? '#000' : '#fff',
           },
           warning: {
@@ -54,6 +54,20 @@ const Theme = ({ children }) => {
             '"Segoe UI Emoji"',
             '"Segoe UI Symbol"',
           ].join(','),
+        },
+        components: {
+          MuiTextField: {
+            styleOverrides: {
+              root: {
+                '& .MuiOutlinedInput-input': {
+                  padding: 10,
+                },
+                '& .MuiOutlinedInput-root': {
+                  borderRadius: 25,
+                },
+              },
+            },
+          },
         },
       }),
     [prefersDarkMode]

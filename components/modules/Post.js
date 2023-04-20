@@ -38,10 +38,12 @@ function Post({ post }) {
       component="article"
       sx={{
         m: 1,
-        py: 3,
-        width: 220,
+        pt: 1,
+        pb: 3,
+        width: 200,
         minHeight: 150,
-        maxHeight: 320,
+        maxHeight: 330,
+        borderRadius: 5,
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
@@ -77,9 +79,7 @@ function Post({ post }) {
         <Typography
           variant="h6"
           sx={{
-            height: '60px',
-            mt: 1,
-            px: 1,
+            my: 2,
             fontSize: 'large',
             overflow: 'clip',
           }}
@@ -90,7 +90,7 @@ function Post({ post }) {
           نویسنده: {post.author.name}
         </Typography>
         {/* </CardContent> */}
-        <CardActions sx={{ alignSelf: 'auto', mt: -1, p: 0 }}>
+        <CardActions sx={{ alignSelf: 'auto', mt: 0, p: 0 }}>
           <Link href={`/articles/${post.slug}`} key={post.slug}>
             <Button
               size="medium"
