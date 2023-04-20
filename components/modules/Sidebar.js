@@ -1,6 +1,4 @@
-import React, { useEffect } from 'react';
-
-import { useRouter } from 'next/router';
+import React from 'react';
 
 import { signOut } from 'next-auth/react';
 
@@ -16,12 +14,6 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import Chatgpt from '../../resources/Chatgpt';
 
 const SideBar = ({ sidebarActive, setSidebarActive }) => {
-  const { route } = useRouter();
-
-  useEffect(() => {
-    setSidebarActive(false);
-  }, [route]);
-
   return (
     <Container maxWidth="md">
       <Box
@@ -43,7 +35,6 @@ const SideBar = ({ sidebarActive, setSidebarActive }) => {
           overflow: 'hidden',
           zIndex: 200,
         }}
-        onClick={() => console.log('first')}
       >
         <ListItemButton>
           <ListItemIcon>
