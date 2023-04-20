@@ -4,24 +4,11 @@ import { Box } from '@mui/material';
 //components
 import BreadComponent from '../../components/modules/BreadComponent';
 import AuthTemplate from '../../components/templates/AuthTemplate';
-import { getSession } from 'next-auth/react';
+// import { getSession } from 'next-auth/react';
 
-export async function getServerSideProps({ req }) {
-  const session = await getSession({ req });
-  if (!session) {
-    return {
-      props: {
-        authState: 'unauthorized',
-      },
-    };
-  }
-  return {
-    redirect: {
-      destination: '/',
-      permanent: false,
-    },
-  };
-}
+//fns
+// import { isVaildToken } from '../../helper/utils/functions';
+// import { User } from '../../helper/utils/Models';
 
 const index = () => {
   return (

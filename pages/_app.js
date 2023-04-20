@@ -15,15 +15,18 @@ import Theme from '../helper/MUI/Theme';
 
 //context
 import DrawerContextProvider from '../helper/contexts/DrawerContextProvider';
+import RefreshContextProvider from '../helper/contexts/RefreshContextProvider';
+
 import Head from 'next/head';
-import { SessionProvider } from 'next-auth/react';
+// import { SessionProvider } from 'next-auth/react';
 import { ToastContainer } from 'react-toastify';
 
 function MyApp({ Component, pageProps: { session, ...pageProps } }) {
   return (
     <ApolloProvider client={client}>
-      <SessionProvider session={session}>
-        <Theme>
+      {/* <SessionProvider session={session}> */}
+      <Theme>
+        <RefreshContextProvider>
           <DrawerContextProvider>
             <Layout>
               <Head>
@@ -46,8 +49,9 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
               <ToastContainer rtl={true} position="top-center" pauseOnHover />
             </Layout>
           </DrawerContextProvider>
-        </Theme>
-      </SessionProvider>
+        </RefreshContextProvider>
+      </Theme>
+      {/* </SessionProvider> */}
     </ApolloProvider>
   );
 }

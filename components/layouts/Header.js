@@ -4,10 +4,11 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 
 //next-auth
-import { useSession } from 'next-auth/react';
+// import { useSession } from 'next-auth/react';
 
 //contexts
 import { drawerContext } from '../../helper/contexts/DrawerContextProvider';
+import { refreshContext } from '../../helper/contexts/RefreshContextProvider';
 
 import {
   AppBar,
@@ -18,7 +19,6 @@ import {
   useTheme,
   IconButton,
 } from '@mui/material';
-import ClickAwayListener from '@mui/base/ClickAwayListener';
 
 //suspense
 import { Suspense } from 'react';
@@ -47,8 +47,9 @@ export default function Navbar() {
   const theme = useTheme();
   const router = useRouter();
   const { setOpen } = useContext(drawerContext);
+  const { user, status } = useContext(refreshContext);
   const [sidebarActive, setSidebarActive] = useState(false);
-  const { data: session, status } = useSession();
+  // const { data: session, status } = useSession();
 
   return (
     <>
@@ -103,14 +104,14 @@ export default function Navbar() {
                     setSidebarActive((prev) => !prev);
                   }}
                 >
-                  {session.user.image ? (
+                  {user.image ? (
                     <Suspense
                       fallback={
                         <AccountCircleIcon sx={{ width: 45, height: 45 }} />
                       }
                     >
                       <Image
-                        src={session.user.image}
+                        src={user.image}
                         width={45}
                         height={45}
                         loading="lazy"
@@ -172,10 +173,12 @@ export default function Navbar() {
           </Toolbar>
         </Container>
       </AppBar>
-      <SidebarComponent
-        sidebarActive={sidebarActive}
-        setSidebarActive={setSidebarActive}
-      />
+      {status === 'authenticated' && (
+        <SidebarComponent
+          sidebarActive={sidebarActive}
+          setSidebarActive={setSidebarActive}
+        />
+      )}
       <DrawerComponent
         linksList={linksList}
         setSidebarActive={setSidebarActive}

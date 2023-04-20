@@ -1,6 +1,7 @@
 import React from 'react';
 
-import { signOut } from 'next-auth/react';
+// import { signOut } from 'next-auth/react';
+// import { delay } from '../../helper/utils/functions';
 
 import {
   Box,
@@ -12,8 +13,22 @@ import {
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import LogoutIcon from '@mui/icons-material/Logout';
 import Chatgpt from '../../resources/Chatgpt';
+import { toast } from 'react-toastify';
 
 const SideBar = ({ sidebarActive, setSidebarActive }) => {
+  const HandleSignOut = async () => {
+    const res = await fetch('/api/auth/credential-signout', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+    const data = await res.json();
+    if (res.status === 200) {
+      toast(data.message);
+      // await delay(1000);
+    }
+  };
   return (
     <Container maxWidth="md">
       <Box
@@ -48,11 +63,7 @@ const SideBar = ({ sidebarActive, setSidebarActive }) => {
           </ListItemIcon>
           <ListItemText primary="چت جی پی تی" />
         </ListItemButton>
-        <ListItemButton
-          onClick={() => {
-            signOut();
-          }}
-        >
+        <ListItemButton onClick={HandleSignOut}>
           <ListItemIcon>
             <LogoutIcon />
           </ListItemIcon>

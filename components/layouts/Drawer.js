@@ -3,11 +3,10 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 //next-auth
-import { useSession } from 'next-auth/react';
+// import { useSession } from 'next-auth/react';
 
 //mui
 import {
-  Button,
   Divider,
   Drawer,
   IconButton,
@@ -21,15 +20,15 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 //context
 import { drawerContext } from '../../helper/contexts/DrawerContextProvider';
+import { refreshContext } from '../../helper/contexts/RefreshContextProvider';
 
 function DrawerComponent({ linksList, setSidebarActive }) {
   const { isOpen, setOpen } = useContext(drawerContext);
+  const { user, status } = useContext(refreshContext);
   const { route } = useRouter();
   useEffect(() => {
     setOpen(false);
   }, [route]);
-
-  const { data: session, status } = useSession();
 
   return (
     <Drawer anchor="bottom" open={isOpen} onClose={() => setOpen(!isOpen)}>
@@ -46,14 +45,14 @@ function DrawerComponent({ linksList, setSidebarActive }) {
                 setSidebarActive(true);
               }}
             >
-              {session.user.image ? (
+              {user.image ? (
                 <Suspense
                   fallback={
                     <AccountCircleIcon sx={{ width: 45, height: 45 }} />
                   }
                 >
                   <Image
-                    src={session.user.image}
+                    src={user.image}
                     width={45}
                     height={45}
                     loading="lazy"

@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 
-import { signIn } from 'next-auth/react';
+// import { signIn } from 'next-auth/react';
 
 import {
   Button as DefaultButton,
@@ -23,6 +23,9 @@ import { GitHub, Google } from '@mui/icons-material';
 
 import styles from './styles/AuthTemplate.module.css';
 import { toast } from 'react-toastify';
+import { delay } from '../../helper/utils/functions';
+
+import { refreshContext } from '../../helper/contexts/RefreshContextProvider';
 
 const Button = styled(DefaultButton)(({ theme }) => ({
   borderRadius: '45px',
@@ -66,33 +69,35 @@ const TextField = styled(DefalutTextField)(({}) => ({
 
 const signUpSchema = yup.object({
   email: yup
-    .string('Enter your email')
-    .email('Enter a valid email')
-    .required('Email is required'),
+    .string('ایمیل خود را وارد کنید')
+    .email('یک ایمیل معتبر وارد کنید')
+    .required('ایمیل ضروری است'),
   password: yup
-    .string('Enter your password')
-    .matches(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/, 'letters and numbers')
-    .min(8, 'minimum 8 characters')
-    .required('Password is required'),
+    .string('رمز عبور خود را وارد کنید')
+    .matches(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/, 'حروف و اعداد')
+    .min(8, 'حداقل 8 کاراکتر')
+    .required('رمز عبور ضروری است'),
   cpassword: yup
     .string()
-    .required('Confirm the password')
-    .oneOf([yup.ref('password'), null], 'Passwords must match'),
+    .required('رمز عبور را تایید کنید')
+    .oneOf([yup.ref('password'), null], 'رمزهای عبور باید مطابقت داشته باشند'),
 });
 
 const signInSchema = yup.object({
   email: yup
-    .string('Enter your email')
-    .email('Enter a valid email')
-    .required('Email is required'),
+    .string('ایمیل خود را وارد کنید')
+    .email('یک ایمیل معتبر وارد کنید')
+    .required('ایمیل ضروری است'),
   password: yup
-    .string('Enter your password')
-    .min(8, 'minimum 8 characters')
-    .required('Password is required'),
+    .string('رمز عبور خود را وارد کنید')
+    .min(8, 'حداقل 8 کاراکتر')
+    .required('رمز عبور ضروری است'),
 });
 
 const AuthTemplate = () => {
   const [isLogin, setLogin] = useState(false);
+
+  const { status } = useContext(refreshContext);
 
   const router = useRouter();
 
@@ -137,24 +142,35 @@ const AuthTemplate = () => {
     },
     validationSchema: signInSchema,
     onSubmit: async (values, { resetForm }) => {
-      const res = await signIn('credentials', {
-        redirect: false,
-        email: values.email,
-        password: values.password,
+      // const res = await signIn('credentials', {
+      //   redirect: false,
+      //   email: values.email,
+      //   password: values.password,
+      // });
+      const res = await fetch('/api/auth/credential-signin', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          password: values.password,
+          email: values.email,
+        }),
       });
-      if (!res.ok) {
-        toast.error(res.error);
+      const data = await res.json();
+      if (res.status === 200) {
+        toast.success(data.message);
+        await delay(1000);
+        router.replace('/');
         return;
       }
-      if (res.ok) {
-        toast.success('you are signed in now');
-        await new Promise((res) => {
-          setTimeout(res, 1000);
-        });
-        router.replace('/');
-      }
+      toast.error(data.message);
     },
   });
+
+  useEffect(() => {
+    if (status === 'authenticated') router.replace('/');
+  }, [status]);
 
   return (
     <Container
@@ -175,12 +191,16 @@ const AuthTemplate = () => {
           <form className={styles.form} onSubmit={signUpFormik.handleSubmit}>
             <Typography dir="rtl"> ورود با گیت هاب یا گوگل</Typography>
             <Box sx={{ display: 'flex' }}>
-              <IconButton onClick={() => signIn('github', { redirect: false })}>
-                <GitHub />
-              </IconButton>
-              <Tooltip title="فعلا ممکنه درست کار نکنه/:">
+              <Tooltip title="بدلیل رایگان بودن هاست غیرفعاله/:">
                 <IconButton
-                  onClick={() => signIn('google', { redirect: false })}
+                // onClick={() => signIn('github', { redirect: false })}
+                >
+                  <GitHub />
+                </IconButton>
+              </Tooltip>
+              <Tooltip title="بدلیل رایگان بودن هاست غیرفعاله/:">
+                <IconButton
+                // onClick={() => signIn('google', { redirect: false })}
                 >
                   <Google />
                 </IconButton>
@@ -248,11 +268,17 @@ const AuthTemplate = () => {
           <form className={styles.form} onSubmit={signInFormik.handleSubmit}>
             <Typography dir="rtl"> ورود با گیت هاب یا گوگل</Typography>
             <Box sx={{ display: 'flex' }}>
-              <IconButton onClick={() => signIn('github')}>
-                <GitHub />
-              </IconButton>
-              <Tooltip title="فعلا ممکنه درست کار نکنه/:">
-                <IconButton onClick={() => signIn('google')}>
+              <Tooltip title="بدلیل رایگان بودن هاست غیرفعاله/:">
+                <IconButton
+                // onClick={() => signIn('github', { redirect: false })}
+                >
+                  <GitHub />
+                </IconButton>
+              </Tooltip>
+              <Tooltip title="بدلیل رایگان بودن هاست غیرفعاله/:">
+                <IconButton
+                // onClick={() => signIn('google', { redirect: false })}
+                >
                   <Google />
                 </IconButton>
               </Tooltip>

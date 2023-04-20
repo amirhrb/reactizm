@@ -56,7 +56,7 @@ function ArticlesTemplate({ posts, authors }) {
           }}
         >
           {posts.map((post) => (
-            <Post post={post} />
+            <Post post={post} key={post.id} />
           ))}
         </Grid>
       </Grid>
