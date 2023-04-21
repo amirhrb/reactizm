@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
+// import { useRouter } from 'next/router';
+
+import { refreshContext } from '../../helper/contexts/RefreshContextProvider';
 
 // import { signOut } from 'next-auth/react';
-// import { delay } from '../../helper/utils/functions';
+import { delay } from '../../helper/utils/functions';
 
 import {
   Box,
@@ -16,6 +19,9 @@ import Chatgpt from '../../resources/Chatgpt';
 import { toast } from 'react-toastify';
 
 const SideBar = ({ sidebarActive, setSidebarActive }) => {
+  // const router = useRouter();
+
+  const { setSession } = useContext(refreshContext);
   const HandleSignOut = async () => {
     const res = await fetch('/api/auth/credential-signout', {
       method: 'POST',
@@ -26,7 +32,13 @@ const SideBar = ({ sidebarActive, setSidebarActive }) => {
     const data = await res.json();
     if (res.status === 200) {
       toast(data.message);
-      // await delay(1000);
+      setSidebarActive(false);
+      await delay(800);
+      setSession({
+        user: { email: null, image: null },
+        status: null,
+      });
+      // router.push('/authorization');
     }
   };
   return (

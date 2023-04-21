@@ -26,18 +26,32 @@ async function handler(req, res) {
     });
   }
   //check if user is there
-  const user = await User.findOne({ email: tokenResult.email });
-  if (!user)
-    return res
-      .status(404)
-      .json({ status: 'failure', message: 'کاربر ثبت نام نکرده!' });
+  try {
+    const user = await User.findOne({ email: tokenResult.email });
+    if (!user)
+      return res.status(404).json({
+        status: 'failure',
+        session: {
+          user: { email: null, image: null },
+          status: null,
+        },
+      });
 
-  res.status(202).json({
-    status: 'success',
-    session: {
-      user: { email: user.email, image: null },
-      status: 'authenticated',
-    },
-  });
+    res.status(202).json({
+      status: 'success',
+      session: {
+        user: { email: user.email, image: null },
+        status: 'authenticated',
+      },
+    });
+  } catch (error) {
+    res.status(503).json({
+      status: 'failure',
+      session: {
+        user: { email: null, image: null },
+        status: null,
+      },
+    });
+  }
 }
 export default handler;

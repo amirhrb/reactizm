@@ -24,24 +24,30 @@ export default async (req, res) => {
   const { email, password } = req.body;
 
   //check if user is there
-  const user = await User.findOne({ email: email });
-  if (!user)
-    return res
-      .status(404)
-      .json({ status: 'failure', message: 'کاربر ثبت نام نکرده!' });
+  try {
+    const user = await User.findOne({ email: email });
+    if (!user)
+      return res
+        .status(404)
+        .json({ status: 'failure', message: 'کاربر ثبت نام نکرده!' });
 
-  //validate email and password
-  const isValid = validateEmailPass(email, password);
-  if (isValid !== 'valid' || password.includes(' ')) {
-    return res.status(402).json({ status: 'failure', message: isValid });
+    //validate email and password
+    const isValid = validateEmailPass(email, password);
+    if (isValid !== 'valid' || password.includes(' ')) {
+      return res.status(402).json({ status: 'failure', message: isValid });
+    }
+
+    //check if password is ok
+    const isRightPass = await verifyPassword(password, user.password);
+    if (!isRightPass)
+      return res
+        .status(402)
+        .json({ status: 'failure', message: 'رمز یا نام کاربری اشتباهه' });
+  } catch (err) {
+    res
+      .status(503)
+      .json({ status: 'failure', message: 'مشکل در اتصال از سمت سرور' });
   }
-
-  //check if password is ok
-  const isRightPass = await verifyPassword(password, user.password);
-  if (!isRightPass)
-    return res
-      .status(402)
-      .json({ status: 'failure', message: 'رمز یا نام کاربری اشتباهه' });
 
   const days = 90;
   try {

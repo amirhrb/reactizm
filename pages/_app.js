@@ -46,7 +46,14 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
                 <link rel="icon" href="/favicon.ico" />
               </Head>
               <Component {...pageProps} />
-              <ToastContainer rtl={true} position="top-center" pauseOnHover />
+              <ToastContainer
+                rtl={true}
+                position="bottom-center"
+                pauseOnHover
+                closeButton={false}
+                hideProgressBar
+                autoClose={2000}
+              />
             </Layout>
           </DrawerContextProvider>
         </RefreshContextProvider>

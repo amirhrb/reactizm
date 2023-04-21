@@ -6,7 +6,7 @@ export const refreshContext = createContext();
 const RefreshContextProvider = ({ children }) => {
   const [session, setSession] = useState({
     user: { email: null, image: null },
-    status: 'unauthorized',
+    status: null,
   });
   const checkSession = async () => {
     const res = await fetch('/api/auth/refresh', {
@@ -28,7 +28,12 @@ const RefreshContextProvider = ({ children }) => {
 
   return (
     <refreshContext.Provider
-      value={{ user: session.user, status: session.status, checkSession }}
+      value={{
+        user: session.user,
+        status: session.status,
+        checkSession,
+        setSession,
+      }}
     >
       {children}
     </refreshContext.Provider>

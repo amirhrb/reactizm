@@ -13,12 +13,14 @@ async function handler(req, res) {
   if (!token) {
     return res.status(200).json({
       status: 'successful',
+      message: 'قبلا خارج شدی',
+    });
+  }
+  if (token) {
+    return res.status(200).setHeader('Set-Cookie', emptyCookie).json({
+      status: 'successful',
       message: 'خارج شدی از حسابت',
     });
   }
-  return res.status(200).setHeader('Set-Cookie', emptyCookie).json({
-    status: 'successful',
-    message: 'خارج شدی از حسابت',
-  });
 }
 export default handler;
