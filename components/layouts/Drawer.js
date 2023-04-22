@@ -2,8 +2,6 @@ import { Suspense, useContext, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-//next-auth
-import { useSession } from 'next-auth/react';
 
 //mui
 import {
@@ -17,10 +15,11 @@ import {
   ListItemText,
 } from '@mui/material';
 
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+// import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 //context
 import { drawerContext } from '../../helper/contexts/DrawerContextProvider';
+import { SignInButton, SignedIn, SignedOut, UserButton } from '@clerk/nextjs';
 
 function DrawerComponent({ linksList, setSidebarActive }) {
   const { isOpen, setOpen } = useContext(drawerContext);
@@ -29,59 +28,30 @@ function DrawerComponent({ linksList, setSidebarActive }) {
     setOpen(false);
   }, [route]);
 
-  const { data: session, status } = useSession();
-
   return (
     <Drawer anchor="bottom" open={isOpen} onClose={() => setOpen(!isOpen)}>
       <List sx={{ p: 0 }}>
-        {status === 'authenticated' ? (
-          <ListItem
+        <ListItem sx={{ justifyContent: 'center' }}>
+          {/* Mount the UserButton component */}
+          <IconButton
             sx={{ display: 'flex', justifyContent: 'center' }}
             disablePadding
           >
-            <IconButton
-              sx={{ width: 56, height: 56, mb: 1 }}
-              onClick={() => {
-                setOpen(false);
-                setSidebarActive(true);
-              }}
-            >
-              {session.user.image ? (
-                <Suspense
-                  fallback={
-                    <AccountCircleIcon sx={{ width: 45, height: 45 }} />
-                  }
-                >
-                  <Image
-                    src={session.user.image}
-                    width={45}
-                    height={45}
-                    loading="lazy"
-                    style={{ borderRadius: '50%' }}
-                    alt="avatar"
-                  />
-                </Suspense>
-              ) : (
-                <AccountCircleIcon sx={{ width: 45, height: 45 }} />
-              )}
-            </IconButton>
-          </ListItem>
-        ) : (
-          <Link href="authorization">
-            <ListItem
-              sx={{ display: 'flex', justifyContent: 'center' }}
-              disablePadding
-            >
-              <ListItemButton>
-                <ListItemText
-                  sx={{ display: 'flex', justifyContent: 'center' }}
-                >
-                  ثبت نام/ورود
-                </ListItemText>
-              </ListItemButton>
-            </ListItem>
-          </Link>
-        )}
+            <SignedIn>
+              <UserButton />
+            </SignedIn>
+          </IconButton>
+          {/* Signed out users get sign in button */}
+          <IconButton
+            sx={{ display: 'flex', justifyContent: 'center' }}
+            disablePadding
+          >
+            <SignedOut>
+              <SignInButton mode="modal" children={<Button>sign in</Button>} />
+            </SignedOut>
+          </IconButton>
+        </ListItem>
+
         <Divider />
         {linksList.map((item) => (
           <Link href={item.href} key={item.href}>

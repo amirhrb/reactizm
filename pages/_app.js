@@ -16,15 +16,28 @@ import Theme from '../helper/MUI/Theme';
 //context
 import DrawerContextProvider from '../helper/contexts/DrawerContextProvider';
 import Head from 'next/head';
-import { SessionProvider } from 'next-auth/react';
 import { ToastContainer } from 'react-toastify';
 
-function MyApp({ Component, pageProps: { session, ...pageProps } }) {
+import { ClerkProvider } from '@clerk/nextjs';
+import { useMediaQuery } from '@mui/material';
+import { dark } from '@clerk/themes';
+
+function MyApp({ Component, pageProps: { ...pageProps } }) {
+  const isDark = useMediaQuery('(prefers-color-scheme: dark)');
   return (
-    <ApolloProvider client={client}>
-      <SessionProvider session={session}>
-        <Theme>
-          <DrawerContextProvider>
+    <Theme>
+      <ApolloProvider client={client}>
+        <DrawerContextProvider>
+          <ClerkProvider
+            {...pageProps}
+            appearance={{
+              baseTheme: isDark ? dark : undefined,
+              layout: {
+                socialButtonsVariant: 'iconButton',
+                socialButtonsPlacement: 'bottom',
+              },
+            }}
+          >
             <Layout>
               <Head>
                 <meta
@@ -45,10 +58,10 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
               <Component {...pageProps} />
               <ToastContainer rtl={true} position="top-center" pauseOnHover />
             </Layout>
-          </DrawerContextProvider>
-        </Theme>
-      </SessionProvider>
-    </ApolloProvider>
+          </ClerkProvider>
+        </DrawerContextProvider>
+      </ApolloProvider>
+    </Theme>
   );
 }
 

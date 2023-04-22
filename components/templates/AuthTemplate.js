@@ -5,8 +5,6 @@ import { useRouter } from 'next/router';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 
-import { signIn } from 'next-auth/react';
-
 import {
   Button as DefaultButton,
   TextField as DefalutTextField,
@@ -16,13 +14,12 @@ import {
   IconButton,
   Box,
   Divider,
-  Tooltip,
   useTheme,
 } from '@mui/material';
 import { GitHub, Google } from '@mui/icons-material';
 
 import styles from './styles/AuthTemplate.module.css';
-import { toast } from 'react-toastify';
+// import { toast } from 'react-toastify';
 
 const Button = styled(DefaultButton)(({ theme }) => ({
   borderRadius: '45px',
@@ -105,30 +102,7 @@ const AuthTemplate = () => {
       cpassword: '',
     },
     validationSchema: signUpSchema,
-    onSubmit: async (values, { resetForm }) => {
-      const res = await fetch('/api/auth/credential-signup', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          cpassword: values.cpassword,
-          password: values.password,
-          email: values.email,
-        }),
-      });
-      const data = await res.json();
-      if (res.status === 201) {
-        toast.success(data.message, { theme: theme.palette.mode });
-        resetForm();
-        setLogin(false);
-      } else if (res.status === 402) {
-        toast.warning(data.message, { theme: theme.palette.mode });
-      } else {
-        toast.error(data.message, { theme: theme.palette.mode });
-        resetForm();
-      }
-    },
+    onSubmit: async (values, { resetForm }) => {},
   });
   const signInFormik = useFormik({
     initialValues: {
@@ -136,24 +110,7 @@ const AuthTemplate = () => {
       password: '',
     },
     validationSchema: signInSchema,
-    onSubmit: async (values, { resetForm }) => {
-      const res = await signIn('credentials', {
-        redirect: false,
-        email: values.email,
-        password: values.password,
-      });
-      if (!res.ok) {
-        toast.error(res.error);
-        return;
-      }
-      if (res.ok) {
-        toast.success('you are signed in now');
-        await new Promise((res) => {
-          setTimeout(res, 1000);
-        });
-        router.replace('/');
-      }
-    },
+    onSubmit: async (values, { resetForm }) => {},
   });
 
   return (
@@ -175,16 +132,12 @@ const AuthTemplate = () => {
           <form className={styles.form} onSubmit={signUpFormik.handleSubmit}>
             <Typography dir="rtl"> ورود با گیت هاب یا گوگل</Typography>
             <Box sx={{ display: 'flex' }}>
-              <IconButton onClick={() => signIn('github', { redirect: false })}>
+              <IconButton>
                 <GitHub />
               </IconButton>
-              <Tooltip title="فعلا ممکنه درست کار نکنه/:">
-                <IconButton
-                  onClick={() => signIn('google', { redirect: false })}
-                >
-                  <Google />
-                </IconButton>
-              </Tooltip>
+              <IconButton>
+                <Google />
+              </IconButton>
             </Box>
             <Typography
               component="h1"
@@ -248,14 +201,12 @@ const AuthTemplate = () => {
           <form className={styles.form} onSubmit={signInFormik.handleSubmit}>
             <Typography dir="rtl"> ورود با گیت هاب یا گوگل</Typography>
             <Box sx={{ display: 'flex' }}>
-              <IconButton onClick={() => signIn('github')}>
+              <IconButton>
                 <GitHub />
               </IconButton>
-              <Tooltip title="فعلا ممکنه درست کار نکنه/:">
-                <IconButton onClick={() => signIn('google')}>
-                  <Google />
-                </IconButton>
-              </Tooltip>
+              <IconButton>
+                <Google />
+              </IconButton>
             </Box>
             <Divider />
             <Typography

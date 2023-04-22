@@ -2,8 +2,6 @@ import React, { useEffect } from 'react';
 
 import { useRouter } from 'next/router';
 
-import { signOut } from 'next-auth/react';
-
 import {
   Box,
   Container,
@@ -57,11 +55,7 @@ const SideBar = ({ sidebarActive, setSidebarActive }) => {
           </ListItemIcon>
           <ListItemText primary="چت جی پی تی" />
         </ListItemButton>
-        <ListItemButton
-          onClick={() => {
-            signOut();
-          }}
-        >
+        <ListItemButton>
           <ListItemIcon>
             <LogoutIcon />
           </ListItemIcon>
