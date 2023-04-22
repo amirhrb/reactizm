@@ -32,10 +32,6 @@ function MyApp({ Component, pageProps: { ...pageProps } }) {
             {...pageProps}
             appearance={{
               baseTheme: isDark ? dark : undefined,
-              layout: {
-                socialButtonsVariant: 'iconButton',
-                socialButtonsPlacement: 'bottom',
-              },
             }}
           >
             <Layout>

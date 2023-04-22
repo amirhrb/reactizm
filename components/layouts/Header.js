@@ -32,7 +32,7 @@ import Logo from '../../resources/Logo.png';
 import ShapeLineIcon from '@mui/icons-material/ShapeLine';
 // import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 // import SidebarComponent from '../modules/Sidebar';
-import { useState } from 'react';
+import { dark } from '@clerk/themes';
 
 const linksList = [
   { text: 'نویسندگان', href: '/authors' },
@@ -45,8 +45,6 @@ export default function Navbar() {
   const theme = useTheme();
   const router = useRouter();
   const { setOpen } = useContext(drawerContext);
-  // const [sidebarActive, setSidebarActive] = useState(false);
-  // const { data: session, status } = useSession();
 
   return (
     <>
@@ -94,13 +92,31 @@ export default function Navbar() {
                 color: '#fff',
               }}
             >
-              <SignedIn>
+              <SignedIn
+                appearance={{
+                  baseTheme: theme.palette.mode === 'dark' ? dark : undefined,
+                }}
+              >
                 {/* Mount the UserButton component */}
-                <UserButton />
+                <UserButton
+                  appearance={{
+                    baseTheme: theme.palette.mode === 'dark' ? dark : undefined,
+                  }}
+                />
               </SignedIn>
-              <SignedOut>
+              <SignedOut
+                appearance={{
+                  baseTheme: theme.palette.mode === 'dark' ? dark : undefined,
+                }}
+              >
                 {/* Signed out users get sign in button */}
-                <SignInButton />
+                <SignInButton
+                  children={
+                    <Button variant="contained" sx={{ borderRadius: 5 }}>
+                      ورود
+                    </Button>
+                  }
+                />
               </SignedOut>
             </Box>
             <Box

@@ -21,7 +21,7 @@ import {
 import { drawerContext } from '../../helper/contexts/DrawerContextProvider';
 import { SignInButton, SignedIn, SignedOut, UserButton } from '@clerk/nextjs';
 
-function DrawerComponent({ linksList, setSidebarActive }) {
+function DrawerComponent({ linksList }) {
   const { isOpen, setOpen } = useContext(drawerContext);
   const { route } = useRouter();
   useEffect(() => {
@@ -47,7 +47,14 @@ function DrawerComponent({ linksList, setSidebarActive }) {
             disablePadding
           >
             <SignedOut>
-              <SignInButton mode="modal" children={<Button>sign in</Button>} />
+              <SignInButton
+                mode="modal"
+                children={
+                  <Button variant="contained" sx={{ borderRadius: 5 }}>
+                    ورود
+                  </Button>
+                }
+              />
             </SignedOut>
           </IconButton>
         </ListItem>
