@@ -5,7 +5,7 @@ export default function index() {
   return (
     <Box sx={{ width: '100%', minHeight: 'calc(100svh - 60px)' }}>
       <iframe
-        src="https://chat-gpt.iran.liara.run"
+        src="https://sleepy-einstein-dg9urq1wb.iran.liara.run"
         style={{
           border: 'none',
           width: '100%',
