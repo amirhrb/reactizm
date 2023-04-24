@@ -109,14 +109,11 @@ export default function Navbar() {
                   baseTheme: theme.palette.mode === 'dark' ? dark : undefined,
                 }}
               >
-                {/* Signed out users get sign in button */}
-                <SignInButton
-                  children={
-                    <Button variant="contained" sx={{ borderRadius: 5 }}>
-                      ورود
-                    </Button>
-                  }
-                />
+                <Link href="/sign-in">
+                  <Button variant="contained" sx={{ borderRadius: 5 }}>
+                    ورود
+                  </Button>
+                </Link>
               </SignedOut>
             </Box>
             <Box

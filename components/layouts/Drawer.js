@@ -47,14 +47,11 @@ function DrawerComponent({ linksList }) {
             disablePadding
           >
             <SignedOut>
-              <SignInButton
-                mode="modal"
-                children={
-                  <Button variant="contained" sx={{ borderRadius: 5 }}>
-                    ورود
-                  </Button>
-                }
-              />
+              <Link href="/sign-in">
+                <Button variant="contained" sx={{ borderRadius: 5 }}>
+                  ورود
+                </Button>
+              </Link>
             </SignedOut>
           </IconButton>
         </ListItem>

@@ -1,7 +1,13 @@
 import Image from 'next/image';
 
 //mui
-import { Box, Typography, useMediaQuery, useTheme } from '@mui/material';
+import {
+  Box,
+  // SvgIcon,
+  Typography,
+  useMediaQuery,
+  useTheme,
+} from '@mui/material';
 
 //parallax library
 import { Parallax, ParallaxLayer } from '@react-spring/parallax';
@@ -15,16 +21,23 @@ import ReactizmDark from '../../resources/reactizm-dark.png';
 import ZigZag from '../../resources/thick zigzag line.png';
 import Line from '../../resources/thick line.png';
 import Cursor from '../../resources/cursor.png';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import LinkIcon from '@mui/icons-material/Link';
+// import ChatGpt from '../../resources/Chatgpt';
+import gptHeader from '../../resources/gpt-header.png';
+import gptAsk from '../../resources/gpt-ask.png';
+import gptRes from '../../resources/gpt-response.png';
 
 //styles
 import styles from './styles/Hero.module.scss';
+import Link from 'next/link';
 
 function Hero() {
   const theme = useTheme();
   const isLandscape = useMediaQuery('(orientation: landscape)');
   return (
     <Parallax
-      pages={2}
+      pages={3}
       style={{ top: '0', left: '0' }}
       className={styles.wrapper}
     >
@@ -49,6 +62,7 @@ function Hero() {
           <Typography
             variant="h4"
             sx={{
+              mt: 1,
               color: theme.palette.mode === 'dark' ? '#777' : '#000',
               textShadow: '0 5px #FFEB01',
               fontWeight: 900,
@@ -56,7 +70,7 @@ function Hero() {
               userSelect: 'none',
             }}
           >
-            یادگیری نکات برنامه نویسی!
+            بلاگ نکات برنامه نویسی!
           </Typography>
         </Box>
       </ParallaxLayer>
@@ -80,7 +94,167 @@ function Hero() {
         </Box>
       </ParallaxLayer>
       <ParallaxLayer
-        offset={isLandscape ? 1.5 : 1.7}
+        offset={0.8}
+        speed={0.1}
+        style={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'flex-start',
+        }}
+      >
+        <Box
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            zIndex: 1,
+          }}
+        >
+          <Typography variant="h5" sx={{ fontWeight: 900 }} dir="rtl">
+            چت جی‌پی‌تی!
+          </Typography>
+
+          <ExpandMoreIcon fontSize="large" />
+        </Box>
+      </ParallaxLayer>
+      <ParallaxLayer
+        offset={1.5}
+        speed={0.01}
+        style={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'flex-start',
+        }}
+      >
+        <Box
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+          }}
+        >
+          <Image
+            src={gptHeader}
+            width={220}
+            height={40}
+            style={{
+              zIndex: 2,
+              width: 280,
+              height: 'auto',
+              position: 'relative',
+              top: '-200px',
+            }}
+          />
+        </Box>
+      </ParallaxLayer>
+      <ParallaxLayer
+        offset={1.5}
+        speed={0}
+        style={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'flex-start',
+        }}
+      >
+        <Box
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+          }}
+        >
+          <Image
+            src={gptAsk}
+            width={220}
+            height={80}
+            style={{
+              zIndex: 2,
+              width: 240,
+              position: 'relative',
+              top: '-100px',
+              left: '-20%',
+            }}
+          />
+          {/* <Image src={gptAsk} width={220} height={80} />
+          <Image src={gptRes} width={200} height={90} /> */}
+        </Box>
+      </ParallaxLayer>
+      <ParallaxLayer
+        offset={1.5}
+        speed={-0.01}
+        style={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'flex-start',
+        }}
+      >
+        <Box
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+          }}
+        >
+          <Image
+            src={gptRes}
+            width={220}
+            height={100}
+            style={{
+              zIndex: 2,
+              width: 240,
+              position: 'relative',
+              left: '20%',
+            }}
+          />
+          {/* <Image src={gptAsk} width={220} height={80} />
+          <Image src={gptRes} width={200} height={90} /> */}
+        </Box>
+      </ParallaxLayer>
+      <ParallaxLayer
+        offset={1.84}
+        speed={-0.4}
+        style={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'flex-start',
+        }}
+      >
+        <Box
+          sx={{
+            display: 'flex',
+            alignItems: 'center',
+          }}
+        >
+          <Link
+            href="/chat-gpt"
+            style={{
+              width: 140,
+              display: 'flex',
+              alignItems: 'flex-start',
+            }}
+          >
+            <LinkIcon
+              sx={{
+                fontSize: '2.3rem',
+                transform: 'rotateZ(-45deg)',
+              }}
+            />
+            <Typography
+              variant="h5"
+              sx={{
+                cursor: 'pointer',
+                fontWeight: 900,
+                textShadow: '0 5px #FFEB01',
+              }}
+              dir="rtl"
+            >
+              بزن بریم...
+            </Typography>
+          </Link>
+        </Box>
+      </ParallaxLayer>
+      <ParallaxLayer
+        offset={isLandscape ? 2.5 : 2.7}
         style={{
           display: 'flex',
           justifyContent: 'center',

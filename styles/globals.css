@@ -3,7 +3,7 @@
   box-sizing: border-box;
   scrollbar-width: none;
 }
-::-webkit-scrollbar {
+*::-webkit-scrollbar {
   display: none;
   width: 0;
 }
@@ -30,4 +30,14 @@ a {
 .cl-userButtonAvatarBox {
   width: 45px;
   height: 45px;
+}
+
+.cl-signUp-start > [class*='cl-internal-']:last-child {
+  display: none;
+}
+.cl-signIn-start > [class*='cl-internal-']:last-child {
+  display: none;
+}
+.cl-card {
+  direction: ltr;
 }
