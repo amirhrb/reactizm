@@ -41,3 +41,9 @@ a {
 .cl-card {
   direction: ltr;
 }
+.cl-userButtonPopoverCard.cl-userButton-popover > .cl-userButtonPopoverFooter {
+  visibility: hidden;
+}
+.cl-userProfile-root > .cl-card > [class*='cl-internal-']:last-child {
+  display: none;
+}

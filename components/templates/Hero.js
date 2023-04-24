@@ -93,10 +93,10 @@ function Hero() {
           />
         </Box>
         <Box className={styles.zigZag}>
-          <Image src={ZigZag} alt="ZigZag" width={60} height={60} priority />
+          <Image src={ZigZag} alt="ZigZag" width={60} height={60} />
         </Box>
         <Box className={styles.line}>
-          <Image src={Line} alt="arch" width={60} height={60} priority />
+          <Image src={Line} alt="arch" width={60} height={60} />
         </Box>
       </ParallaxLayer>
       <ParallaxLayer
@@ -150,7 +150,6 @@ function Hero() {
               position: 'relative',
               top: '-200px',
             }}
-            priority
           />
         </Box>
       </ParallaxLayer>
@@ -177,14 +176,13 @@ function Hero() {
             style={{
               zIndex: 2,
               width: 240,
+              height: 'auto',
               position: 'relative',
               top: '-100px',
               left: '-20%',
             }}
             priority
           />
-          {/* <Image src={gptAsk} width={220} height={80} />
-          <Image src={gptRes} width={200} height={90} /> */}
         </Box>
       </ParallaxLayer>
       <ParallaxLayer
@@ -210,13 +208,12 @@ function Hero() {
             style={{
               zIndex: 2,
               width: 240,
+              height: 'auto',
               position: 'relative',
               left: '20%',
             }}
             priority
           />
-          {/* <Image src={gptAsk} width={220} height={80} />
-          <Image src={gptRes} width={200} height={90} /> */}
         </Box>
       </ParallaxLayer>
       <ParallaxLayer

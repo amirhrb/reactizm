@@ -19,7 +19,7 @@ import {
 
 //context
 import { drawerContext } from '../../helper/contexts/DrawerContextProvider';
-import { SignInButton, SignedIn, SignedOut, UserButton } from '@clerk/nextjs';
+import { SignedIn, SignedOut, UserButton } from '@clerk/nextjs';
 
 function DrawerComponent({ linksList }) {
   const { isOpen, setOpen } = useContext(drawerContext);
@@ -33,27 +33,26 @@ function DrawerComponent({ linksList }) {
       <List sx={{ p: 0 }}>
         <ListItem sx={{ justifyContent: 'center' }}>
           {/* Mount the UserButton component */}
-          <IconButton
-            sx={{ display: 'flex', justifyContent: 'center' }}
-            disablePadding
-          >
-            <SignedIn>
-              <UserButton />
-            </SignedIn>
-          </IconButton>
+          {/* <IconButton */}
+          {/* sx={{ display: 'flex', justifyContent: 'center' }}
+          disablePadding > */}
+          <SignedIn>
+            <UserButton />
+          </SignedIn>
+          {/* </IconButton> */}
           {/* Signed out users get sign in button */}
-          <IconButton
+          {/* <IconButton
             sx={{ display: 'flex', justifyContent: 'center' }}
             disablePadding
-          >
-            <SignedOut>
-              <Link href="/sign-in">
-                <Button variant="contained" sx={{ borderRadius: 5 }}>
-                  ورود
-                </Button>
-              </Link>
-            </SignedOut>
-          </IconButton>
+          > */}
+          <SignedOut>
+            <Link href="/sign-in">
+              <Button variant="contained" sx={{ borderRadius: 5 }}>
+                ورود
+              </Button>
+            </Link>
+          </SignedOut>
+          {/* </IconButton> */}
         </ListItem>
 
         <Divider />
