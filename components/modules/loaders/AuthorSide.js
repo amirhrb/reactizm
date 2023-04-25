@@ -1,5 +1,5 @@
 //elements
-import AuthorsInCol from '../elements/AuthorsInColSkeleton.js';
+import AuthorsInCol from '../../elements/loaders/AuthorsInCol';
 
 //MUI
 import { Box, Grid } from '@mui/material';

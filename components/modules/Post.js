@@ -38,9 +38,10 @@ function Post({ post }) {
       component="article"
       sx={{
         m: 1,
-        width: 200,
+        pt: 1,
+        width: 180,
         minHeight: 200,
-        maxHeight: 350,
+        maxHeight: 360,
         borderRadius: 5,
         display: 'flex',
         flexDirection: 'column',
@@ -53,7 +54,7 @@ function Post({ post }) {
             : '1px 1px 10px #cecece',
       }}
     >
-      <Box sx={{ width: '90%', mt: 1 }}>
+      <Box sx={{ width: '90%' }}>
         <Image
           src={post.ogImage.url}
           alt={post.ogImage.fileName}

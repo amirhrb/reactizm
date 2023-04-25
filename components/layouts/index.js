@@ -18,7 +18,7 @@ export default function Layout({ children }) {
       className={yekan.className}
     >
       <Header />
-      <Container maxWidth="md" sx={{ py: 8, minHeight: 'calc(100svh - 60px)' }}>
+      <Container maxWidth="md" sx={{ py: 8, minHeight: '100svh' }}>
         {children}
       </Container>
       {route === '/404' ? '' : route === '/' ? '' : <Footer />}
