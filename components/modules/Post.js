@@ -38,11 +38,9 @@ function Post({ post }) {
       component="article"
       sx={{
         m: 1,
-        pt: 1,
-        pb: 3,
         width: 200,
-        minHeight: 150,
-        maxHeight: 330,
+        minHeight: 200,
+        maxHeight: 350,
         borderRadius: 5,
         display: 'flex',
         flexDirection: 'column',
@@ -55,32 +53,31 @@ function Post({ post }) {
             : '1px 1px 10px #cecece',
       }}
     >
-      <Box sx={{ width: '180px', height: '180px', aspectRatio: '1/1' }}>
-        {/* <Link href={/`/articles/${post.slug}`}> */}
+      <Box sx={{ width: '90%', mt: 1 }}>
         <Image
           src={post.ogImage.url}
           alt={post.ogImage.fileName}
-          width={150}
-          height={150}
+          width={120}
+          height={120}
           className={styles.banner}
+          onClick={() => router.push(`/articles/${post.slug}`)}
         />
-        {/* </Link> */}
       </Box>
       <Box
         sx={{
           height: '140px',
+          width: '100%',
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
-          justifyContent: 'space-between',
+          justifyContent: 'space-evenly',
         }}
       >
         {/* <CardContent> */}
         <Typography
           variant="h6"
           sx={{
-            my: 2,
-            fontSize: 'large',
+            fontSize: 'medium',
             overflow: 'clip',
           }}
         >

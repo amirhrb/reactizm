@@ -17,11 +17,11 @@ function Author({ author }) {
   return (
     <Box
       sx={{
-        width: 280,
+        width: 260,
         height: 170,
         boxShadow:
           theme.palette.mode === 'dark'
-            ? '2px 2px 8px #000'
+            ? '2px 2px 8px #121212'
             : '2px 2px 8px #cecece',
         borderRadius: 6,
       }}
@@ -41,12 +41,13 @@ function Author({ author }) {
           sx={(theme) => ({
             backgroundColor: theme.palette.profile.main,
             marginBottom: 1,
-            p: '5px',
+            py: '5px',
+            width: '100%',
             display: 'flex',
             flexDirection: 'row',
             alignItems: 'center',
             flexWrap: 'nowrap',
-            justifyContent: 'space-between',
+            justifyContent: 'space-evenly',
             borderRadius: '24px 24px 24px 0',
           })}
         >
@@ -91,7 +92,7 @@ function Author({ author }) {
                       fontWeight: 'bold',
                       marginY: 0,
                       padding: 0,
-                      width: '95px',
+                      maxWidth: '75px',
                       overflow: 'hidden',
                       textOverflow: 'ellipsis',
                       display: 'inline-block',
@@ -119,7 +120,7 @@ function Author({ author }) {
               display: 'flex',
               flexDirection: 'column',
               maxWidth: '110px',
-              marginRight: 0.1,
+              // marginRight: 0.05,
               overflow: 'hidden',
             }}
           >
@@ -135,6 +136,11 @@ function Author({ author }) {
               variant="caption"
               sx={{
                 fontWeight: 'light',
+                maxWidth: '100px',
+                overflow: 'hidden',
+                textOverflow: 'ellipsis',
+                display: 'inline-block',
+                whiteSpace: 'nowrap',
               }}
             >
               آخرین فعالیت: {timeFunc(author.posts)} پیش
@@ -145,16 +151,14 @@ function Author({ author }) {
         {/* posts part */}
         <Grid
           container
-          width={260}
+          width="100%"
           direction="row"
           alignItems="center"
           justifyContent={
             author.posts.length > 3 ? 'flex-start' : 'space-evenly'
           }
           wrap="nowrap"
-          columnSpacing={1}
           mt={1}
-          mx={1}
           className={styles.scrollContainer}
         >
           {author.posts.map((post) => (
