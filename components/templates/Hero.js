@@ -241,14 +241,15 @@ function Hero() {
           >
             <LinkIcon
               sx={{
-                fontSize: '2.3rem',
+                fontSize: '2.1rem',
                 transform: 'rotateZ(-45deg)',
               }}
             />
             <Typography
-              variant="h5"
+              variant="h6"
               sx={{
                 cursor: 'pointer',
+                color: theme.palette.mode === 'dark' ? '#777' : '#000',
                 fontWeight: 900,
                 textShadow: '0 5px #FFEB01',
               }}

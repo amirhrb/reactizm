@@ -1,3 +1,4 @@
+import dynamic from 'next/dynamic';
 import Head from 'next/head';
 
 //gql
@@ -7,8 +8,17 @@ import { AUTHORS_QUERY, POSTS_QUERY } from '../../helper/graphql/queries';
 //mui
 import { Box } from '@mui/material';
 
-//componnts
-import BreadComponent from '../../components/modules/BreadComponent';
+//skeleton loaders
+import BreadComponentSkeleton from '../../components/modules/loaders/BreadComponent';
+
+//components
+const BreadComponent = dynamic(
+  () => import('../../components/modules/BreadComponent'),
+  {
+    loading: () => <BreadComponentSkeleton />,
+    ssr: false,
+  }
+);
 import ArticlesTemplate from '../../components/templates/ArticlesTemplate';
 
 function Posts({ posts, authors }) {
@@ -41,6 +51,7 @@ export const getStaticProps = async () => {
     } = await client.query({ query: AUTHORS_QUERY });
     return {
       props: { posts: [...sortedPosts], authors },
+      revalidate: 60 * 60, //1h
     };
   } catch (error) {
     console.log(error);

@@ -2,12 +2,19 @@ import dynamic from 'next/dynamic';
 //mui
 import { Grid } from '@mui/material';
 
+//skeleton for loading
+import AuthorSideSkeleton from '../modules/loaders/AuthorSide';
+import PostSkeleton from '../modules/loaders/Post';
+
 //module components
 const AuthorSide = dynamic(() => import('../modules/AuthorSide'), {
-  loading: () => <h3>loading...</h3>,
+  loading: () => <AuthorSideSkeleton />,
   ssr: false,
 });
-import Post from '../modules/Post';
+const Post = dynamic(() => import('../modules/Post'), {
+  loading: () => <PostSkeleton />,
+  ssr: false,
+});
 
 function ArticlesTemplate({ posts, authors }) {
   return (

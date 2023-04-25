@@ -1,3 +1,4 @@
+import dynamic from 'next/dynamic';
 import { useMemo, useState, useEffect } from 'react';
 import Image from 'next/image';
 import Head from 'next/head';
@@ -6,9 +7,17 @@ import { useRouter } from 'next/router';
 //mui
 import { Box, Container, Grid } from '@mui/material';
 
-//components
-import BreadComponent from '../../components/modules/BreadComponent';
+//skeleton loaders
+import BreadComponentSkeleton from '../../components/modules/loaders/BreadComponent';
 
+//components
+const BreadComponent = dynamic(
+  () => import('../../components/modules/BreadComponent'),
+  {
+    loading: () => <BreadComponentSkeleton />,
+    ssr: false,
+  }
+);
 //client
 import client from '../../helper/graphql/apollo-client';
 
@@ -24,7 +33,7 @@ export default function Post({ post }) {
     title,
     author,
     ogImage,
-    content: { html, text, markdown },
+    content: { text, markdown },
   } = post;
   const pathParts = useMemo(() => {
     return router.asPath.split('?')[0].split('/').slice(1);
