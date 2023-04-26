@@ -1,10 +1,15 @@
 //react
 import React from 'react';
 //next
+import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
 //components
 import Footer from './Footer';
-import Header from './Header';
+import HeaderSkeleton from './loaders/Header';
+const Header = dynamic(() => import('./Header'), {
+  ssr: false,
+  loading: () => <HeaderSkeleton />,
+});
 //mui
 import { Box, Container } from '@mui/material';
 //font
