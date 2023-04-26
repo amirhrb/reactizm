@@ -1,11 +1,4 @@
 /** @type {import('next').NextConfig} */
-
-const withPWA = require('next-pwa')({
-  dest: 'public',
-  disable: process.env.NODE_ENV === 'development',
-  // swSrc: 'service-worker.js',
-});
-
 const nextConfig = {
   swcMinify: true,
   images: {
@@ -15,4 +8,4 @@ const nextConfig = {
 };
 
 // Merge MDX config with Next.js config
-module.exports = withPWA(nextConfig);
+module.exports = nextConfig;
