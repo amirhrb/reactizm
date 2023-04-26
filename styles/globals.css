@@ -47,3 +47,9 @@ a {
 .cl-userProfile-root > .cl-card > [class*='cl-internal-']:last-child {
   display: none;
 }
+.cl-signIn-root > .cl-signIn-password > [class*='cl-internal-']:last-child {
+  display: none;
+}
+.cl-signUp-root > .cl-signUp-emailCode > [class*='cl-internal-']:last-child {
+  display: none;
+}

@@ -32,6 +32,9 @@ function MyApp({ Component, pageProps: { ...pageProps } }) {
             {...pageProps}
             appearance={{
               baseTheme: isDark ? dark : undefined,
+              variables: {
+                colorPrimary: '#ffb300',
+              },
             }}
           >
             <Layout>

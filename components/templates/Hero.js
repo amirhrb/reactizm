@@ -251,7 +251,7 @@ function Hero() {
                 cursor: 'pointer',
                 color: theme.palette.mode === 'dark' ? '#777' : '#000',
                 fontWeight: 900,
-                textShadow: '0 5px #FFEB01',
+                textShadow: '0 2px #FFEB01',
               }}
               dir="rtl"
             >

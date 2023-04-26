@@ -4,7 +4,7 @@ import { Box } from '@mui/material';
 const SignUpPage = () => (
   <Box
     sx={{
-      minHeight: '85svh',
+      pt: 2,
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',

@@ -4,7 +4,7 @@ import { Box } from '@mui/material';
 const SignInPage = () => (
   <Box
     sx={{
-      minHeight: '80svh',
+      pt: 2,
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
