@@ -23,18 +23,7 @@ export default function index() {
       </Box>
     );
   } else if (isLoaded && !userId) {
-    return (
-      <Box
-        sx={{
-          pt: 2,
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}
-      >
-        <SignIn path="/chat-gpt" routing="path" signUpUrl="/sign-up" />
-      </Box>
-    );
+    router.push('/sign-in');
   } else {
     return (
       <Box sx={{ width: '100%', minHeight: 'calc(100svh - 60px)' }}>
