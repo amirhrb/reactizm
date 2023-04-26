@@ -41,7 +41,7 @@ function Post({ post }) {
         pt: 1,
         width: 200,
         minHeight: 320,
-        maxHeight: 360,
+        maxHeight: 380,
         borderRadius: 5,
         display: 'flex',
         flexDirection: 'column',

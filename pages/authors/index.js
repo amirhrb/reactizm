@@ -40,9 +40,9 @@ function Authors({ authors }) {
         rowSpacing={2}
       >
         {authors.map((author) => (
-          <Grid item key={author.id}>
-            <Author author={author} />
-          </Grid>
+          // <Grid item key={author.id}>
+          <Author author={author} key={author.id} />
+          // </Grid>
         ))}
       </Grid>
     </Box>
