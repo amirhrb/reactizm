@@ -150,6 +150,7 @@ function Hero() {
               position: 'relative',
               top: '-200px',
             }}
+            alt="chat gpt"
           />
         </Box>
       </ParallaxLayer>
@@ -173,6 +174,7 @@ function Hero() {
             src={gptAsk}
             width={220}
             height={80}
+            alt="chat gpt ask"
             style={{
               zIndex: 2,
               width: 240,
@@ -205,6 +207,7 @@ function Hero() {
             src={gptRes}
             width={220}
             height={100}
+            alt="chat gpt response"
             style={{
               zIndex: 2,
               width: 240,

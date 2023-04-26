@@ -97,7 +97,7 @@ export default function Post({ post }) {
           >
             <Image
               src={ogImage.url}
-              alt={ogImage.fileName}
+              alt={ogImage.fileName || 'article header'}
               width={160}
               height={160}
               priority

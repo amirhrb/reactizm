@@ -57,7 +57,7 @@ function Post({ post }) {
       <Box sx={{ width: '90%' }}>
         <Image
           src={post.ogImage.url}
-          alt={post.ogImage.fileName}
+          alt={post.ogImage.fileName || 'post heading'}
           width={120}
           height={120}
           className={styles.banner}
