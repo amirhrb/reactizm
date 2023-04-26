@@ -17,8 +17,8 @@ function Author({ author }) {
   return (
     <Box
       sx={{
-        width: 260,
-        height: 170,
+        width: 300,
+        height: 200,
         boxShadow:
           theme.palette.mode === 'dark'
             ? '2px 2px 8px #121212'

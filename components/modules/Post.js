@@ -39,8 +39,8 @@ function Post({ post }) {
       sx={{
         m: 1,
         pt: 1,
-        width: 180,
-        minHeight: 200,
+        width: 200,
+        minHeight: 320,
         maxHeight: 360,
         borderRadius: 5,
         display: 'flex',

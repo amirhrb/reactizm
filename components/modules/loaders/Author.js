@@ -5,8 +5,8 @@ function Author() {
   return (
     <Box
       sx={{
-        width: 280,
-        height: 170,
+        width: 300,
+        height: 200,
         boxShadow: '1px 1px 10px var(--mui-background-paper)',
         borderRadius: 6,
       }}
