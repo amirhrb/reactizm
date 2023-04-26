@@ -15,7 +15,7 @@ const Offline = () => {
         variant="h4"
         sx={{
           mt: 1,
-          color: theme.palette.mode === 'dark' ? '#777' : '#000',
+          color: '#777',
           textShadow: '0 5px #FFEB01',
           fontWeight: 900,
           cursor: 'default',
