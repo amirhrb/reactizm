@@ -51,6 +51,15 @@ function MyApp({ Component, pageProps: { ...pageProps } }) {
                   name="apple-mobile-web-app-status-bar"
                   content="#ffb300"
                 />
+                <meta
+                  property="og:title"
+                  content="آموزش نکات برنامه نویسی|Reactizm"
+                />
+                <meta
+                  property="og:description"
+                  content="سایت آموزش برنامه نویسی و طراحی سایت ری‌اکتیزم "
+                />
+                <meta property="og:image" content="../resources/OgImage.jpg" />
                 <link rel="manifest" href="/manifest.json" />
                 <link rel="icon" href="/favicon.ico" />
               </Head>
