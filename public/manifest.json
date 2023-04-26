@@ -1,11 +1,6 @@
 {
   "name": "Reactizm",
   "short_name": "Reactizm",
-  "start_url": "/",
-  "scope": "/",
-  "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#ffb300",
   "icons": [
     {
       "src": "/icons/icon-36x36.png",
@@ -48,5 +43,25 @@
       "sizes": "192x192",
       "purpose": "maskable"
     }
-  ]
+  ],
+  "shortcuts": [
+    {
+      "name": "چت جی‌پی‌تی",
+      "short_name": "چت جی‌پی‌تی",
+      "description": "سوال خودتو از chatGPT بپرسید!",
+      "url": "/chat-gpt",
+      "icons": [{ "src": "/openai.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "مقالات ری‌اکتیزم",
+      "short_name": "مقالات",
+      "description": "مقالات بلاگ ری‌اکتیزم را مطالغه کنید",
+      "url": "/articles",
+      "icons": [{ "src": "/icons/icon-192x192.png", "sizes": "192x192" }]
+    }
+  ],
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#ffb300"
 }
