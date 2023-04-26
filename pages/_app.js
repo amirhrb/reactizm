@@ -1,4 +1,3 @@
-import { useRouter } from 'next/router';
 //css
 import '../styles/globals.css';
 import '../styles/variables.css';
@@ -20,15 +19,10 @@ import Head from 'next/head';
 import { ToastContainer } from 'react-toastify';
 
 import { ClerkProvider, SignUp, SignedIn, SignedOut } from '@clerk/nextjs';
-import { Box, useMediaQuery } from '@mui/material';
+import { useMediaQuery } from '@mui/material';
 import { dark } from '@clerk/themes';
 
-const restrictedPages = ['/chat-gpt'];
-
 function MyApp({ Component, pageProps: { ...pageProps } }) {
-  const { pathname } = useRouter();
-  const isRestrictedPage = restrictedPages.includes(pathname);
-
   const isDark = useMediaQuery('(prefers-color-scheme: dark)');
   return (
     <Theme>
@@ -69,27 +63,8 @@ function MyApp({ Component, pageProps: { ...pageProps } }) {
                 <link rel="manifest" href="/manifest.json" />
                 <link rel="icon" href="/favicon.ico" />
               </Head>
-              {!isRestrictedPage ? (
-                <Component {...pageProps} />
-              ) : (
-                <>
-                  <SignedIn>
-                    <Component {...pageProps} />
-                  </SignedIn>
-                  <SignedOut>
-                    <Box
-                      sx={{
-                        pt: 2,
-                        display: 'flex',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                      }}
-                    >
-                      <SignUp routing="path" signInUrl="/sign-in" />
-                    </Box>
-                  </SignedOut>
-                </>
-              )}
+              <Component {...pageProps} />
+
               <ToastContainer rtl={true} position="top-center" pauseOnHover />
             </Layout>
           </ClerkProvider>
