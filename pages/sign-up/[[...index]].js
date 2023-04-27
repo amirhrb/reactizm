@@ -1,5 +1,5 @@
 import { SignUp, useAuth } from '@clerk/nextjs';
-import { Box } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 
 const SignUpPage = () => {
   const { isLoaded } = useAuth();
