@@ -1,5 +1,6 @@
 import { SignUp, useAuth } from '@clerk/nextjs';
 import { Box, Typography } from '@mui/material';
+import LoadingBall from '../../components/elements/loaders/LoadingBall';
 
 const SignUpPage = () => {
   const { isLoaded } = useAuth();
@@ -14,7 +15,7 @@ const SignUpPage = () => {
           alignItems: 'center',
         }}
       >
-        <Typography variant="h5">در حال پردازش...</Typography>
+        <LoadingBall />
       </Box>
     );
   }
