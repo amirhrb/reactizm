@@ -1,3 +1,4 @@
+import dynamic from 'next/dynamic';
 import { useContext } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -9,7 +10,6 @@ import { drawerContext } from '../../helper/contexts/DrawerContextProvider';
 import {
   AppBar,
   Box,
-  Button,
   Container,
   Toolbar,
   useTheme,
@@ -18,8 +18,6 @@ import {
 
 //suspense
 // import { Suspense } from 'react';
-
-import { SignedIn, SignedOut, SignInButton, UserButton } from '@clerk/nextjs';
 
 //styles
 import styles from './styles/Header.module.scss';
@@ -32,8 +30,20 @@ import Logo from '../../resources/Logo.png';
 import ShapeLineIcon from '@mui/icons-material/ShapeLine';
 // import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 // import SidebarComponent from '../modules/Sidebar';
-import { dark } from '@clerk/themes';
 
+const UserButton = dynamic(() => import('../elements/UserButton.js'), {
+  ssr: false,
+  loading: () => (
+    <Box
+      sx={{
+        width: 45,
+        height: 45,
+        borderRadius: '50%',
+        backgroundColor: 'var(--mui-background-paper)',
+      }}
+    ></Box>
+  ),
+});
 const linksList = [
   { text: 'نویسندگان', href: '/authors' },
   { text: 'سرویس', href: '/services' },
@@ -92,29 +102,7 @@ export default function Navbar() {
                 color: '#fff',
               }}
             >
-              <SignedIn
-                appearance={{
-                  baseTheme: theme.palette.mode === 'dark' ? dark : undefined,
-                }}
-              >
-                {/* Mount the UserButton component */}
-                <UserButton
-                  appearance={{
-                    baseTheme: theme.palette.mode === 'dark' ? dark : undefined,
-                  }}
-                />
-              </SignedIn>
-              <SignedOut
-                appearance={{
-                  baseTheme: theme.palette.mode === 'dark' ? dark : undefined,
-                }}
-              >
-                <Link href="/sign-in">
-                  <Button variant="contained" sx={{ borderRadius: 5 }}>
-                    ورود
-                  </Button>
-                </Link>
-              </SignedOut>
+              <UserButton />
             </Box>
             <Box
               component="nav"

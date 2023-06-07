@@ -8,7 +8,8 @@ const SignInPage = () => {
       <Box
         sx={{
           pt: 2,
-          height: '80svh',
+          height: 'calc(100vh - 64px)',
+          minHeight: '80vh',
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
@@ -23,6 +24,8 @@ const SignInPage = () => {
       sx={{
         pt: 2,
         display: 'flex',
+        height: 'calc(100vh - 64px)',
+        minHeight: '75vh',
         justifyContent: 'center',
         alignItems: 'center',
       }}

@@ -1,8 +1,7 @@
 import { useRouter } from 'next/router';
 
-import { SignIn, useAuth } from '@clerk/nextjs';
-import { Box, Typography } from '@mui/material';
-import React from 'react';
+import { useAuth } from '@clerk/nextjs';
+import { Box } from '@mui/material';
 import LoadingBall from '../../components/elements/loaders/LoadingBall';
 
 export default function index() {
@@ -29,7 +28,7 @@ export default function index() {
     return (
       <Box sx={{ width: '100%', minHeight: 'calc(100svh - 64px)' }}>
         <iframe
-          src="https://sleepy-einstein-dg9urq1wb.iran.liara.run/chat-gpt"
+          src="https://sleepy-einstein-dg9urq1wb.iran.liara.run/dall-e"
           style={{
             border: 'none',
             width: '100%',
