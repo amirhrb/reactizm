@@ -1,9 +1,10 @@
 import { Typography, Container, Box, Grid, IconButton } from '@mui/material';
 //icon
 import { Instagram, YouTube, Twitter } from '@mui/icons-material';
-
 //font
 import { aquire } from '../../helper/fonts/aquire';
+import { yekan } from '../../helper/fonts/yekan';
+import React from 'react';
 
 export default function Footer() {
   return (
@@ -27,17 +28,43 @@ export default function Footer() {
             alignItems: 'center',
           }}
         >
-          <Typography
-            component="h3"
-            variant="h5"
-            style={{ fontFamily: aquire.style.fontFamily, marginBottom: 5 }}
+          <Box
+            sx={{
+              display: 'flex',
+              flexDirection: 'column',
+              marginBottom: 2,
+            }}
           >
-            Follow #Reactizm
-          </Typography>
+            <Typography
+              component="span"
+              variant="h5"
+              sx={{
+                fontFamily: yekan.style.fontFamily,
+                fontWeight: '800',
+              }}
+            >
+              دنبال کردن
+            </Typography>{' '}
+            <Typography
+              component="h5"
+              variant="h5"
+              dir="ltr"
+              sx={{ fontFamily: aquire.style.fontFamily }}
+            >
+              #Reactizm
+            </Typography>
+          </Box>
+
           <Box sx={{ my: 2 }}>
-            <IconButton aria-label="instagram">
-              <Instagram fontSize="large" />
-            </IconButton>
+            <a
+              href="https://www.instagram.com/reactizm"
+              target="_blank"
+              rel="noopener noreferer"
+            >
+              <IconButton aria-label="instagram">
+                <Instagram fontSize="large" />
+              </IconButton>
+            </a>
             <IconButton aria-label="instagram">
               <YouTube fontSize="large" />
             </IconButton>
@@ -45,7 +72,7 @@ export default function Footer() {
               <Twitter fontSize="large" />
             </IconButton>
           </Box>
-          <Typography>All Rights Reserved©️</Typography>
+          <Typography> &copy;نمام حقوق رزرو شده2023</Typography>
         </Grid>
       </Container>
     </Box>

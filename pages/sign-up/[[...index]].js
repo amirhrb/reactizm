@@ -1,5 +1,5 @@
 import { SignUp, useAuth } from '@clerk/nextjs';
-import { Box, Typography } from '@mui/material';
+import Box from '@mui/material/Box';
 import LoadingBall from '../../components/elements/loaders/LoadingBall';
 
 const SignUpPage = () => {

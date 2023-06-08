@@ -102,7 +102,7 @@ export default function Post({ post }) {
               height={160}
               priority
               style={{
-                borderRadius: 5,
+                borderRadius: 28,
                 objectFit: 'cover',
                 width: '100%',
                 height: '100%',

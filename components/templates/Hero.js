@@ -9,6 +9,11 @@ import {
   useTheme,
 } from '@mui/material';
 
+import ChatGPTIcon from '../elements/ChatGPTIcon';
+import promptImage from '../../resources/prompt-image.png';
+import AiImage from '../../resources/dall-e-image.png';
+import colfax from '../../helper/fonts/colfax';
+
 //parallax library
 import { Parallax, ParallaxLayer } from '@react-spring/parallax';
 
@@ -37,7 +42,7 @@ function Hero() {
   const isLandscape = useMediaQuery('(orientation: landscape)');
   return (
     <Parallax
-      pages={3}
+      pages={4}
       style={{ top: '0', left: '0' }}
       className={styles.wrapper}
     >
@@ -99,9 +104,10 @@ function Hero() {
           <Image src={Line} alt="arch" width={60} height={60} />
         </Box>
       </ParallaxLayer>
+      {/* gpt */}
       <ParallaxLayer
         offset={0.8}
-        speed={0.1}
+        speed={0.2}
         style={{
           display: 'flex',
           justifyContent: 'center',
@@ -124,8 +130,8 @@ function Hero() {
         </Box>
       </ParallaxLayer>
       <ParallaxLayer
-        offset={1.5}
-        speed={0.01}
+        offset={1.2}
+        speed={0.2}
         style={{
           display: 'flex',
           justifyContent: 'center',
@@ -155,8 +161,8 @@ function Hero() {
         </Box>
       </ParallaxLayer>
       <ParallaxLayer
-        offset={1.5}
-        speed={0}
+        offset={1.25}
+        speed={0.1}
         style={{
           display: 'flex',
           justifyContent: 'center',
@@ -188,8 +194,8 @@ function Hero() {
         </Box>
       </ParallaxLayer>
       <ParallaxLayer
-        offset={1.5}
-        speed={-0.01}
+        offset={1.3}
+        speed={0.01}
         style={{
           display: 'flex',
           justifyContent: 'center',
@@ -220,8 +226,8 @@ function Hero() {
         </Box>
       </ParallaxLayer>
       <ParallaxLayer
-        offset={1.84}
-        speed={-0.4}
+        offset={1.65}
+        speed={0.1}
         style={{
           display: 'flex',
           justifyContent: 'center',
@@ -263,8 +269,212 @@ function Hero() {
           </Link>
         </Box>
       </ParallaxLayer>
+      {/* dall e */}
       <ParallaxLayer
-        offset={isLandscape ? 2.5 : 2.7}
+        offset={1.85}
+        speed={0.2}
+        style={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'flex-start',
+        }}
+      >
+        <Box
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            position: 'relative',
+            top: '-30px',
+            zIndex: 1,
+          }}
+        >
+          <Typography variant="h5" sx={{ fontWeight: 900 }} dir="rtl">
+            بازم هست!
+          </Typography>
+
+          <ExpandMoreIcon fontSize="large" />
+        </Box>
+      </ParallaxLayer>
+      <ParallaxLayer
+        offset={2.1}
+        speed={-0}
+        style={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'flex-start',
+        }}
+      >
+        <Box
+          sx={{
+            display: 'flex',
+            alignItems: 'center',
+            flexDirection: 'row-reverse',
+            position: 'relative',
+            top: '-50px',
+            right: '-100px',
+          }}
+        >
+          <ChatGPTIcon />
+          <Typography
+            sx={{
+              fontFamily: colfax.style.fontFamily,
+              fontSize: '1.3rem',
+              fontWeight: 'bold',
+            }}
+          >
+            OpenAI
+          </Typography>
+        </Box>
+      </ParallaxLayer>
+      <ParallaxLayer
+        offset={2.3}
+        speed={-0.1}
+        style={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'flex-start',
+        }}
+      >
+        <Box
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            position: 'relative',
+            top: '-30px',
+            right: '-25px',
+          }}
+        >
+          <Typography
+            sx={{
+              fontFamily: colfax.style.fontFamily,
+              fontSize: '3.5rem',
+              fontWeight: 'bold',
+            }}
+            dir="ltr"
+          >
+            DALL·E 2 ...
+          </Typography>
+        </Box>
+      </ParallaxLayer>
+      <ParallaxLayer
+        offset={2.8}
+        speed={0.15}
+        style={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'flex-start',
+        }}
+      >
+        <Box
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            position: 'relative',
+            top: '-150px',
+          }}
+        >
+          <Image
+            src={promptImage}
+            width={440}
+            height={80}
+            style={{
+              zIndex: 2,
+              width: 280,
+              borderRadius: '6px',
+              height: 'auto',
+              position: 'relative',
+              left: '-12%',
+            }}
+            alt="chat gpt"
+          />
+        </Box>
+      </ParallaxLayer>
+      <ParallaxLayer
+        offset={2.8}
+        speed={0.15}
+        style={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'flex-start',
+        }}
+      >
+        <Box
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            position: 'relative',
+            top: '-50px',
+          }}
+        >
+          <Image
+            src={AiImage}
+            width={200}
+            height={250}
+            style={{
+              zIndex: 2,
+              width: 280,
+              borderRadius: '6px',
+              height: 'auto',
+              position: 'relative',
+              left: '12%',
+            }}
+            alt="chat gpt"
+          />
+        </Box>
+      </ParallaxLayer>
+      <ParallaxLayer
+        offset={3.4}
+        speed={-0.2}
+        style={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'flex-start',
+        }}
+      >
+        <Box
+          sx={{
+            display: 'flex',
+            alignItems: 'center',
+            position: 'relative',
+            top: '30px',
+          }}
+        >
+          <Link
+            href="/dall-e"
+            style={{
+              width: 140,
+              display: 'flex',
+              alignItems: 'flex-start',
+            }}
+          >
+            <LinkIcon
+              sx={{
+                fontSize: '2.1rem',
+                transform: 'rotateZ(-45deg)',
+              }}
+            />
+            <Typography
+              variant="h6"
+              sx={{
+                cursor: 'pointer',
+                color: theme.palette.mode === 'dark' ? '#777' : '#000',
+                fontWeight: 900,
+                textShadow: '0 2px #FFEB01',
+              }}
+              dir="rtl"
+            >
+              بزن بریم...
+            </Typography>
+          </Link>
+        </Box>
+      </ParallaxLayer>
+      {/* footer */}
+      <ParallaxLayer
+        offset={isLandscape ? 3.5 : 3.7}
         style={{
           display: 'flex',
           justifyContent: 'center',

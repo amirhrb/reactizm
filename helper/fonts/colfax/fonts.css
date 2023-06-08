@@ -1,0 +1,14 @@
+@font-face {
+  font-family: "ColfaxAI";
+  src: url(./ColfaxAIRegular.woff2) format("woff2"),
+    url(./ColfaxAIRegular.woff) format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "ColfaxAI";
+  src: url(./ColfaxAIBold.woff2) format("woff2"),
+    url(./ColfaxAIBold.woff) format("woff");
+  font-weight: bold;
+  font-style: normal;
+}

@@ -1,14 +1,13 @@
-import { Suspense, useContext, useEffect } from 'react';
+import { useContext, useEffect } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 import { useRouter } from 'next/router';
+
+import UserButton from '../elements/UserButton';
 
 //mui
 import {
-  Button,
   Divider,
   Drawer,
-  IconButton,
   List,
   ListItem,
   ListItemButton,
@@ -19,7 +18,6 @@ import {
 
 //context
 import { drawerContext } from '../../helper/contexts/DrawerContextProvider';
-import { SignedIn, SignedOut, UserButton } from '@clerk/nextjs';
 
 function DrawerComponent({ linksList }) {
   const { isOpen, setOpen } = useContext(drawerContext);
@@ -32,27 +30,7 @@ function DrawerComponent({ linksList }) {
     <Drawer anchor="bottom" open={isOpen} onClose={() => setOpen(!isOpen)}>
       <List sx={{ p: 0 }}>
         <ListItem sx={{ justifyContent: 'center' }}>
-          {/* Mount the UserButton component */}
-          {/* <IconButton */}
-          {/* sx={{ display: 'flex', justifyContent: 'center' }}
-          disablePadding > */}
-          <SignedIn>
-            <UserButton />
-          </SignedIn>
-          {/* </IconButton> */}
-          {/* Signed out users get sign in button */}
-          {/* <IconButton
-            sx={{ display: 'flex', justifyContent: 'center' }}
-            disablePadding
-          > */}
-          <SignedOut>
-            <Link href="/sign-in">
-              <Button variant="contained" sx={{ borderRadius: 5 }}>
-                ورود
-              </Button>
-            </Link>
-          </SignedOut>
-          {/* </IconButton> */}
+          <UserButton />
         </ListItem>
 
         <Divider />

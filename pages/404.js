@@ -89,7 +89,9 @@ function NotFound() {
             alignItems: 'center',
           }}
         >
-          <Typography variant="h6">چیزی که دنبالش بودی پیدا نشد ):</Typography>
+          <Typography variant="h6" sx={{ fontSize: '1rem' }}>
+            چیزی که دنبالش بودی رو گشتم نبود، نگرد نیست ):
+          </Typography>
         </ParallaxLayer>
         <ParallaxLayer
           offset={2.1}

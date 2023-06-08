@@ -9,7 +9,7 @@ function Index({ author }) {
   return (
     <div>
       <Head>
-        <title>{author.name}</title>{' '}
+        <title>{author.name}</title>
       </Head>
       <h1>{author.name}</h1>
       <Author author={author} />

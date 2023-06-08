@@ -1,3 +1,4 @@
+import Head from 'next/head';
 import dynamic from 'next/dynamic';
 //MUI
 import { Box, Grid } from '@mui/material';
@@ -25,27 +26,36 @@ const BreadComponent = dynamic(
 
 function Authors({ authors }) {
   return (
-    <Box sx={{ minHeight: '85vh' }}>
-      <BreadComponent />
-      <Grid
-        container
-        direction="column"
-        sx={{
-          overflow: 'auto',
-          mt: 1,
-          pb: 1,
-          alignItems: { xs: 'center', md: 'space-between' },
-          justifyContent: 'space-evenly',
-        }}
-        rowSpacing={2}
-      >
-        {authors.map((author) => (
-          // <Grid item key={author.id}>
-          <Author author={author} key={author.id} />
-          // </Grid>
-        ))}
-      </Grid>
-    </Box>
+    <>
+      <Head>
+        <title>نویسندگان مقالات و نکات</title>
+        <meta
+          name="description"
+          content="نویسندگان سایت برنامه نویسی ریکتیزم reactizm"
+        />
+      </Head>
+      <Box sx={{ minHeight: '85dvh' }}>
+        <BreadComponent />
+        <Grid
+          container
+          direction="column"
+          sx={{
+            overflow: 'auto',
+            mt: 1,
+            pb: 1,
+            alignItems: { xs: 'center', md: 'space-between' },
+            justifyContent: 'space-evenly',
+          }}
+          rowSpacing={2}
+        >
+          {authors.map((author) => (
+            // <Grid item key={author.id}>
+            <Author author={author} key={author.id} />
+            // </Grid>
+          ))}
+        </Grid>
+      </Box>
+    </>
   );
 }
 export const getStaticProps = async () => {
