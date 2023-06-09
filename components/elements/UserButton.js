@@ -26,6 +26,7 @@ const UserButton = () => {
         appearance={{
           baseTheme: theme.palette.mode === 'dark' ? dark : undefined,
         }}
+        afterSignOutUrl="/"
       />
     );
   }
