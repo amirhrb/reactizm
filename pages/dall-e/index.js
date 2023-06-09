@@ -1,5 +1,6 @@
 import { useRouter } from 'next/router';
 import { useAuth } from '@clerk/nextjs';
+import useWindowDimensions from '../../helper/utils/useWindowDimentions';
 import Box from '@mui/material/Box';
 import LoadingBall from '../../components/elements/loaders/LoadingBall';
 import Head from 'next/head';
@@ -7,6 +8,7 @@ import Head from 'next/head';
 export default function index() {
   const { isLoaded, userId } = useAuth();
   const router = useRouter();
+  const { height } = useWindowDimensions();
   // In case the user signs out while on the page.
   if (!isLoaded) {
     return (
@@ -20,7 +22,7 @@ export default function index() {
         </Head>
         <Box
           sx={{
-            height: '100dvh',
+            height: height ? `${height}px` : '100dvh',
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
@@ -42,20 +44,20 @@ export default function index() {
             content="پلتفرم جدید برای خلق تصاویر و اشیاء با استفاده از هوش مصنوعی - نوآوری به دنیای خلق تصاویر آمده است. این فناوری قدرتمند، قادر است تصاویر و اشیاء متنوعی را خلق نماید، از جمله جانوران، رویدادها، مناظر طبیعی و مواد غذایی. با استفاده از رابط کاربری ساده دالی، می‌توانید اشیاء و تصاویر دلخواه خود را ایجاد کنید و نتیجه‌ی خلق شده از طریق ایمیل شما در اختیار شما قرار می‌گیرد."
           />
         </Head>
-        <Box sx={{ width: '100%', minHeight: '100dvh' }}>
-          <iframe
-            src="https://sleepy-einstein-dg9urq1wb.iran.liara.run/dall-e"
-            style={{
-              border: 'none',
-              width: '100%',
-              height: '100%',
-              minHeight: '100dvh',
-            }}
-            seamless="seamless"
-          >
-            dall e
-          </iframe>
-        </Box>
+        <iframe
+          src="https://sleepy-einstein-dg9urq1wb.iran.liara.run/dall-e"
+          style={{
+            border: 'none',
+            width: '100%',
+            height: height ? `${height}px` : '100%',
+            minHeight: '100dvh',
+            position: 'relative',
+            zIndex: 10,
+          }}
+          seamless="seamless"
+        >
+          dall e
+        </iframe>
       </>
     );
   }

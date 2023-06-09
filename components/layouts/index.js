@@ -11,24 +11,27 @@ const Header = dynamic(() => import('./Header'), {
   ssr: false,
   loading: () => <HeaderSkeleton />,
 });
+//hook
+import useWindowDimensions from '../../helper/utils/useWindowDimentions';
 //mui
 import { Box, Container } from '@mui/material';
 //font
 import { yekan } from '../../helper/fonts/yekan';
 
 export default function Layout({ children }) {
+  const { height } = useWindowDimensions();
   const { route } = useRouter();
   return (
     <Box
       sx={{
-        minHeight: 'calc(100dvh - 64px)',
+        minHeight: `calc(${height}px - 64px)`,
         height:
           route === '/chat-gpt'
             ? '100dvh'
             : route === '/dall-e'
             ? '100dvh'
             : '100%',
-        overflow: 'hidden',
+        overflowX: 'hidden',
       }}
       className={yekan.className}
     >
@@ -46,7 +49,12 @@ export default function Layout({ children }) {
       ) : (
         <Container
           maxWidth="md"
-          sx={{ py: 8, minHeight: '100dvh', overflowY: 'auto' }}
+          sx={{
+            py: 8,
+            minHeight: height ? `${height}px` : '100dvh',
+            height: '100%',
+            overflowY: 'auto',
+          }}
         >
           {children}
         </Container>

@@ -1,9 +1,4 @@
-import {
-  SignedIn,
-  SignedOut,
-  UserButton as User,
-  useAuth,
-} from '@clerk/nextjs';
+import { UserButton as User, useAuth } from '@clerk/nextjs';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import { dark } from '@clerk/themes';
@@ -12,7 +7,7 @@ import Link from 'next/link';
 
 const UserButton = () => {
   const theme = useTheme();
-  const { isLoaded } = useAuth();
+  const { isLoaded, isSignedIn } = useAuth();
   if (!isLoaded) {
     return (
       <Box
@@ -25,32 +20,21 @@ const UserButton = () => {
       ></Box>
     );
   }
+  if (isSignedIn) {
+    return (
+      <User
+        appearance={{
+          baseTheme: theme.palette.mode === 'dark' ? dark : undefined,
+        }}
+      />
+    );
+  }
   return (
-    <>
-      <SignedIn
-        appearance={{
-          baseTheme: theme.palette.mode === 'dark' ? dark : undefined,
-        }}
-      >
-        {/* Mount the UserButton component */}
-        <User
-          appearance={{
-            baseTheme: theme.palette.mode === 'dark' ? dark : undefined,
-          }}
-        />
-      </SignedIn>
-      <SignedOut
-        appearance={{
-          baseTheme: theme.palette.mode === 'dark' ? dark : undefined,
-        }}
-      >
-        <Link href="/sign-in">
-          <Button variant="contained" sx={{ borderRadius: 5 }}>
-            ورود
-          </Button>
-        </Link>
-      </SignedOut>
-    </>
+    <Link href="/sign-in">
+      <Button variant="contained" sx={{ borderRadius: 5 }}>
+        ورود
+      </Button>
+    </Link>
   );
 };
 

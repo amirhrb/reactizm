@@ -3,10 +3,12 @@ import { useAuth } from '@clerk/nextjs';
 import Box from '@mui/material/Box';
 import LoadingBall from '../../components/elements/loaders/LoadingBall';
 import Head from 'next/head';
+import useWindowDimensions from '../../helper/utils/useWindowDimentions';
 
 export default function index() {
   const { isLoaded, userId } = useAuth();
   const router = useRouter();
+  const { height } = useWindowDimensions();
   // In case the user signs out while on the page.
   if (!isLoaded) {
     return (
@@ -20,7 +22,7 @@ export default function index() {
         </Head>
         <Box
           sx={{
-            height: '100dvh',
+            height: height ? `${height}px` : '100dvh',
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
@@ -48,14 +50,14 @@ export default function index() {
           style={{
             border: 'none',
             width: '100%',
-            height: '100%',
+            height: height ? `${height}px` : '100%',
             minHeight: '100dvh',
             position: 'relative',
             zIndex: 10,
           }}
           seamless="seamless"
         >
-          dall.e
+          chat gpt
         </iframe>
         {/* </Box> */}
       </>
