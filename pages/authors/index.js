@@ -65,7 +65,7 @@ export const getStaticProps = async () => {
   const sortedauthors = [...authors].reverse();
   return {
     props: { authors: [...sortedauthors] },
-    revalidate: 60 * 60,
+    revalidate: 60,
   };
 };
 export default Authors;
