@@ -51,7 +51,7 @@ export const getStaticProps = async () => {
     } = await client.query({ query: AUTHORS_QUERY });
     return {
       props: { posts: [...sortedPosts], authors },
-      revalidate: 60 * 60, //1h
+      revalidate: 60,
     };
   } catch (error) {
     console.log(error);
