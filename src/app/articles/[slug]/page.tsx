@@ -1,13 +1,7 @@
-'use client';
-
-export const revalidate = 3600;
-
 import Dynamic from 'next/dynamic';
-import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Head from 'next/head';
 import Link from 'next/link';
-import { useParams, usePathname } from 'next/navigation';
 
 //mui
 import { Box, Container, Grid } from '@mui/material';
@@ -23,35 +17,22 @@ const BreadComponent = Dynamic(
     ssr: false,
   }
 );
-import { ReactMarkdown } from 'react-markdown/lib/react-markdown';
-import { usePost } from '@/helper/graphql/useQueries';
+import Markdown from '@/components/modules/Markdown';
 
-export default function Post() {
-  const pathname = usePathname();
-  const { slug } = useParams();
-  const {
-    data: { post },
-    error,
-  } = usePost({ Slug: slug });
+import { getPost } from '@/helper/graphql/useQueries';
+
+async function Post({ slug }: any) {
+  const { post } = await getPost(slug);
   const {
     title,
     author,
     ogImage,
     content: { text, markdown },
   } = post;
-
-  const [ogUrl, setOgUrl] = useState('');
-
-  useEffect(() => {
-    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
-    setOgUrl(`${baseUrl}${pathname}`);
-  }, [pathname]);
   return post.title ? (
     <>
       <Head>
-        <meta property="og:title" content={`${author.name}|${title}`} />
         <meta property="og:type" content="article" />
-        <meta property="og:url" content={ogUrl} />
         <meta property="og:image" content={ogImage.url} />
         <title>{`${author.name}|${title}`}</title>
         <meta name="description" content={text.toString().split('\n')[0]} />
@@ -112,14 +93,13 @@ export default function Post() {
           </Box>
         </Box>
         <div
-          // dangerouslySetInnerHTML={{ __html: html }}
           style={{
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'start',
           }}
         >
-          <ReactMarkdown>{markdown}</ReactMarkdown>
+          <Markdown markdown={markdown} />
         </div>
       </Container>
     </>
@@ -127,3 +107,4 @@ export default function Post() {
     ''
   );
 }
+export default Post;

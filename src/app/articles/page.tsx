@@ -1,7 +1,3 @@
-'use client';
-
-export const revalidate = 3600;
-
 import Dynamic from 'next/dynamic';
 import Head from 'next/head';
 
@@ -20,12 +16,11 @@ const BreadComponent = Dynamic(
   }
 );
 import ArticlesTemplate from '@/components/templates/ArticlesTemplate';
-import { useAuthors, usePosts } from '@/helper/graphql/useQueries';
+import { getAuthors, getPosts } from '@/helper/graphql/useQueries';
 
-function Posts() {
-  const { data: PostsData } = usePosts();
-  const { data: AuthorsData } = useAuthors();
-  console.log({ PostsData, AuthorsData });
+async function Posts() {
+  const PostsData = await getPosts();
+  const AuthorsData = await getAuthors();
   return PostsData.posts.length ? (
     <>
       <Head>

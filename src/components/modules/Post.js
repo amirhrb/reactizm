@@ -1,3 +1,5 @@
+'use client';
+
 import { useEffect, useState } from 'react';
 //next stuff
 import Link from 'next/link';

@@ -1,9 +1,3 @@
-'use client';
-
-export const dynamic = 'force-dynamic';
-
-import { useSuspenseQuery as useSuspenseQueryMain } from '@apollo/experimental-nextjs-app-support/ssr';
-import { DocumentNode, OperationVariables } from '@apollo/client';
 import {
   AUTHORS_QUERY,
   AUTHOR_QUERY,
@@ -11,23 +5,54 @@ import {
   POST_QUERY,
 } from './queries';
 
-export function useSuspenseQuery(query: DocumentNode, options?: any) {
-  return useSuspenseQueryMain<any, OperationVariables>(query, options);
-}
+const uri = process.env.HYGRAPH_URI as string;
 
-export function useAuthors() {
-  const { data, error } = useSuspenseQuery(AUTHORS_QUERY);
-  return { data, error };
+const headers = {
+  'content-type': 'application/json',
+};
+const method = 'POST';
+
+export async function getAuthors() {
+  const res = await fetch(uri, {
+    method,
+    headers,
+    body: JSON.stringify({
+      query: AUTHORS_QUERY,
+      variables: {},
+    }),
+  });
+  return res.json();
 }
-export function usePosts() {
-  const { data, error } = useSuspenseQuery(POSTS_QUERY);
-  return { data, error };
+export async function getPosts() {
+  const res = await fetch(uri, {
+    method,
+    headers,
+    body: JSON.stringify({
+      query: POSTS_QUERY,
+      variables: {},
+    }),
+  });
+  return res.json();
 }
-export function useAuthor(variables: any) {
-  const { data, error } = useSuspenseQuery(AUTHOR_QUERY, variables);
-  return { data, error };
+export async function getAuthor(slug: string) {
+  const res = await fetch(uri, {
+    method,
+    headers,
+    body: JSON.stringify({
+      query: AUTHOR_QUERY,
+      variables: { Slug: slug },
+    }),
+  });
+  return res.json();
 }
-export function usePost(variables: any) {
-  const { data, error } = useSuspenseQuery(POST_QUERY, variables);
-  return { data, error };
+export async function getPost(slug: string) {
+  const res = await fetch(uri, {
+    method,
+    headers,
+    body: JSON.stringify({
+      query: POST_QUERY,
+      variables: { Slug: slug },
+    }),
+  });
+  return res.json();
 }

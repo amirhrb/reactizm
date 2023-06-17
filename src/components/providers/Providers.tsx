@@ -1,6 +1,3 @@
-//apollo client
-import { ApolloWrapper } from '@/helper/graphql/apollo-wrapper';
-
 //mui theme
 import Theme from '@/helper/MUI/Theme';
 
@@ -20,9 +17,7 @@ const Providers = ({ children }: { children: ReactNode }) => {
           },
         }}
       >
-        <DrawerContextProvider>
-          <ApolloWrapper>{children}</ApolloWrapper>
-        </DrawerContextProvider>
+        <DrawerContextProvider>{children}</DrawerContextProvider>
       </ClerkProvider>
     </Theme>
   );

@@ -1,5 +1,5 @@
 import Hero from '@/components/templates/Hero';
-
-export default function Home() {
+async function Home() {
   return <Hero />;
 }
+export default Home;

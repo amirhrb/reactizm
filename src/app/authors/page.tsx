@@ -1,7 +1,3 @@
-'use client';
-
-export const revalidate = 3600;
-
 import Head from 'next/head';
 import Dynamic from 'next/dynamic';
 //MUI
@@ -10,7 +6,7 @@ import { Box, Grid } from '@mui/material';
 //loading skelet
 import AuthorSkeleton from '@/components/modules/loaders/Author';
 import BreadComponentSkeleton from '@/components/modules/loaders/BreadComponent';
-import { useAuthors } from '@/helper/graphql/useQueries';
+import { getAuthors } from '@/helper/graphql/useQueries';
 
 //components
 const Author = Dynamic(() => import('@/components/modules/Author'), {
@@ -25,9 +21,8 @@ const BreadComponent = Dynamic(
   }
 );
 
-function Authors() {
-  const { data, error } = useAuthors();
-  if (error) return new Error();
+async function Authors() {
+  const data = await getAuthors();
   if (data) {
     return (
       <>
