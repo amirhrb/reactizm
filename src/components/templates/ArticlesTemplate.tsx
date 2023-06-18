@@ -1,6 +1,8 @@
+'use client';
+
 import dynamic from 'next/dynamic';
 //mui
-import { Grid } from '@mui/material';
+import Grid from '../MUI_COMPONENTS/Grid';
 
 //skeleton for loading
 import AuthorSideSkeleton from '../modules/loaders/AuthorSide';
@@ -16,7 +18,7 @@ const Post = dynamic(() => import('../modules/Post'), {
   ssr: false,
 });
 
-function ArticlesTemplate({ posts, authors }) {
+function ArticlesTemplate({ posts, authors }: any) {
   return (
     <Grid
       container
@@ -56,7 +58,7 @@ function ArticlesTemplate({ posts, authors }) {
             },
           }}
         >
-          {posts.map((post) => (
+          {posts.map((post: any) => (
             <Post post={post} key={post.id} />
           ))}
         </Grid>

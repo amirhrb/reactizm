@@ -1,7 +1,8 @@
 import Head from 'next/head';
 import Dynamic from 'next/dynamic';
 //MUI
-import { Box, Grid } from '@mui/material';
+import Box from '@/components/MUI_COMPONENTS/Box';
+import Grid from '@/components/MUI_COMPONENTS/Grid';
 
 //loading skelet
 import AuthorSkeleton from '@/components/modules/loaders/Author';

@@ -2,7 +2,7 @@ import Dynamic from 'next/dynamic';
 import Head from 'next/head';
 
 //mui
-import { Box } from '@mui/material';
+import Box from '@/components/MUI_COMPONENTS/Box';
 
 //skeleton loaders
 import BreadComponentSkeleton from '@/components/modules/loaders/BreadComponent';

@@ -1,8 +1,9 @@
 //elements
-import AuthorsInCol from '../../elements/loaders/AuthorsInCol';
+import AuthorsInCol from '@/components/elements/loaders/AuthorsInCol';
 
 //MUI
-import { Box, Grid } from '@mui/material';
+import Grid from '@/components/MUI_COMPONENTS/Grid';
+import Box from '@/components/MUI_COMPONENTS/Box';
 
 function AuthorSide() {
   return (

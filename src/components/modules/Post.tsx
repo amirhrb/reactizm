@@ -10,22 +10,19 @@ import { useRouter } from 'next/router';
 import { RWebShare } from 'react-web-share';
 
 //mui
-import {
-  Button,
-  Card,
-  CardActions,
-  IconButton,
-  Typography,
-  Box,
-  useTheme,
-} from '@mui/material';
+import IconButton from '../MUI_COMPONENTS/IconButton';
+import Box from '../MUI_COMPONENTS/Box';
+import Typography from '../MUI_COMPONENTS/Typography';
+import Button from '../MUI_COMPONENTS/Button';
+import { Card, CardActions, useTheme } from '@mui/material';
 import ShareIcon from '@mui/icons-material/Share';
-
+//3rd p p
+import { toast } from 'react-hot-toast';
 //css
 import styles from './styles/Post.module.scss';
 import Head from 'next/head';
 
-function Post({ post }) {
+function Post({ post }: any) {
   const router = useRouter();
   const theme = useTheme();
   const [ogUrl, setOgUrl] = useState('');
@@ -120,9 +117,9 @@ function Post({ post }) {
                 url: `${ogUrl}/${post.slug}`,
                 title: post.author.name,
               }}
-              onClick={() => console.log('shared successfully!')}
+              onClick={() => toast.loading('در حال پردازش...')}
             >
-              <IconButton color="neutral" size="medium">
+              <IconButton size="medium">
                 <ShareIcon />
               </IconButton>
             </RWebShare>

@@ -1,5 +1,6 @@
 //mui
-import { Box, Breadcrumbs } from '@mui/material';
+import Box from '@/components/MUI_COMPONENTS/Box';
+import Breadcrumbs from '@/components/MUI_COMPONENTS/Breadcrumbs';
 
 function BreadComponent() {
   return (

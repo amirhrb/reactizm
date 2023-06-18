@@ -1,12 +1,15 @@
-import { Divider, Grid, Tooltip, Typography } from '@mui/material';
 import Image from 'next/image';
 import Link from 'next/link';
-import React from 'react';
 
-const AuthorsInCol = ({ authors }) => {
+//MUI
+import Grid from '../MUI_COMPONENTS/Grid';
+import Typography from '../MUI_COMPONENTS/Typography';
+import { Divider, Tooltip } from '@mui/material';
+
+const AuthorsInCol = ({ authors }: any) => {
   return (
     <>
-      {authors.map((author, index) => (
+      {authors.map((author: any, index: any) => (
         <Grid item key={author.id}>
           <Grid
             container

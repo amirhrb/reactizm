@@ -4,7 +4,9 @@ import Head from 'next/head';
 import Link from 'next/link';
 
 //mui
-import { Box, Container, Grid } from '@mui/material';
+import Box from '@/components/MUI_COMPONENTS/Box';
+import Container from '@/components/MUI_COMPONENTS/Container';
+import Grid from '@/components/MUI_COMPONENTS/Grid';
 
 //skeleton loaders
 import BreadComponentSkeleton from '@/components/modules/loaders/BreadComponent';

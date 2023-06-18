@@ -4,12 +4,15 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 //mui
-import { Box, Grid, Tooltip, Typography, Zoom, useTheme } from '@mui/material';
+import { Tooltip, Zoom, useTheme } from '@mui/material';
+import Typography from '../MUI_COMPONENTS/Typography';
+import Box from '../MUI_COMPONENTS/Box';
+import Grid from '../MUI_COMPONENTS/Grid';
 
 //func
 import { timeFunc } from '../../helper/utils/functions';
 
-function Author({ author }) {
+function Author({ author }: any) {
   const theme = useTheme();
   return (
     <Grid
@@ -32,7 +35,7 @@ function Author({ author }) {
       {/* profile */}
       <Grid
         container
-        sx={theme => ({
+        sx={(theme: any) => ({
           backgroundColor: theme.palette.profile.main,
           // marginBottom: 1,
           py: '5px',
@@ -168,7 +171,7 @@ function Author({ author }) {
           }
           wrap="nowrap"
         >
-          {author.posts.map(post => (
+          {author.posts.map((post: any) => (
             <Grid
               item
               key={post.id}

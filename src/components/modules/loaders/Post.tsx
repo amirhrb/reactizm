@@ -1,3 +1,5 @@
+'use Client';
+
 //mui
 import { Card, CardActions, Box } from '@mui/material';
 

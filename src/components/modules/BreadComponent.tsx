@@ -6,7 +6,9 @@ import { usePathname } from 'next/navigation';
 
 //mui
 import HomeIcon from '@mui/icons-material/Home';
-import { Breadcrumbs, Button, styled } from '@mui/material';
+import { styled } from '@mui/material';
+import Button from '../MUI_COMPONENTS/Button';
+import Breadcrumbs from '../MUI_COMPONENTS/Breadcrumbs';
 
 //styles
 import styles from './styles/Breadcrumbs.module.scss';

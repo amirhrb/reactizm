@@ -1,5 +1,6 @@
 //mui
-import { Box, Grid } from '@mui/material';
+import Box from '@/components/MUI_COMPONENTS/Box';
+import Grid from '@/components/MUI_COMPONENTS/Grid';
 
 function Author() {
   return (

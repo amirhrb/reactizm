@@ -1,3 +1,5 @@
+'use client';
+
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
 
@@ -9,9 +11,10 @@ const AuthorsInCol = dynamic(() => import('../elements/AuthorsInCol'), {
 });
 
 //MUI
-import { Grid, Typography } from '@mui/material';
+import Grid from '../MUI_COMPONENTS/Grid';
+import Typography from '../MUI_COMPONENTS/Typography';
 
-function AuthorSide({ authors }) {
+function AuthorSide({ authors }: any) {
   return (
     <div
       style={{

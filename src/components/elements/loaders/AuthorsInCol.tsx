@@ -1,5 +1,6 @@
-import { Box, Divider, Grid } from '@mui/material';
-import React from 'react';
+import { Divider } from '@mui/material';
+import Grid from '@/components/MUI_COMPONENTS/Grid';
+import Box from '@/components/MUI_COMPONENTS/Box';
 
 const AuthorsInCol = () => {
   return (
