@@ -10,7 +10,7 @@ const renderOptions = {
     [BLOCKS.EMBEDDED_ASSET]: (node: any, children: any) => {
       if (node.data.target.fields.file.contentType.includes('video')) {
         return (
-          <div className="w-full max-w-md m-4 self-center self-center">  
+          <div className="w-full max-w-md m-4 self-center flex items-center justify-center">  
               <VideoPlayer
                 url={`https:${node.data.target.fields.file.url}`}
                 controls
