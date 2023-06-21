@@ -10,17 +10,19 @@ const renderOptions = {
     [BLOCKS.EMBEDDED_ASSET]: (node: any, children: any) => {
       if (node.data.target.fields.file.contentType.includes('video')) {
         return (
-          <VideoPlayer
-            url={`https:${node.data.target.fields.file.url}`}
-            controls
-            style={{
-              width: '100%',
-              maxWidth: '32rem',
-              borderRadius: '0.75rem',
-              margin: '1rem',
-              alignSelf: 'center',
-            }}
-          />
+          <div className="w-full max-w-md m-4 self-center">  
+              <VideoPlayer
+                url={`https:${node.data.target.fields.file.url}`}
+                controls
+                width="100%"
+                style={{
+                  width: '100%',
+                  borderRadius: '0.75rem',
+                  margin: '1rem',
+                  alignSelf: 'center',
+                }}
+              />
+          </div>
         );
       }
       if (node.data.target.fields.file.contentType.includes('image')) {
