@@ -1,5 +1,10 @@
 import { useEffect, useState } from 'react';
 
+type StateTypes = {
+  width: number | null;
+  height: number | null;
+};
+
 export default function useWindowDimensions() {
   function getWindowDimensions() {
     const { innerWidth: width, innerHeight: height } = window;
@@ -8,7 +13,7 @@ export default function useWindowDimensions() {
       height,
     };
   }
-  const [windowDimensions, setWindowDimensions] = useState({
+  const [windowDimensions, setWindowDimensions] = useState<StateTypes>({
     width: null,
     height: null,
   });

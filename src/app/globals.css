@@ -1,8 +1,53 @@
 @import '../../public/fonts/fonts.css';
+@import './variables.css';
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  :root {
+    --color-background: 255, 255, 255;
+    --color-text: 0, 0, 0;
+    --color-background-paper: 230, 230, 230;
+    --color-primary: 255, 179, 0;
+    --color-primary-light: 255, 194, 51;
+    --color-primary-contrastcolor: 0, 0, 0, 0.87;
+    --color-secondary: 26, 0, 144;
+    --color-secondary-light: 71, 51, 166;
+    --color-secondary-contrastcolor: 255, 255, 255;
+    --color-error: 244, 67, 54;
+    --color-error-light: 229, 115, 115;
+    --color-error-contrastcolor: 255, 255, 255;
+    --color-warning: 33, 150, 243;
+    --color-warning-light: 77, 171, 245;
+    --color-warning-contrastcolor: 255, 255, 255;
+    --color-info: 41, 182, 246;
+    --color-info-light: 79, 195, 247;
+    --color-info-contrastcolor: 0, 0, 0, 0.87;
+    --color-success: 102, 187, 106;
+    --color-success-light: 129, 199, 132;
+    --color-success-contrastcolor: 0, 0, 0, 0.87;
+    --color-divider: 255, 255, 255;
+    --color-neutral: 100, 116, 139;
+    --color-neutral-contrastcolor: 255, 255, 255;
+    --color-profile: 178, 125, 0;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --color-background: 0, 0, 0;
+      --color-text: 255, 255, 255;
+      --color-background-paper: 32, 32, 32;
+      --color-primary: 178, 125, 0;
+      --color-secondary: 18, 0, 100;
+      --color-error: 211, 47, 47;
+      --color-warning: 23, 105, 170;
+      --color-info: 2, 136, 209;
+      --color-success: 56, 142, 60;
+      --color-divider: 0, 0, 0;
+    }
+  }
+}
 
 * {
   box-sizing: border-box;

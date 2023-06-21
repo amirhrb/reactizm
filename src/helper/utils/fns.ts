@@ -2,9 +2,16 @@
 import { formatDistanceToNow } from 'date-fns';
 import { faIR } from 'date-fns/locale';
 
-export const timeFunc = (posts) => {
-  const dates = posts.map((post) => post.publishDate);
-  const lastDate = new Date(dates.sort((a, b) => new Date(b) - new Date(a))[0]);
+export const timeFunc = (posts: any[]) => {
+  const dates = posts.map(
+    (post: { fields: { publishDate: any } }) => post.fields.publishDate
+  );
+  const lastDate = new Date(
+    dates.sort(
+      (a: string | number | Date, b: string | number | Date) =>
+        +new Date(b) - +new Date(a)
+    )[0]
+  );
   return formatDistanceToNow(lastDate, { locale: faIR });
 };
 

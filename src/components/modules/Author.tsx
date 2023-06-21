@@ -1,83 +1,109 @@
-'use client';
+// 'use client';
 
 import Image from 'next/image';
 import Link from 'next/link';
+// import { useEffect, useState } from 'react';
 
 //mui
-import { Tooltip, Zoom, useTheme } from '@mui/material';
+// import { useTheme } from '@mui/material';
+// import Zoom from '../MUI_COMPONENTS/Zoom';
+// import { Tooltip } from '@mui/material';
 import Typography from '../MUI_COMPONENTS/Typography';
 import Box from '../MUI_COMPONENTS/Box';
 import Grid from '../MUI_COMPONENTS/Grid';
 
-//func
-import { timeFunc } from '../../helper/utils/functions';
+//loadere
+// import AuthorSkeleton from '@/components/modules/loaders/Author';
 
-function Author({ author }: any) {
-  const theme = useTheme();
-  return (
-    <Grid
-      container
-      sx={{
-        width: 300,
-        minHeight: 175,
-        mt: 2,
-        boxShadow:
-          theme.palette.mode === 'dark'
-            ? '2px 2px 8px #121212'
-            : '2px 2px 8px #cecece',
-        borderRadius: 6,
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-      }}
-    >
-      {/* profile */}
+// import { getAuthorBySlug } from '@/helper/Contentful/queries';
+
+//func
+import { timeFunc } from '@/helper/utils/fns';
+
+async function Author({ item }: any) {
+  // const theme: any = useTheme();
+  // const [loading, setLoading] = useState(true);
+  // const [data, setData] = useState<any>({});
+  // useEffect(() => {
+  const {
+    fields: { description, avatar, name, posts, slug, field },
+    sys: { id, createdAt, updatedAt },
+  } = item;
+  const data = {
+    description,
+    avatar,
+    name,
+    posts,
+    slug,
+    field,
+    id,
+    createdAt,
+    updatedAt,
+  };
+  // }, []);
+  // if (loading) return <AuthorSkeleton />;
+  if (data)
+    return (
       <Grid
         container
-        sx={(theme: any) => ({
-          backgroundColor: theme.palette.profile.main,
-          // marginBottom: 1,
-          py: '5px',
-          width: '100%',
+        sx={{
+          width: 300,
+          minHeight: 175,
+          mt: 2,
+          borderRadius: 6,
           display: 'flex',
-          flexDirection: 'row',
-          alignItems: 'center',
+          flexDirection: 'column',
           flexWrap: 'nowrap',
-          justifyContent: 'space-evenly',
-          borderRadius: '24px 24px 24px 0',
-        })}
+          alignItems: 'center',
+        }}
+        className="col-span-1 shadow-md"
       >
+        {/* profile */}
         <Grid
-          item
-          xs={6}
-          sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}
+          container
+          sx={{
+            // marginBottom: 1,
+            py: '5px',
+            width: '100%',
+            display: 'flex',
+            flexDirection: 'row',
+            alignItems: 'center',
+            flexWrap: 'nowrap',
+            justifyContent: 'space-evenly',
+            borderRadius: '24px 24px 24px 0',
+          }}
+          className="bg-profile"
         >
-          <Grid item sx={{ display: 'flex', alignItems: 'center' }}>
-            <Link href={`authors/${author.slug}`}>
-              <Image
-                src={author.avatar.url}
-                alt={author.avatar.filename || 'avatar'}
-                width={45}
-                height={45}
-                style={{ borderRadius: '50%', cursor: 'pointer' }}
-              />
-            </Link>
-          </Grid>
           <Grid
             item
-            sx={{
-              display: 'flex',
-              flexDirection: 'column',
-              marginRight: 0.2,
-            }}
+            xs={6}
+            sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}
           >
-            <Tooltip
-              title={author.name}
-              placement="top-end"
-              TransitionComponent={Zoom}
-              arrow
+            <Grid item sx={{ display: 'flex', alignItems: 'center' }}>
+              <Link href={`authors/${slug}`}>
+                <Image
+                  src={'https:' + data.avatar.fields.file.url}
+                  alt={data.avatar.fields.title}
+                  width={45}
+                  height={45}
+                  style={{ borderRadius: '50%', cursor: 'pointer' }}
+                />
+              </Link>
+            </Grid>
+            <Grid
+              item
+              sx={{
+                display: 'flex',
+                flexDirection: 'column',
+                marginRight: 0.2,
+              }}
             >
+              {/* <Tooltip
+                title={data.name}
+                placement="top-end"
+                TransitionComponent={Zoom}
+                arrow
+              > */}
               <Typography
                 variant="h4"
                 sx={{
@@ -94,113 +120,94 @@ function Author({ author }: any) {
                 }}
               >
                 <Link
-                  href={`authors/${author.slug}`}
+                  href={`authors/${data.slug}`}
                   style={{
                     height: '100%',
                     position: 'relative',
                   }}
                 >
-                  {author.name}
+                  {data.name}
                 </Link>
               </Typography>
-            </Tooltip>
+              {/* </Tooltip> */}
+              <Typography
+                variant="caption"
+                sx={{
+                  fontWeight: 'light',
+                }}
+              >
+                {data.field}
+              </Typography>
+            </Grid>
+          </Grid>
+          <Grid
+            item
+            xs={6}
+            sx={{
+              display: 'flex',
+              flexDirection: 'column',
+              maxWidth: '110px',
+              overflow: 'hidden',
+            }}
+          >
             <Typography
               variant="caption"
               sx={{
                 fontWeight: 'light',
               }}
             >
-              {author.field}
+              تعداد مقالات: {data.posts.length}
+            </Typography>
+            <Typography
+              variant="caption"
+              sx={{
+                fontWeight: 'light',
+                overflow: 'hidden',
+                textOverflow: 'ellipsis',
+                display: 'inline-block',
+                whiteSpace: 'nowrap',
+              }}
+            >
+              آخرین فعالیت: {timeFunc(data.posts)} پیش
             </Typography>
           </Grid>
         </Grid>
-        <Grid
-          item
-          xs={6}
+        {/* profile */}
+        {/* posts part */}
+        <Box
           sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            maxWidth: '110px',
-            overflow: 'hidden',
+            width: '95%',
+            my: 1,
+            px: 1,
+            minHeight: '100px',
+            height: '100%',
+            overflowX: 'auto',
+            flexGrow: 1,
           }}
         >
-          <Typography
-            variant="caption"
-            sx={{
-              fontWeight: 'light',
-            }}
-          >
-            تعداد مقالات: {author.posts.length}
-          </Typography>
-          <Typography
-            variant="caption"
-            sx={{
-              fontWeight: 'light',
-              overflow: 'hidden',
-              textOverflow: 'ellipsis',
-              display: 'inline-block',
-              whiteSpace: 'nowrap',
-            }}
-          >
-            آخرین فعالیت: {timeFunc(author.posts)} پیش
-          </Typography>
-        </Grid>
-      </Grid>
-      {/* profile */}
-      {/* posts part */}
-      <Box
-        sx={{
-          width: '94%',
-          minHeight: '100px',
-          height: '100%',
-          my: 0.5,
-          overflowX: 'auto',
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}
-      >
-        <Grid
-          container
-          width="100%"
-          direction="row"
-          alignItems="center"
-          spacing={1}
-          justifyContent={
-            author.posts.length > 3 ? 'flex-start' : 'space-evenly'
-          }
-          wrap="nowrap"
-        >
-          {author.posts.map((post: any) => (
-            <Grid
-              item
-              key={post.id}
-              sx={{
-                // minWidth: 80,
-                // minHeight: 80,
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-              }}
-            >
-              <Link href={`/articles/${post.slug}`}>
+          <div className="flex justify-center gap-x-2 my-[inherit] w-max min-w-full">
+            {data.posts.map((post: any) => (
+              <Link
+                href={`/articles/${post.fields.slug}`}
+                key={post.sys.id}
+                className="w-[85px]"
+              >
                 <Image
-                  src={post.ogImage.url}
+                  src={'https:' + post.fields.ogImage.fields.file.url}
                   width={85}
                   height={85}
-                  alt="post image"
+                  alt={post.fields.ogImage.fields.title}
                   priority
-                  style={{ borderRadius: '15px' }}
+                  className="rounded-2xl w-[85px] h-[85px]"
                 />
               </Link>
-            </Grid>
-          ))}
-        </Grid>
-      </Box>
+            ))}
+          </div>
+        </Box>
 
-      {/* posts part */}
-    </Grid>
-  );
+        {/* posts part */}
+      </Grid>
+    );
 }
 
 export default Author;

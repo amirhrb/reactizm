@@ -1,19 +1,19 @@
+export const revalidate = 60;
+export const fetchCache = 'default-cache';
+
 import Head from 'next/head';
 import Dynamic from 'next/dynamic';
 //MUI
 import Box from '@/components/MUI_COMPONENTS/Box';
 import Grid from '@/components/MUI_COMPONENTS/Grid';
 
-//loading skelet
+// loading skelet
 import AuthorSkeleton from '@/components/modules/loaders/Author';
 import BreadComponentSkeleton from '@/components/modules/loaders/BreadComponent';
-import { getAuthors } from '@/helper/graphql/useQueries';
+import { getAllAuthors } from '@/helper/Contentful/queries';
+import AuthorsTemplate from '@/components/templates/AuthorsTemplate';
 
 //components
-const Author = Dynamic(() => import('@/components/modules/Author'), {
-  loading: () => <AuthorSkeleton />,
-  ssr: false,
-});
 const BreadComponent = Dynamic(
   () => import('@/components/modules/BreadComponent'),
   {
@@ -22,9 +22,14 @@ const BreadComponent = Dynamic(
   }
 );
 
-async function Authors() {
-  const data = await getAuthors();
-  if (data) {
+async function Authors({ searchParams }: { searchParams?: any }) {
+  const { page, limit } = searchParams || {};
+  const res: any = await getAllAuthors(page, limit);
+  if (res.items.length) {
+    const totalPages = Math.ceil(res.total / res.limit);
+    const lastPage = res.skip / res.limit;
+    const currentPage = lastPage + 1;
+    const nextPage = lastPage + 2;
     return (
       <>
         <Head>
@@ -36,25 +41,19 @@ async function Authors() {
         </Head>
         <Box sx={{ minHeight: '85dvh' }}>
           <BreadComponent />
-          <Grid
-            container
-            direction="column"
-            sx={{
-              overflow: 'auto',
-              mt: 1,
-              pb: 1,
-              alignItems: { xs: 'center', md: 'space-between' },
-              justifyContent: 'space-evenly',
-            }}
-            rowSpacing={2}
-          >
-            {data.authors.map((author: { id: any }) => (
-              <Author author={author} key={author.id} />
-            ))}
-          </Grid>
+          <div className="grid grid-cols-1 sm:grid-cols-2 justify-items-center">
+            <AuthorsTemplate data={res} />
+
+            {totalPages > 1 ? <span>total pages: {totalPages}</span> : ''}
+            {lastPage > 0 ? <span>last page: {lastPage}</span> : ''}
+            {totalPages > 1 ? <span>current page: {currentPage}</span> : ''}
+            {totalPages > currentPage ? <span>next page: {nextPage}</span> : ''}
+          </div>
         </Box>
       </>
     );
+  } else {
+    return new Error();
   }
 }
 export default Authors;

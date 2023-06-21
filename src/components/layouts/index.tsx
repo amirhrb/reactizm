@@ -15,11 +15,12 @@ import useWindowDimensions from '@/helper/utils/useWindowDimentions';
 //mui
 import { Box, Container } from '@mui/material';
 
-const footerIsAllowed = ['/articles', '/authors', '/sign-in', '/sign-up'];
+const footerIsAllowed = ['articles', 'authors', 'sign-in', 'sign-up'];
 
 export default function Layout({ children }: any) {
   const { height } = useWindowDimensions();
   const pathname = usePathname();
+  const mainPath = pathname.split('/')[1];
   return (
     <Box
       sx={{
@@ -52,7 +53,7 @@ export default function Layout({ children }: any) {
         </Container>
       )}
 
-      {footerIsAllowed.includes(pathname) ? <Footer /> : ''}
+      {footerIsAllowed.includes(mainPath) ? <Footer /> : ''}
     </Box>
   );
 }

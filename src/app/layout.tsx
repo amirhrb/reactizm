@@ -5,6 +5,7 @@ import Providers from '@/components/providers/Providers';
 //font
 import { yekan } from '@/public/fonts/yekan';
 import { Metadata } from 'next';
+import ConsoleComponent from '@/helper/utils/ConsoleComponent';
 
 export const metadata: Metadata = {
   title: 'آموزش نکات برنامه نویسی|Reactizm',
@@ -21,6 +22,8 @@ export default function RootLayout({
       <body className={yekan.className}>
         <Providers>
           <Layout>{children}</Layout>
+
+          <ConsoleComponent />
         </Providers>
       </body>
     </html>

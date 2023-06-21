@@ -1,45 +1,57 @@
-import Dynamic from 'next/dynamic';
-import Head from 'next/head';
+// import Dynamic from 'next/dynamic';
+// import Head from 'next/head';
 
-//mui
-import Box from '@/components/MUI_COMPONENTS/Box';
+import Link from 'next/link';
 
-//skeleton loaders
-import BreadComponentSkeleton from '@/components/modules/loaders/BreadComponent';
+// //mui
+// import Box from '@/components/MUI_COMPONENTS/Box';
 
-//components
-const BreadComponent = Dynamic(
-  () => import('@/components/modules/BreadComponent'),
-  {
-    loading: () => <BreadComponentSkeleton />,
-    ssr: false,
-  }
-);
-import ArticlesTemplate from '@/components/templates/ArticlesTemplate';
-import { getAuthors, getPosts } from '@/helper/graphql/useQueries';
+// //skeleton loaders
+// import BreadComponentSkeleton from '@/components/modules/loaders/BreadComponent';
 
-async function Posts() {
-  const PostsData = await getPosts();
-  const AuthorsData = await getAuthors();
-  return PostsData.posts.length ? (
-    <>
-      <Head>
-        <title>مقالات و نکات برنامه‌نویسی</title>
-        <meta
-          name="description"
-          content="مقالات سایت برنامه نویسی ریکتیزم reactizm"
-        />
-      </Head>
-      <Box>
-        <BreadComponent />
-        <ArticlesTemplate
-          authors={AuthorsData.authors}
-          posts={PostsData.posts}
-        />
-      </Box>
-    </>
-  ) : (
-    ''
+// //components
+// const BreadComponent = Dynamic(
+//   () => import('@/components/modules/BreadComponent'),
+//   {
+//     loading: () => <BreadComponentSkeleton />,
+//     ssr: false,
+//   }
+// );
+// import ArticlesTemplate from '@/components/templates/ArticlesTemplate';
+// import { getAuthors, getPosts } from '@/helper/graphql/useQueries';
+
+// async function Posts() {
+//   const PostsData = await getPosts();
+//   const AuthorsData = await getAuthors();
+//   return PostsData.posts.length ? (
+//     <>
+//       <Head>
+//         <title>مقالات و نکات برنامه‌نویسی</title>
+//         <meta
+//           name="description"
+//           content="مقالات سایت برنامه نویسی ریکتیزم reactizm"
+//         />
+//       </Head>
+//       <Box>
+//         <BreadComponent />
+//         <ArticlesTemplate
+//           authors={AuthorsData.authors}
+//           posts={PostsData.posts}
+//         />
+//       </Box>
+//     </>
+//   ) : (
+//     ''
+//   );
+// }
+// export default Posts;
+
+const page = () => {
+  return (
+    <div>
+      <Link href="/articles/blogging-story">post link</Link>
+    </div>
   );
-}
-export default Posts;
+};
+
+export default page;
