@@ -137,7 +137,7 @@ export const getStaticPaths = async () => {
   const paths = await getAllPaths(posts);
   return {
     paths: paths,
-    fallback: false,
+    fallback: true,
   };
 };
 export const getStaticProps = async (ctx) => {
@@ -147,6 +147,11 @@ export const getStaticProps = async (ctx) => {
       Slug: ctx.params.slug,
     },
   });
+  if(!post){
+    return {
+      notFound: true,
+    }
+  }
   return {
     props: { ...post },
     revalidate:60,
