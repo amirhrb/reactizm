@@ -147,11 +147,6 @@ export const getStaticProps = async (ctx) => {
       Slug: ctx.params.slug,
     },
   });
-  if(!post){
-    return {
-      notFound: true,
-    }
-  }
   return {
     props: { ...post },
     revalidate:60,
