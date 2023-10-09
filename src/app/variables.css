@@ -23,7 +23,7 @@
   --mui-divider: rgba(255, 255, 255, 0.12);
   --mui-neutral: rgb(100, 116, 139);
   --mui-neutral-contrastcolor: rgb(255, 255, 255);
-  --mui-profile: rgba(178, 125, 0, 0.11);
+  --mui-profile: rgba(178, 125, 0, 0.12);
 }
 @media (prefers-color-scheme: dark) {
   :root {
@@ -37,5 +37,6 @@
     --mui-info: rgb(2, 136, 209);
     --mui-success: rgb(56, 142, 60);
     --mui-divider: rgba(0, 0, 0, 0.12);
+    --mui-profile: rgba(180, 127, 2, 0.48);
   }
 }

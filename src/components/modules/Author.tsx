@@ -62,7 +62,6 @@ async function Author({ item }: any) {
         <Grid
           container
           sx={{
-            // marginBottom: 1,
             py: '5px',
             width: '100%',
             display: 'flex',
@@ -72,7 +71,7 @@ async function Author({ item }: any) {
             justifyContent: 'space-evenly',
             borderRadius: '24px 24px 24px 0',
           }}
-          className="bg-profile"
+          className="bg-profile/[0.12]"
         >
           <Grid
             item

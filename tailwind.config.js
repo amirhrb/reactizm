@@ -1,4 +1,9 @@
 /** @type {import('tailwindcss').Config} */
+
+function colorGenerate(variable) {
+  return `rgba(var(${variable}), <alpha-value>)`;
+}
+
 module.exports = {
   content: [
     './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
@@ -8,31 +13,31 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        background: 'rgb(var(--color-background)',
-        text: 'rgb(var(--color-text)',
-        paper: 'rgb(var(--color-background-paper))',
-        primary: 'rgb(var(--color-primary)',
-        primaryLight: 'rgb(var(--color-primary-light))',
-        primaryContranst: 'rgb(var(--color-primary-contrastcolor))',
-        secondary: 'rgb(var(--color-secondary)',
-        secondaryLight: 'rgb(var(--color-secondary-light))',
-        secondaryContranst: 'rgb(var(--color-secondary-contrastcolor))',
-        error: 'rgb(var(--color-error))',
-        errorLight: 'rgb(var(--color-error-light))',
-        errorContranst: 'rgb(var(--color-error-contrastcolor))',
-        warning: 'rgb(var(--color-warning))',
-        warningLight: 'rgb(var(--color-warning-light))',
-        warningContranst: 'rgb(var(--color-warning-contrastcolor))',
-        info: 'rgb(var(--color-info))',
-        infoLight: 'rgb(var(--color-info-light))',
-        infoContranst: 'rgb(var(--color-info-contrastcolor))',
-        success: 'rgb(var(--color-success))',
-        successLight: 'rgb(var(--color-success-light))',
-        successContranst: 'rgb(var(--color-success-contrastcolor))',
-        divider: 'rgba(var(--color-divider),0.12)',
-        neutral: 'rgb(var(--color-neutral))',
-        neutralContranst: 'rgb(var(--color-neutral-contrastcolor))',
-        profile: 'rgb(var(--color-profile))',
+        background: colorGenerate('--color-background'),
+        text: colorGenerate('--color-text'),
+        paper: colorGenerate('--color-background-paper'),
+        primary: colorGenerate('--color-primary'),
+        primaryLight: colorGenerate('--color-primary-light'),
+        primaryContranst: colorGenerate('--color-primary-contrastcolor'),
+        secondary: colorGenerate('--color-secondary'),
+        secondaryLight: colorGenerate('--color-secondary-light'),
+        secondaryContranst: colorGenerate('--color-secondary-contrastcolor'),
+        error: colorGenerate('--color-error'),
+        errorLight: colorGenerate('--color-error-light'),
+        errorContranst: colorGenerate('--color-error-contrastcolor'),
+        warning: colorGenerate('--color-warning'),
+        warningLight: colorGenerate('--color-warning-light'),
+        warningContranst: colorGenerate('--color-warning-contrastcolor'),
+        info: colorGenerate('--color-info'),
+        infoLight: colorGenerate('--color-info-light'),
+        infoContranst: colorGenerate('--color-info-contrastcolor'),
+        success: colorGenerate('--color-success'),
+        successLight: colorGenerate('--color-success-light'),
+        successContranst: colorGenerate('--color-success-contrastcolor'),
+        divider: colorGenerate('--color-divider'),
+        neutral: colorGenerate('--color-neutral'),
+        neutralContranst: colorGenerate('--color-neutral-contrastcolor'),
+        profile: colorGenerate('--color-profile'),
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
