@@ -1,23 +1,22 @@
-import Image from 'next/image';
+import Image from "next/image";
 
-import { Box, IconButton } from '@mui/material';
+import { Box, IconButton } from "@mui/material";
 
 //styles
-import styles from './styles/Header.module.scss';
+import styles from "./styles/Header.module.scss";
 
 //shapes
-import Logo from '../../resources/Logo.png';
-import Link from 'next/link';
+import Logo from "../../resources/Logo.png";
+import Link from "next/link";
 
 export default function Navbar() {
   return (
     <Link
       href="/"
       style={{
-        position: 'absolute',
-        bottom: 0,
-        left: 'calc(50vw - 180px)',
-        margin: '0 0 8px 0',
+        position: "absolute",
+        bottom: "30px",
+        left: "30px",
         zIndex: 15,
       }}
     >
@@ -26,10 +25,10 @@ export default function Navbar() {
           width={40}
           height={40}
           sx={{
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            cursor: 'pointer',
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            cursor: "pointer",
           }}
         >
           <Image

@@ -1,9 +1,9 @@
-import Head from 'next/head';
-import Author from '../../components/modules/Author';
+import Head from "next/head";
+import Author from "../../components/modules/Author";
 
 //gql
-import client from '../../helper/graphql/apollo-client';
-import { AUTHORS_QUERY, AUTHOR_QUERY } from '../../helper/graphql/queries';
+import client from "../../helper/graphql/apollo-client";
+import { AUTHORS_QUERY, AUTHOR_QUERY } from "../../helper/graphql/queries";
 
 function Index({ author }) {
   return (
@@ -27,7 +27,7 @@ export const getStaticPaths = async () => {
   const paths = await getAllPaths(authors);
   return {
     paths: paths,
-    fallback: false,
+    fallback: "blocking",
   };
 };
 

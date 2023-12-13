@@ -1,9 +1,9 @@
-import { useRouter } from 'next/router';
-import { useAuth } from '@clerk/nextjs';
-import useWindowDimensions from '../../helper/utils/useWindowDimentions';
-import Box from '@mui/material/Box';
-import LoadingBall from '../../components/elements/loaders/LoadingBall';
-import Head from 'next/head';
+import { useRouter } from "next/router";
+import { useAuth } from "@clerk/nextjs";
+import useWindowDimensions from "../../helper/utils/useWindowDimentions";
+import Box from "@mui/material/Box";
+import LoadingBall from "../../components/elements/loaders/LoadingBall";
+import Head from "next/head";
 
 export default function index() {
   const { isLoaded, userId } = useAuth();
@@ -22,10 +22,10 @@ export default function index() {
         </Head>
         <Box
           sx={{
-            height: height ? `${height}px` : '100dvh',
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
+            height: height ? `${height}px` : "100dvh",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
           }}
         >
           <LoadingBall />
@@ -33,7 +33,7 @@ export default function index() {
       </>
     );
   } else if (isLoaded && !userId) {
-    router.push('/sign-in');
+    router.push("/sign-in");
   } else {
     return (
       <>
@@ -47,14 +47,15 @@ export default function index() {
         <iframe
           src="https://sleepy-einstein-dg9urq1wb.liara.run/dall-e"
           style={{
-            border: 'none',
-            width: '100%',
-            height: height ? `${height}px` : '100%',
-            minHeight: '100dvh',
-            position: 'relative',
+            border: "none",
+            width: "100%",
+            height: height ? `${height}px` : "100%",
+            minHeight: "100dvh",
+            position: "relative",
             zIndex: 10,
           }}
           seamless="seamless"
+          allow="clipboard-read; clipboard-write"
         >
           dall e
         </iframe>
