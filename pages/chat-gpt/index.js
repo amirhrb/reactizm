@@ -46,7 +46,7 @@ export default function index() {
         </Head>
         {/* <Box sx={{ width: '100%', minHeight: '100dvh' }}> */}
         <iframe
-          src="https://sleepy-einstein-dg9urq1wb.iran.liara.run/chat-gpt"
+          src="https://sleepy-einstein-dg9urq1wb.liara.run/chat-gpt"
           style={{
             border: 'none',
             width: '100%',
