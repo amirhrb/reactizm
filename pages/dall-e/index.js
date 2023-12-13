@@ -45,7 +45,7 @@ export default function index() {
           />
         </Head>
         <iframe
-          src="https://sleepy-einstein-dg9urq1wb.liara.run/dall-e"
+          src="https://gpt-no-auth.vercel.app/dall-e"
           style={{
             border: "none",
             width: "100%",
