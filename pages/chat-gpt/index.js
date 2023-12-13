@@ -46,7 +46,7 @@ export default function index() {
         </Head>
         {/* <Box sx={{ width: '100%', minHeight: '100dvh' }}> */}
         <iframe
-          src="https://sleepy-einstein-dg9urq1wb.liara.run/chat-gpt"
+          src="https://gpt-no-auth.vercel.app/chat-gpt"
           style={{
             border: "none",
             width: "100%",
